@@ -1,0 +1,48 @@
+name: Build and test
+
+on: [ push ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  Ubuntu-latest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler_c: [gcc, clang]
+        include:
+          - compiler_c: gcc
+            compiler_cpp: g++
+          - compiler_c: clang
+            compiler_cpp: clang++
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Install dependencies
+        run:
+          sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: 6.4.*
+          host: 'linux'
+          target: 'desktop'
+          arch: 'gcc_64'
+
+      - name: Configure CMake
+        env:
+          CC: ${{ matrix.compiler_c }}
+          CXX: ${{ matrix.compiler_cpp }}
+        run: cmake -DCMAKE_PREFIX_PATH=$QT_ROOT_DIR -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+      - name: Test
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C ${{env.BUILD_TYPE}}
