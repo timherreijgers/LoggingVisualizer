@@ -3,7 +3,14 @@
  * Licensed using the MIT license
  */
 
-int main()
-{
+#include "main_window.h"
 
+#include <QApplication>
+
+int main(int argc, char **argv)
+{
+    QApplication application(argc, argv);
+    LoggingVisualizer::MainWindow mainWindow;
+    mainWindow.show();
+    return QApplication::exec();
 }
