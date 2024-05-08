@@ -4,10 +4,20 @@ project(LoggingVisualizer VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-add_compile_options(-Werror -Wextra -Wall -Wpedantic)
 
-find_package(Qt6 REQUIRED COMPONENTS Core)
+if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    add_compile_options(/W4 /WX)
+else ()
+    add_compile_options(-Werror -Wextra -Wall -Wpedantic)
+endif ()
 
-add_executable(LoggingVisualizer main.cpp)
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
-target_link_libraries(LoggingVisualizer PRIVATE Qt6::Core)
+qt_standard_project_setup()
+
+add_executable(LoggingVisualizer main.cpp
+        main_window.ui
+        main_window.h
+        main_window.cpp)
+
+target_link_libraries(LoggingVisualizer PRIVATE Qt6::Widgets)
