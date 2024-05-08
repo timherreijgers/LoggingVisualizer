@@ -91,7 +91,7 @@
   <customwidget>
    <class>LogWidget</class>
    <extends>QWidget</extends>
-   <header>log_widget.h</header>
+   <header>widgets/log_widget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

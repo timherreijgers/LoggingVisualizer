@@ -1,14 +1,11 @@
 set(WIDGET_HEADERS
-        include/log_widget.h
-        include/main_window.h)
+        include/widgets/log_widget.h)
 
 set(WIDGET_SOURCES
-        src/log_widget.cpp
-        src/main_window.cpp)
+        src/log_widget.cpp)
 
 set(WIDGET_UI
-        src/log_widget.ui
-        src/main_window.ui)
+        src/log_widget.ui)
 
 add_library(widgets STATIC
         ${WIDGET_HEADERS}
