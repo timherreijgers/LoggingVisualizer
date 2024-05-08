@@ -15,9 +15,7 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 qt_standard_project_setup()
 
-add_executable(LoggingVisualizer main.cpp
-        main_window.ui
-        main_window.h
-        main_window.cpp)
-
-target_link_libraries(LoggingVisualizer PRIVATE Qt6::Widgets)
+add_subdirectory(application)
+add_subdirectory(model)
+add_subdirectory(presenters)
+add_subdirectory(widgets)

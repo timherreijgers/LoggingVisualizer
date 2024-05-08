@@ -6,6 +6,7 @@
 #pragma once
 
 #include <QMainWindow>
+
 #include <memory>
 
 namespace LoggingVisualizer
