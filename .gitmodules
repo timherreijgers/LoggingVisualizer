@@ -1,0 +1,3 @@
+[submodule "third-party/FastSignals"]
+	path = third-party/FastSignals
+	url = https://github.com/ispringtech/FastSignals.git
