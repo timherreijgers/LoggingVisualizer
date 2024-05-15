@@ -8,6 +8,8 @@
 
 #include <QWidget>
 
+namespace Widgets
+{
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -28,5 +30,6 @@ private:
     Ui::LogWidget * ui;
 };
 
+} // namespace Widgets
 
 #endif // LOGGINGVISUALIZER_LOG_WIDGET_H
