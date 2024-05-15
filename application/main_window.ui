@@ -28,7 +28,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="LogWidget" name="logWidget" native="true"/>
+     <widget class="Widgets::LogWidget" name="logWidget" native="true"/>
     </item>
    </layout>
   </widget>
@@ -89,7 +89,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>LogWidget</class>
+   <class>Widgets::LogWidget</class>
    <extends>QWidget</extends>
    <header>widgets/log_widget.h</header>
    <container>1</container>

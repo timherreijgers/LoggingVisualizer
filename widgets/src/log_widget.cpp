@@ -8,6 +8,8 @@
 #include "widgets/log_widget.h"
 #include "ui_log_widget.h"
 
+namespace Widgets
+{
 class LogItemModel : public QAbstractTableModel
 {
 public:
@@ -57,3 +59,4 @@ LogWidget::~LogWidget()
 {
     delete ui;
 }
+}// namespace Widgets

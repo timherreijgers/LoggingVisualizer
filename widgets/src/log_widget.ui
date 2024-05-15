@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>LogWidget</class>
+ <class>Widgets::LogWidget</class>
  <widget class="QWidget" name="LogWidget">
   <property name="geometry">
    <rect>
