@@ -4,3 +4,13 @@
  */
 
 #pragma once
+
+namespace Presenters
+{
+
+class LogPresenter
+{
+
+};
+
+} // namespace Presenters

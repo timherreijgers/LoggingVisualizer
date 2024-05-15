@@ -1,6 +1,6 @@
-set(PRESENTER_HEADERS include/log_presenter.h)
+set(PRESENTER_HEADERS include/presenters/log_presenter.h)
 
-set(PRESENTER_SRCS include/log_presenter.h)
+set(PRESENTER_SRCS src/log_presenter.cpp)
 
 add_library(presenters STATIC
         ${PRESENTER_HEADERS}

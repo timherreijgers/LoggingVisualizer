@@ -1,6 +1,6 @@
-set(MODEL_HEADERS include/log_entry.h)
+set(MODEL_HEADERS include/model/log_entry.h)
 
-set(MODEL_SRCS include/log_entry.h)
+set(MODEL_SRCS include/model/log_entry.h)
 
 add_library(model STATIC
         ${MODEL_HEADERS}
