@@ -32,60 +32,17 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="Widgets::MenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>37</height>
+     <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpen"/>
-    <addaction name="actionClose"/>
-    <addaction name="separator"/>
-    <addaction name="actionExit"/>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionReport_an_issue"/>
-    <addaction name="actionAbout"/>
-   </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionOpen">
-   <property name="text">
-    <string>Open...</string>
-   </property>
-  </action>
-  <action name="actionClose">
-   <property name="text">
-    <string>Close file</string>
-   </property>
-  </action>
-  <action name="actionExit">
-   <property name="text">
-    <string>Exit</string>
-   </property>
-  </action>
-  <action name="actionReport_an_issue">
-   <property name="text">
-    <string>Report an issue</string>
-   </property>
-  </action>
-  <action name="actionAbout">
-   <property name="text">
-    <string>About</string>
-   </property>
-  </action>
+  <!-- <widget class="QStatusBar" name="statusbar"/> -->
  </widget>
  <customwidgets>
   <customwidget>
@@ -93,6 +50,11 @@
    <extends>QWidget</extends>
    <header>widgets/log_widget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Widgets::MenuBar</class>
+   <extends>QMenuBar</extends>
+   <header>widgets/menubar.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
