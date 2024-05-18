@@ -6,4 +6,6 @@ add_executable(LoggingVisualizer
 
 target_link_libraries(LoggingVisualizer PRIVATE
         Qt6::Widgets
-        widgets)
+        widgets
+        presenters
+        model)

@@ -19,4 +19,14 @@ MainWindow::~MainWindow()
     delete m_ui;
 }
 
+Widgets::MenuBar & MainWindow::getMenuBar() const noexcept
+{
+    return *m_ui->menubar;
+}
+
+Widgets::LogWidget& MainWindow::getLogWidget() const noexcept
+{
+    return *m_ui->logWidget;
+}
+
 } // LoggingVisualizer

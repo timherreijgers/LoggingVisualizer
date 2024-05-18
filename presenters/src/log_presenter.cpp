@@ -3,4 +3,14 @@
  * Licensed using the MIT license
  */
 
-#pragma once
+#include "presenters/log_presenter.h"
+
+namespace Presenters
+{
+
+LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogSource model)
+        : m_view(view), m_model(model)
+{
+}
+
+} // namespace Presenters
