@@ -59,4 +59,10 @@ LogWidget::~LogWidget()
 {
     delete ui;
 }
+
+void LogWidget::disable()
+{
+    ui->tableView->setEnabled(false);
+}
+
 }// namespace Widgets

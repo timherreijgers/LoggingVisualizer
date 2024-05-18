@@ -5,9 +5,12 @@
 
 #pragma once
 
+#include "widgets/log_widget.h"
+
+
 #include <QMainWindow>
 
-#include <memory>
+#include "widgets/menubar.h"
 
 namespace LoggingVisualizer
 {
@@ -24,6 +27,9 @@ public:
     MainWindow(MainWindow&&) = delete;
     MainWindow& operator=(MainWindow&) = delete;
     MainWindow& operator=(MainWindow&&) = delete;
+
+    [[nodiscard]] Widgets::MenuBar& getMenuBar() const noexcept;
+    [[nodiscard]] Widgets::LogWidget& getLogWidget() const noexcept;
 
 private:
     Ui::MainWindow* m_ui;

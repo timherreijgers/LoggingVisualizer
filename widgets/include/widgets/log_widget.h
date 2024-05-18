@@ -26,6 +26,8 @@ public:
     explicit LogWidget(QWidget * parent = nullptr);
     ~LogWidget() override;
 
+    void disable();
+
 private:
     Ui::LogWidget * ui;
 };
