@@ -17,4 +17,6 @@ add_library(widgets STATIC
 
 target_include_directories(widgets PUBLIC include)
 
-target_link_libraries(widgets PRIVATE Qt6::Widgets)
+target_link_libraries(widgets PRIVATE
+        types
+        Qt6::Widgets)

@@ -8,11 +8,11 @@
 namespace Model
 {
 
-auto LogSource::getLogEntries() const noexcept -> const std::vector<LogEntry> &
+auto LogSource::getLogEntries() const noexcept -> const std::vector<Types::LogEntry> &
 {
     static std::vector vec{
-        LogEntry{"00.00.00", "INFO", "This is an info message"},
-        LogEntry{"00.00.01", "WARNING", "This is an warning message"},
+        Types::LogEntry{"00.00.00", "INFO", "This is an info message"},
+        Types::LogEntry{"00.00.01", "WARNING", "This is an warning message"},
     };
     return vec;
 }

@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "log_entry.h"
+#include "types/log_entry.h"
 
 #include <vector>
 
@@ -17,7 +17,7 @@ class LogSource
 public:
     explicit LogSource() = default;
 
-    [[nodiscard]] auto getLogEntries() const noexcept -> const std::vector<LogEntry> &;
+    [[nodiscard]] auto getLogEntries() const noexcept -> const std::vector<Types::LogEntry> &;
 };
 
 } // namespace Model

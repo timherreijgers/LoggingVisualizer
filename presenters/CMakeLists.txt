@@ -15,4 +15,5 @@ target_include_directories(presenters PUBLIC include)
 target_link_libraries(presenters PRIVATE
         widgets
         model
+        types
         Qt6::Widgets)

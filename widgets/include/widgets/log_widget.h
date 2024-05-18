@@ -6,6 +6,10 @@
 #ifndef LOGGINGVISUALIZER_LOG_WIDGET_H
 #define LOGGINGVISUALIZER_LOG_WIDGET_H
 
+#include "types/log_entry.h"
+
+
+#include <qabstractitemmodel.h>
 #include <QWidget>
 
 namespace Widgets
@@ -26,10 +30,11 @@ public:
     explicit LogWidget(QWidget * parent = nullptr);
     ~LogWidget() override;
 
-    void disable();
+    void setLogMessages(const std::vector<Types::LogEntry> & messages);
 
 private:
     Ui::LogWidget * ui;
+    std::unique_ptr<QAbstractTableModel> m_model;
 };
 
 } // namespace Widgets
