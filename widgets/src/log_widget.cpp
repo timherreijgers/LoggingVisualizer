@@ -13,6 +13,11 @@ namespace Widgets
 class LogItemModel : public QAbstractTableModel
 {
 public:
+    LogItemModel(const std::vector<Types::LogEntry> & messages) : m_messages(messages)
+    {
+
+    }
+
     QModelIndex parent(const QModelIndex & /*child*/) const override
     {
         return QModelIndex();
@@ -20,7 +25,7 @@ public:
 
     int rowCount(const QModelIndex & /*parent*/) const override
     {
-        return 5;
+        return m_messages.size();
     }
 
     int columnCount(const QModelIndex & /*parent*/) const override
@@ -36,23 +41,23 @@ public:
         switch (index.column())
         {
         case 0:
-            return QString("Time");
+            return QString(m_messages[index.row()].time.c_str());
         case 1:
-            return QString("Level");
+            return QString(m_messages[index.row()].level.c_str());
         case 2:
-            return QString("Message");
+            return QString(m_messages[index.row()].message.c_str());
         }
 
         return QVariant();
     }
+private:
+    const std::vector<Types::LogEntry> & m_messages;
 };
 
 LogWidget::LogWidget(QWidget * parent) :
     QWidget(parent), ui(new Ui::LogWidget)
 {
     ui->setupUi(this);
-    static LogItemModel model{};
-    ui->tableView->setModel(&model);
 }
 
 LogWidget::~LogWidget()
@@ -60,9 +65,10 @@ LogWidget::~LogWidget()
     delete ui;
 }
 
-void LogWidget::disable()
+void LogWidget::setLogMessages(const std::vector<Types::LogEntry> & messages)
 {
-    ui->tableView->setEnabled(false);
+    m_model = std::make_unique<LogItemModel>(messages);
+    ui->tableView->setModel(m_model.get());
 }
 
 }// namespace Widgets

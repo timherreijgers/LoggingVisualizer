@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+* Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -7,7 +7,7 @@
 
 #include <string>
 
-namespace Model
+namespace Types
 {
 
 struct LogEntry

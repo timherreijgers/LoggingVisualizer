@@ -1,5 +1,4 @@
 set(MODEL_HEADERS
-        include/model/log_entry.h
         include/model/log_source.h)
 
 set(MODEL_SRCS
@@ -10,3 +9,5 @@ add_library(model STATIC
         ${MODEL_SRCS})
 
 target_include_directories(model PUBLIC include)
+
+target_link_libraries(model PRIVATE types)
