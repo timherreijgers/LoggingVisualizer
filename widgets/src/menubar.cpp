@@ -18,14 +18,4 @@ MenuBar::~MenuBar()
     delete ui;
 }
 
-void MenuBar::disableCloseFileOption() const noexcept
-{
-    ui->actionClose->setEnabled(false);
-}
-
-void MenuBar::enableCloseFileOption() const noexcept
-{
-    ui->actionClose->setEnabled(true);
-}
-
 } // Widgets

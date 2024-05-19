@@ -19,9 +19,6 @@ public:
     explicit MenuBar(QWidget *parent = nullptr);
     ~MenuBar() override;
 
-    void disableCloseFileOption() const noexcept;
-    void enableCloseFileOption() const noexcept;
-
 private:
     Ui::MenuBar *ui;
 };

@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "model/log_source.h"
+#include "model/log_data_context.h"
 #include "widgets/log_widget.h"
 
 #include <vector>
@@ -20,11 +20,11 @@ namespace Presenters
 class LogPresenter
 {
 public:
-    explicit LogPresenter(Widgets::LogWidget& view, Model::LogSource model);
+    explicit LogPresenter(Widgets::LogWidget& view, Model::LogDataContext& model);
 
 private:
     [[maybe_unused]] Widgets::LogWidget & m_view;
-    [[maybe_unused]] Model::LogSource m_model;
+    [[maybe_unused]] Model::LogDataContext& m_model;
 };
 
 } // namespace Presenters
