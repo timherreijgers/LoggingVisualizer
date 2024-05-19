@@ -12,10 +12,10 @@
 namespace Model
 {
 
-class LogSource
+class LogDataContext
 {
 public:
-    explicit LogSource() = default;
+    explicit LogDataContext() = default;
 
     [[nodiscard]] auto getLogEntries() const noexcept -> const std::vector<Types::LogEntry> &;
 };

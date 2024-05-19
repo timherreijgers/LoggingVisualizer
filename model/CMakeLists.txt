@@ -1,8 +1,8 @@
 set(MODEL_HEADERS
-        include/model/log_source.h)
+        include/model/log_data_context.h)
 
 set(MODEL_SRCS
-        src/log_source.cpp)
+        src/log_data_context.cpp)
 
 add_library(model STATIC
         ${MODEL_HEADERS}

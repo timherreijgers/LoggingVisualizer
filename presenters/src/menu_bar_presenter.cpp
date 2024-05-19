@@ -10,10 +10,9 @@
 namespace Presenters
 {
 
-MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view)
-    : m_view(view)
+MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view, Model::LogDataContext & model)
+    : m_view(view), m_model(model)
 {
-    m_view.disableCloseFileOption();
 }
 
 } // namespace Presenters

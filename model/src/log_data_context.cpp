@@ -3,12 +3,12 @@
  * Licensed using the MIT license
  */
 
-#include "model/log_source.h"
+#include "model/log_data_context.h"
 
 namespace Model
 {
 
-auto LogSource::getLogEntries() const noexcept -> const std::vector<Types::LogEntry> &
+auto LogDataContext::getLogEntries() const noexcept -> const std::vector<Types::LogEntry> &
 {
     static std::vector vec{
         Types::LogEntry{"00.00.00", "INFO", "This is an info message"},
