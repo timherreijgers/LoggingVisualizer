@@ -5,19 +5,27 @@
 
 #pragma once
 
+#include "model/observable.h"
+
 #include "types/log_entry.h"
 
 #include <vector>
+#include <filesystem>
 
 namespace Model
 {
+
+using LogEntriesChangedListener = std::function<void(const std::vector<Types::LogEntry>&)>;
 
 class LogDataContext
 {
 public:
     explicit LogDataContext() = default;
 
-    [[nodiscard]] auto getLogEntries() const noexcept -> const std::vector<Types::LogEntry> &;
+    void openFile(const std::filesystem::path & filePath);
+    auto subscribeToLogEntiesChanged(LogEntriesChangedListener slot) noexcept -> void;
+private:
+    Observable<std::vector<Types::LogEntry>> m_logEntriesUpdatedSignal;
 };
 
 } // namespace Model

@@ -1,3 +1,0 @@
-[submodule "third-party/FastSignals"]
-	path = third-party/FastSignals
-	url = https://github.com/timherreijgers/FastSignals.git

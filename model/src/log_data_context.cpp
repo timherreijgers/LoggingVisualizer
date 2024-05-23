@@ -8,13 +8,13 @@
 namespace Model
 {
 
-auto LogDataContext::getLogEntries() const noexcept -> const std::vector<Types::LogEntry> &
+void LogDataContext::openFile(const std::filesystem::path &)
 {
-    static std::vector vec{
-        Types::LogEntry{"00.00.00", "INFO", "This is an info message"},
-        Types::LogEntry{"00.00.01", "WARNING", "This is an warning message"},
-    };
-    return vec;
+}
+
+auto LogDataContext::subscribeToLogEntiesChanged(LogEntriesChangedListener subscriber) noexcept -> void
+{
+    m_logEntriesUpdatedSignal.subscribe(subscriber);
 }
 
 } // namespace Model
