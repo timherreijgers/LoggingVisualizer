@@ -1,5 +1,6 @@
 set(MODEL_HEADERS
-        include/model/log_data_context.h)
+        include/model/log_data_context.h
+        include/model/observable.h)
 
 set(MODEL_SRCS
         src/log_data_context.cpp)
@@ -10,4 +11,6 @@ add_library(model STATIC
 
 target_include_directories(model PUBLIC include)
 
-target_link_libraries(model PRIVATE types)
+target_link_libraries(model PRIVATE
+        types
+)
