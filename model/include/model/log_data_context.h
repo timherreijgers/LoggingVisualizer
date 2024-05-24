@@ -23,7 +23,9 @@ public:
     explicit LogDataContext() = default;
 
     void openFile(const std::filesystem::path & filePath);
-    auto subscribeToLogEntiesChanged(LogEntriesChangedListener slot) noexcept -> void;
+    void closeFile() noexcept;
+
+    void subscribeToLogEntiesChanged(LogEntriesChangedListener slot) noexcept;
 private:
     Observable<std::vector<Types::LogEntry>> m_logEntriesUpdatedSignal;
 };

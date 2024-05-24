@@ -21,9 +21,11 @@ public:
 
 signals:
     void openFileClicked();
+    void closeFileClicked();
 
 private slots:
     void actionOpenTriggered(bool);
+    void actionCloseTriggered(bool);
 
 private:
     Ui::MenuBar *ui;
