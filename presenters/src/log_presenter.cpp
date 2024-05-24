@@ -10,14 +10,17 @@
 namespace Presenters
 {
 
-LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext& model)
-        : m_view(view), m_model(model)
+LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & model) :
+    m_view(view), m_model(model)
 {
-    view.setLogMessages({});
+    m_view.setLogMessages({});
 
-    model.subscribeToLogEntiesChanged([&](const std::vector<Types::LogEntry>& logEntries) {
-        view.setLogMessages(logEntries);
-    });
+    model.subscribeToLogEntiesChanged([this](const std::vector<Types::LogEntry>& data){logMessagesUpdated(data);});
+}
+
+void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEntries) noexcept
+{
+    m_view.setLogMessages(logEntries);
 }
 
 } // namespace Presenters

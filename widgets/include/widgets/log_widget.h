@@ -30,7 +30,7 @@ public:
     explicit LogWidget(QWidget * parent = nullptr);
     ~LogWidget() override;
 
-    void setLogMessages(const std::vector<Types::LogEntry> & messages);
+    void setLogMessages(const std::vector<Types::LogEntry> & messages) noexcept;
 
 private:
     Ui::LogWidget * ui;
