@@ -5,6 +5,7 @@
 
 #include "presenters/menu_bar_presenter.h"
 
+#include <QApplication>
 #include <QObject>
 
 namespace Presenters
@@ -20,6 +21,8 @@ MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view, Model::LogDataContex
     QObject::connect(&m_view, &Widgets::MenuBar::closeFileClicked, [&]() {
         m_model.closeFile();
     });
+
+    QObject::connect(&m_view, &Widgets::MenuBar::exitClicked, [](){QApplication::exit(0);});
 }
 
 } // namespace Presenters
