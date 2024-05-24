@@ -24,6 +24,7 @@ public:
 
 private:
     void logMessagesUpdated(const std::vector<Types::LogEntry>& logEntries) noexcept;
+    void onFileDroppedInView(std::string_view url);
 
     Widgets::LogWidget & m_view;
     Model::LogDataContext& m_model;

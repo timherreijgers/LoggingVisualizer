@@ -5,8 +5,6 @@
 
 #include "presenters/log_presenter.h"
 
-#include <iostream>
-
 namespace Presenters
 {
 
@@ -16,11 +14,19 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & mo
     m_view.setLogMessages({});
 
     m_model.subscribeToLogEntiesChanged([this](const std::vector<Types::LogEntry>& data){logMessagesUpdated(data);});
+    QObject::connect(&m_view, &Widgets::LogWidget::onFileDropped, [this](const std::string_view url) {onFileDroppedInView(url);});
 }
 
 void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEntries) noexcept
 {
     m_view.setLogMessages(logEntries);
+}
+
+void LogPresenter::onFileDroppedInView(const std::string_view url)
+{
+    std::filesystem::path path{url};
+
+    m_model.openFile(path);
 }
 
 } // namespace Presenters

@@ -7,6 +7,7 @@
 
 #include <QApplication>
 #include <QObject>
+#include <QFileDialog>
 
 namespace Presenters
 {
@@ -21,7 +22,8 @@ MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view, Model::LogDataContex
 
 void MenuBarPresenter::openFileClicked()
 {
-    m_model.openFile("test.log");
+    const auto filename = QFileDialog::getOpenFileName().toStdString();
+    m_model.openFile(filename);
 }
 
 void MenuBarPresenter::closeFileClicked() noexcept

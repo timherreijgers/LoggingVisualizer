@@ -37,7 +37,7 @@ public:
         return m_data.has_value();
     }
 
-    [[nodiscard]] auto getData() const -> T&
+    [[nodiscard]] auto getData() const -> const T&
     {
         return m_data.value();
     }
