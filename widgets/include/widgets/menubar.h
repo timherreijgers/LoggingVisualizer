@@ -22,10 +22,12 @@ public:
 signals:
     void openFileClicked();
     void closeFileClicked();
+    void exitClicked();
 
 private slots:
     void actionOpenTriggered(bool);
     void actionCloseTriggered(bool);
+    void actionExitTriggered(bool);
 
 private:
     Ui::MenuBar *ui;

@@ -17,6 +17,7 @@ MenuBar::MenuBar(QWidget * parent) :
 
     connect(ui->actionOpen, &QAction::triggered, this, &MenuBar::actionOpenTriggered);
     connect(ui->actionClose, &QAction::triggered, this, &MenuBar::actionCloseTriggered);
+    connect(ui->actionExit, &QAction::triggered, this, &MenuBar::actionExitTriggered);
 }
 
 void MenuBar::actionOpenTriggered(bool)
@@ -27,6 +28,11 @@ void MenuBar::actionOpenTriggered(bool)
 void MenuBar::actionCloseTriggered(bool)
 {
     closeFileClicked();
+}
+
+void MenuBar::actionExitTriggered(bool)
+{
+    exitClicked();
 }
 
 MenuBar::~MenuBar()
