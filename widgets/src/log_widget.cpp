@@ -25,7 +25,7 @@ public:
 
     int rowCount(const QModelIndex & /*parent*/) const override
     {
-        return m_messages.size();
+        return static_cast<int>(m_messages.size());
     }
 
     int columnCount(const QModelIndex & /*parent*/) const override

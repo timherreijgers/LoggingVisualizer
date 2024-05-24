@@ -4,12 +4,10 @@
  */
 
 #pragma once
-#include "model/log_data_context.h"
 
-namespace Widgets
-{
-class MenuBar;
-}
+#include "model/log_data_context.h"
+#include "widgets/menubar.h"
+
 namespace Presenters
 {
 
