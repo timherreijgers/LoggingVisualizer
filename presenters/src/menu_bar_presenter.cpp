@@ -11,18 +11,22 @@
 namespace Presenters
 {
 
-MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view, Model::LogDataContext & model)
-    : m_view(view), m_model(model)
+MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view, Model::LogDataContext & model) :
+    m_view(view), m_model(model)
 {
-    QObject::connect(&m_view, &Widgets::MenuBar::openFileClicked, [&]() {
-        m_model.openFile("test.log");
-    });
+    QObject::connect(&m_view, &Widgets::MenuBar::openFileClicked, [this] { openFileClicked(); });
+    QObject::connect(&m_view, &Widgets::MenuBar::closeFileClicked, [this] { closeFileClicked(); });
+    QObject::connect(&m_view, &Widgets::MenuBar::exitClicked, []() { QApplication::exit(0); });
+}
 
-    QObject::connect(&m_view, &Widgets::MenuBar::closeFileClicked, [&]() {
-        m_model.closeFile();
-    });
+void MenuBarPresenter::openFileClicked()
+{
+    m_model.openFile("test.log");
+}
 
-    QObject::connect(&m_view, &Widgets::MenuBar::exitClicked, [](){QApplication::exit(0);});
+void MenuBarPresenter::closeFileClicked() noexcept
+{
+    m_model.closeFile();
 }
 
 } // namespace Presenters

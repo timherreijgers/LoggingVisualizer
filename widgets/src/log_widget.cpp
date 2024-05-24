@@ -13,27 +13,21 @@ namespace Widgets
 class LogItemModel : public QAbstractTableModel
 {
 public:
-    LogItemModel(const std::vector<Types::LogEntry> & messages) : m_messages(messages)
+    explicit LogItemModel(const std::vector<Types::LogEntry> & messages) : m_messages(messages)
     {
-
     }
 
-    QModelIndex parent(const QModelIndex & /*child*/) const override
-    {
-        return QModelIndex();
-    }
-
-    int rowCount(const QModelIndex & /*parent*/) const override
+    [[nodiscard]] auto rowCount(const QModelIndex & /*parent*/) const noexcept -> int override
     {
         return static_cast<int>(m_messages.size());
     }
 
-    int columnCount(const QModelIndex & /*parent*/) const override
+    [[nodiscard]] auto columnCount(const QModelIndex & /*parent*/) const noexcept -> int override
     {
         return 3;
     }
 
-    QVariant data(const QModelIndex & index, int role) const override
+    [[nodiscard]] auto data(const QModelIndex & index, int role) const -> QVariant override
     {
         if (role != Qt::DisplayRole)
             return {};
@@ -46,9 +40,10 @@ public:
             return QString(m_messages[index.row()].level.c_str());
         case 2:
             return QString(m_messages[index.row()].message.c_str());
+        default:
+            return {};
         }
 
-        return QVariant();
     }
 
 private:
@@ -68,7 +63,7 @@ LogWidget::~LogWidget()
     delete ui;
 }
 
-void LogWidget::setLogMessages(const std::vector<Types::LogEntry> & messages)
+void LogWidget::setLogMessages(const std::vector<Types::LogEntry> & messages) noexcept
 {
     m_model = std::make_unique<LogItemModel>(messages);
     ui->tableView->setModel(m_model.get());
