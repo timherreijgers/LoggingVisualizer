@@ -20,8 +20,8 @@ private:
     void openFileClicked();
     void closeFileClicked() noexcept;
 
-    [[maybe_unused]] Widgets::MenuBar& m_view;
-    [[maybe_unused]] Model::LogDataContext& m_model;
+    Widgets::MenuBar& m_view;
+    Model::LogDataContext& m_model;
 };
 
 } // namespace Presenters

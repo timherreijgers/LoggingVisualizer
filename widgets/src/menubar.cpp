@@ -5,7 +5,7 @@
  // You may need to build the project (run Qt uic code generator) to get "ui_MenuBar.h" resolved
 
 #include "widgets/menubar.h"
-#include "ui_MenuBar.h"
+#include "ui_menubar.h"
 
 #include <iostream>
 
