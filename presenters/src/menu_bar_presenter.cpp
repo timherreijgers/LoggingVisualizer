@@ -16,6 +16,10 @@ MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view, Model::LogDataContex
     QObject::connect(&m_view, &Widgets::MenuBar::openFileClicked, [&]() {
         m_model.openFile("test.log");
     });
+
+    QObject::connect(&m_view, &Widgets::MenuBar::closeFileClicked, [&]() {
+        m_model.closeFile();
+    });
 }
 
 } // namespace Presenters

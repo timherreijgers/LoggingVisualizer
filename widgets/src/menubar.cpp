@@ -16,12 +16,17 @@ MenuBar::MenuBar(QWidget * parent) :
     ui->setupUi(this);
 
     connect(ui->actionOpen, &QAction::triggered, this, &MenuBar::actionOpenTriggered);
+    connect(ui->actionClose, &QAction::triggered, this, &MenuBar::actionCloseTriggered);
 }
 
 void MenuBar::actionOpenTriggered(bool)
 {
-    std::printf("Open triggered");
     openFileClicked();
+}
+
+void MenuBar::actionCloseTriggered(bool)
+{
+    closeFileClicked();
 }
 
 MenuBar::~MenuBar()

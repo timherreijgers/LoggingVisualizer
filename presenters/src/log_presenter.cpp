@@ -13,6 +13,8 @@ namespace Presenters
 LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext& model)
         : m_view(view), m_model(model)
 {
+    view.setLogMessages({});
+
     model.subscribeToLogEntiesChanged([&](const std::vector<Types::LogEntry>& logEntries) {
         view.setLogMessages(logEntries);
     });
