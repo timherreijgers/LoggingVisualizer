@@ -11,9 +11,12 @@ else ()
     add_compile_options(-Werror -Wextra -Wall -Wpedantic)
 endif ()
 
+enable_testing()
+
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 qt_standard_project_setup()
+set(CMAKE_AUTOUIC ON)
 
 add_subdirectory(application)
 add_subdirectory(model)
