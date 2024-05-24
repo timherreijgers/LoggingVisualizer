@@ -15,7 +15,7 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & mo
 {
     m_view.setLogMessages({});
 
-    model.subscribeToLogEntiesChanged([this](const std::vector<Types::LogEntry>& data){logMessagesUpdated(data);});
+    m_model.subscribeToLogEntiesChanged([this](const std::vector<Types::LogEntry>& data){logMessagesUpdated(data);});
 }
 
 void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEntries) noexcept
