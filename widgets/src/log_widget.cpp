@@ -35,7 +35,7 @@ public:
 
     QVariant data(const QModelIndex & index, int role) const override
     {
-        if(role != Qt::DisplayRole)
+        if (role != Qt::DisplayRole)
             return {};
 
         switch (index.column())
@@ -50,6 +50,7 @@ public:
 
         return QVariant();
     }
+
 private:
     const std::vector<Types::LogEntry> & m_messages;
 };
@@ -58,6 +59,8 @@ LogWidget::LogWidget(QWidget * parent) :
     QWidget(parent), ui(new Ui::LogWidget)
 {
     ui->setupUi(this);
+    ui->tableView->horizontalHeader()->setStretchLastSection(true);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 LogWidget::~LogWidget()

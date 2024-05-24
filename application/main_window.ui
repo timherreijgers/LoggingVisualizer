@@ -6,14 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>839</width>
+    <height>502</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="leftMargin">
      <number>0</number>
@@ -28,7 +34,14 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="Widgets::LogWidget" name="logWidget" native="true"/>
+     <widget class="Widgets::LogWidget" name="logWidget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -37,12 +50,11 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>839</width>
      <height>22</height>
     </rect>
    </property>
   </widget>
-  <!-- <widget class="QStatusBar" name="statusbar"/> -->
  </widget>
  <customwidgets>
   <customwidget>
