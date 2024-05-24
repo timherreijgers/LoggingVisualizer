@@ -3,8 +3,7 @@
  * Licensed using the MIT license
  */
 
-#ifndef LOGGINGVISUALIZER_LOG_WIDGET_H
-#define LOGGINGVISUALIZER_LOG_WIDGET_H
+#pragma once
 
 #include "types/log_entry.h"
 
@@ -38,5 +37,3 @@ private:
 };
 
 } // namespace Widgets
-
-#endif // LOGGINGVISUALIZER_LOG_WIDGET_H

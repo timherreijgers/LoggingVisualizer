@@ -25,7 +25,7 @@ public:
     void openFile(const std::filesystem::path & filePath);
     void closeFile() noexcept;
 
-    void subscribeToLogEntiesChanged(LogEntriesChangedListener slot) noexcept;
+    void subscribeToLogEntiesChanged(LogEntriesChangedListener listener) noexcept;
 private:
     Observable<std::vector<Types::LogEntry>> m_logEntriesUpdatedSignal;
 };

@@ -1,8 +1,7 @@
 /*
- * Copyright (c) $originalComment.match("Copyright © (\d+)", 1, "-", "$today.year")$today.year. Tim Herreijgers
+ * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
- // You may need to build the project (run Qt uic code generator) to get "ui_MenuBar.h" resolved
 
 #include "widgets/menubar.h"
 #include "ui_menubar.h"

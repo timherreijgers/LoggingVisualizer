@@ -3,8 +3,6 @@
  * Licensed using the MIT license
  */
 
-// You may need to build the project (run Qt uic code generator) to get "ui_log_widget.h" resolved
-
 #include "widgets/log_widget.h"
 #include "ui_log_widget.h"
 

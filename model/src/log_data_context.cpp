@@ -28,9 +28,9 @@ void LogDataContext::closeFile() noexcept
     m_logEntriesUpdatedSignal.setValue({});
 }
 
-void LogDataContext::subscribeToLogEntiesChanged(LogEntriesChangedListener subscriber) noexcept
+void LogDataContext::subscribeToLogEntiesChanged(LogEntriesChangedListener listener) noexcept
 {
-    m_logEntriesUpdatedSignal.subscribe(std::move(subscriber));
+    m_logEntriesUpdatedSignal.subscribe(std::move(listener));
 }
 
 } // namespace Model
