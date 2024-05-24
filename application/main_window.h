@@ -6,11 +6,9 @@
 #pragma once
 
 #include "widgets/log_widget.h"
-
+#include "widgets/menubar.h"
 
 #include <QMainWindow>
-
-#include "widgets/menubar.h"
 
 namespace LoggingVisualizer
 {

@@ -1,9 +1,9 @@
 /*
- * Copyright (c) $originalComment.match("Copyright © (\d+)", 1, "-", "$today.year")$today.year. Tim Herreijgers
+ * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
- #ifndef MENUBAR_H
-#define MENUBAR_H
+
+#pragma once
 
 #include <QMenuBar>
 
@@ -33,5 +33,3 @@ private:
     Ui::MenuBar *ui;
 };
 } // Widgets
-
-#endif //MENUBAR_H
