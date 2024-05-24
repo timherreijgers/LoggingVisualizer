@@ -19,6 +19,12 @@ public:
     explicit MenuBar(QWidget *parent = nullptr);
     ~MenuBar() override;
 
+signals:
+    void openFileClicked();
+
+private slots:
+    void actionOpenTriggered(bool);
+
 private:
     Ui::MenuBar *ui;
 };
