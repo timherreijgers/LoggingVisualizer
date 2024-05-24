@@ -31,6 +31,13 @@ public:
 
     void setLogMessages(const std::vector<Types::LogEntry> & messages) noexcept;
 
+signals:
+    void onFileDropped(std::string_view url);
+
+protected:
+    void dragEnterEvent(QDragEnterEvent * event) override;
+    void dropEvent(QDropEvent * event) override;
+
 private:
     Ui::LogWidget * ui;
     std::unique_ptr<QAbstractTableModel> m_model;

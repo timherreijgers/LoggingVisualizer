@@ -1,0 +1,12 @@
+[00-00-2000 00.00.00][TRACE] This is a trace message
+[00-00-2000 00.00.01][DEBUG] This is a debug message
+[00-00-2000 00.00.02][INFO] This is a info message
+[00-00-2000 00.00.03][WARNING] This is a warning message
+[00-00-2000 00.00.04][ERROR] This is a error message
+[00-00-2000 00.00.05][CRITICAL] This is a critical message
+[00-00-2000 00.01.00][TRACE] This is a trace message
+[00-00-2000 00.01.01][DEBUG] This is a debug message
+[00-00-2000 00.01.02][INFO] This is a info message
+[00-00-2000 00.01.03][WARNING] This is a warning message
+[00-00-2000 00.01.04][ERROR] This is a error message
+[00-00-2000 00.01.05][CRITICAL] This is a critical message

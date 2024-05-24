@@ -1,9 +1,7 @@
 /*
- * Copyright © 2022 Tim Herreijgers
+ * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
-
-// You may need to build the project (run Qt uic code generator) to get "ui_main_window.h" resolved
 
 #include "main_window.h"
 #include "ui_main_window.h"

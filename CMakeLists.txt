@@ -18,6 +18,8 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 qt_standard_project_setup()
 set(CMAKE_AUTOUIC ON)
 
+add_subdirectory(third-party)
+
 add_subdirectory(application)
 add_subdirectory(model)
 add_subdirectory(presenters)

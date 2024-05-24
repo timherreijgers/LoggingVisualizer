@@ -6,6 +6,9 @@
 #include "widgets/log_widget.h"
 #include "ui_log_widget.h"
 
+#include <QDropEvent>
+#include <QMimeData>
+
 namespace Widgets
 {
 class LogItemModel : public QAbstractTableModel
@@ -54,6 +57,8 @@ LogWidget::LogWidget(QWidget * parent) :
     ui->setupUi(this);
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    setAcceptDrops(true);
 }
 
 LogWidget::~LogWidget()
@@ -65,6 +70,24 @@ void LogWidget::setLogMessages(const std::vector<Types::LogEntry> & messages) no
 {
     m_model = std::make_unique<LogItemModel>(messages);
     ui->tableView->setModel(m_model.get());
+}
+
+void LogWidget::dragEnterEvent(QDragEnterEvent * event)
+{
+    if (event->mimeData()->hasUrls() && event->mimeData()->urls()[0].isLocalFile())
+    {
+        event->setDropAction(Qt::DropAction::MoveAction);
+        event->accept();
+    }
+}
+
+void LogWidget::dropEvent(QDropEvent * event)
+{
+    if (event->mimeData()->hasUrls())
+    {
+        const auto filePath = event->mimeData()->urls()[0].toLocalFile().toStdString();
+        onFileDropped(filePath);
+    }
 }
 
 }// namespace Widgets
