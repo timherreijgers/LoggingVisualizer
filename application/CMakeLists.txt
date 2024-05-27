@@ -1,8 +1,5 @@
 add_executable(LoggingVisualizer
-        main.cpp
-        main_window.cpp
-        main_window.h
-        main_window.ui)
+        main.cpp)
 
 target_link_libraries(LoggingVisualizer PRIVATE
         widgets

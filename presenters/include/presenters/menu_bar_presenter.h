@@ -20,6 +20,7 @@ public:
 private:
     void openFileClicked();
     void closeFileClicked() noexcept;
+    static void preferencesClicked() noexcept;
 
     Widgets::MenuBar& m_view;
     Model::LogDataContext& m_model;
