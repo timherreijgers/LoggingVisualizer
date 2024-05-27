@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>229</height>
+    <width>451</width>
+    <height>301</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,9 +18,35 @@
     <property name="spacing">
      <number>-1</number>
     </property>
+    <item row="5" column="0">
+     <widget class="Widgets::LogLevelWidget" name="debug_levels_table">
+      <property name="selectionMode">
+       <enum>QAbstractItemView::NoSelection</enum>
+      </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderHighlightSections">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Widgets::LogLevelWidget</class>
+   <extends>QTableView</extends>
+   <header>widgets/log_level_widget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
