@@ -1,5 +1,7 @@
 set(TYPES_HEADERS
         include/exceptions/FileNotFoundException.h
+
+        include/types/color.h
         include/types/log_entry.h)
 
 add_library(types STATIC ${TYPES_HEADERS})
