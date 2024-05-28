@@ -3,6 +3,7 @@ add_subdirectory(tests)
 set(MODEL_HEADERS
         include/model/log_data_context.h
         include/model/observable.h
+        include/model/settings_model.h
 
         src/file_reader.h)
 

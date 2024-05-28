@@ -5,10 +5,18 @@
 
 #pragma once
 
+#include "types/color.h"
+
+
 #include <QTableView>
 
 namespace Widgets
 {
+
+enum class ColorType
+{
+    TEXT, BACKGROUND
+};
 
 class LogLevelWidget : public QTableView
 {
@@ -17,6 +25,9 @@ class LogLevelWidget : public QTableView
 public:
     explicit LogLevelWidget(QWidget * parent = nullptr);
     void setModel(QAbstractItemModel * model) override;
+
+signals:
+    void colorSelectionChanged(int row, Widgets::ColorType type, Types::Color color);
 
 private slots:
     void onCellClicked(const QModelIndex& index);
