@@ -1,41 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <author/>
-    <comment/>
-    <exportmacro/>
-    <class>Widgets::MenuBar</class>
-    <widget class="QMenuBar" name="Widgets::MenuBar">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>400</width>
-                <height>300</height>
-            </rect>
-        </property>
-        <property name="windowTitle">
-            <string>MenuBar</string>
-        </property>
-           <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpen"/>
-    <addaction name="actionClose"/>
-    <addaction name="separator"/>
-    <addaction name="actionExit"/>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionReport_an_issue"/>
-    <addaction name="actionAbout"/>
-   </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuHelp"/>
-
-    <action name="actionOpen">
+ <class>Widgets::MenuBar</class>
+ <widget class="QMenuBar" name="Widgets::MenuBar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MenuBar</string>
+  </property>
+  <widget class="QMenu" name="menuFile">
+   <property name="title">
+    <string>File</string>
+   </property>
+   <addaction name="actionOpen"/>
+   <addaction name="actionClose"/>
+   <addaction name="separator"/>
+   <addaction name="actionPreferences"/>
+   <addaction name="actionExit"/>
+  </widget>
+  <widget class="QMenu" name="menuHelp">
+   <property name="title">
+    <string>Help</string>
+   </property>
+   <addaction name="actionReport_an_issue"/>
+   <addaction name="actionAbout"/>
+  </widget>
+  <action name="actionOpen">
    <property name="text">
     <string>Open...</string>
    </property>
@@ -60,7 +55,14 @@
     <string>About</string>
    </property>
   </action>
-    </widget>
-    <pixmapfunction/>
-    <connections/>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+  </action>
+  <addaction name="menuFile"/>
+  <addaction name="menuHelp"/>
+ </widget>
+ <resources/>
+ <connections/>
 </ui>

@@ -22,11 +22,13 @@ public:
 signals:
     void openFileClicked();
     void closeFileClicked();
+    void preferencesClicked();
     void exitClicked();
 
 private slots:
     void actionOpenTriggered(bool);
     void actionCloseTriggered(bool);
+    void actionPreferencesTriggered(bool);
     void actionExitTriggered(bool);
 
 private:

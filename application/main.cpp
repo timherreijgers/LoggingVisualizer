@@ -5,16 +5,17 @@
 
 #include <QApplication>
 
-#include "main_window.h"
 #include "model/log_data_context.h"
 #include "presenters/log_presenter.h"
 #include "presenters/menu_bar_presenter.h"
+#include "windows/main_window.h"
+#include "windows/window_manager.h"
 
 int main(int argc, char **argv)
 {
     QApplication application(argc, argv);
 
-    LoggingVisualizer::MainWindow mainWindow;
+    auto &mainWindow = Windows::WindowManager::createMainWindow();
     mainWindow.show();
 
     Model::LogDataContext logDataContext{};

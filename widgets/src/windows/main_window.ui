@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Copyright © 2024 Tim Herreijgers
+  - Licensed using the MIT license
+  -->
+
 <ui version="4.0">
- <class>LoggingVisualizer::MainWindow</class>
- <widget class="QMainWindow" name="LoggingVisualizer::MainWindow">
+ <class>Windows::MainWindow</class>
+ <widget class="QMainWindow" name="Windows::MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>

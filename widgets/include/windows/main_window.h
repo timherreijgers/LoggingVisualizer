@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 Tim Herreijgers
+ * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -10,7 +10,7 @@
 
 #include <QMainWindow>
 
-namespace LoggingVisualizer
+namespace Windows
 {
 
 namespace Ui { class MainWindow; }
@@ -33,4 +33,4 @@ private:
     Ui::MainWindow* m_ui;
 };
 
-} // LoggingVisualizer
+} // Windows

@@ -3,10 +3,12 @@
  * Licensed using the MIT license
  */
 
-#include "main_window.h"
+#include "windows/main_window.h"
 #include "ui_main_window.h"
 
-namespace LoggingVisualizer {
+namespace Windows
+{
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), m_ui(new Ui::MainWindow) {
     m_ui->setupUi(this);
@@ -27,4 +29,4 @@ Widgets::LogWidget& MainWindow::getLogWidget() const noexcept
     return *m_ui->logWidget;
 }
 
-} // LoggingVisualizer
+} // Windows
