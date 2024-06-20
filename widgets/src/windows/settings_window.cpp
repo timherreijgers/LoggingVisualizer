@@ -81,4 +81,9 @@ SettingsWindow::~SettingsWindow()
     delete ui;
 }
 
+Widgets::LogLevelWidget & SettingsWindow::getLogWidget() const noexcept
+{
+    return *ui->debug_levels_table;
+}
+
 } // Windows
