@@ -6,6 +6,9 @@
 #ifndef SETTINGS_WINDOW_H
 #define SETTINGS_WINDOW_H
 
+#include "widgets/log_level_widget.h"
+
+
 #include <QMainWindow>
 
 namespace Windows {
@@ -19,6 +22,9 @@ Q_OBJECT
 public:
     explicit SettingsWindow(QWidget *parent = nullptr);
     ~SettingsWindow() override;
+
+    [[nodiscard]] Widgets::LogLevelWidget& getLogWidget() const noexcept;
+
 
 private:
     Ui::SettingsWindow *ui;

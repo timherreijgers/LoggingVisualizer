@@ -4,6 +4,8 @@
  */
 
 #include "presenters/menu_bar_presenter.h"
+
+#include "model/settings_manager.h"
 #include "windows/window_manager.h"
 
 #include <QApplication>
@@ -18,7 +20,7 @@ MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view, Model::LogDataContex
 {
     QObject::connect(&m_view, &Widgets::MenuBar::openFileClicked, [this]() { openFileClicked(); });
     QObject::connect(&m_view, &Widgets::MenuBar::closeFileClicked, [this]() { closeFileClicked(); });
-    QObject::connect(&m_view, &Widgets::MenuBar::preferencesClicked, [](){ preferencesClicked(); });
+    QObject::connect(&m_view, &Widgets::MenuBar::preferencesClicked, [this](){ preferencesClicked(); });
     QObject::connect(&m_view, &Widgets::MenuBar::exitClicked, []() { QApplication::exit(0); });
 }
 
@@ -36,6 +38,9 @@ void MenuBarPresenter::closeFileClicked() noexcept
 void MenuBarPresenter::preferencesClicked() noexcept
 {
     auto &settingsWindow = Windows::WindowManager::createSettingsWindow();
+    if (!m_settingsLogLevelPresenter)
+        m_settingsLogLevelPresenter = std::make_unique<SettingsLogLevelPresenter>(settingsWindow.getLogWidget(), Model::SettingsManager::getLogLevelColorSettings());
+
     settingsWindow.show();
 }
 
