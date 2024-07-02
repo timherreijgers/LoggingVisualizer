@@ -31,8 +31,20 @@ public:
 
     [[nodiscard]] auto data(const QModelIndex & index, int role) const -> QVariant override
     {
+        if (role == Qt::ForegroundRole)
+        {
+            return QColor(Qt::red);
+        }
+
+        if (role == Qt::BackgroundRole)
+        {
+            return QColor(Qt::blue);
+        }
+
         if (role != Qt::DisplayRole)
+        {
             return {};
+        }
 
         switch (index.column())
         {
@@ -45,7 +57,6 @@ public:
         default:
             return {};
         }
-
     }
 
 private:
