@@ -5,6 +5,8 @@
 
 #include "presenters/log_presenter.h"
 
+#include "model/settings_manager.h"
+
 namespace Presenters
 {
 
@@ -15,6 +17,10 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & mo
 
     m_model.subscribeToLogEntiesChanged([this](const std::vector<Types::LogEntry>& data){logMessagesUpdated(data);});
     QObject::connect(&m_view, &Widgets::LogWidget::onFileDropped, [this](const std::string_view url) {onFileDroppedInView(url);});
+
+    Model::SettingsManager::getLogLevelColorSettings().settingChanged = [this]() {
+        m_view.setBackgroundColors(Model::SettingsManager::getLogLevelColorSettings().backgroundColor);
+    };
 }
 
 void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEntries) noexcept

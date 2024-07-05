@@ -8,13 +8,16 @@ set(WIDGET_HEADERS
         include/windows/window_manager.h)
 
 set(WIDGET_SOURCES
-        src/log_level_widget.cpp
-        src/log_widget.cpp
-        src/menubar.cpp
+        src/item_models/log_item_model.cpp
+        src/item_models/log_item_model.h
 
         src/windows/main_window.cpp
         src/windows/settings_window.cpp
-        src/windows/window_manager.cpp)
+        src/windows/window_manager.cpp
+
+        src/log_level_widget.cpp
+        src/log_widget.cpp
+        src/menubar.cpp)
 
 set(WIDGET_UI
         src/log_widget.ui
