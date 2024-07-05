@@ -5,7 +5,7 @@
  
 #pragma once
 
-#include "observable.h"
+#include "observable_map.h"
 
 #include "types/color.h"
 
@@ -18,10 +18,8 @@ namespace Model
 
 struct LogLevelColorSettings
 {
-    std::map<std::string, Types::Color> textColor;
-    std::map<std::string, Types::Color> backgroundColor;
-
-    std::function<void()> settingChanged;
+    ObservableMap<std::string, Types::Color> textColor;
+    ObservableMap<std::string, Types::Color> backgroundColor;
 };
 
 } // namespace Model
