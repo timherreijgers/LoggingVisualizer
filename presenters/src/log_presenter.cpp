@@ -18,9 +18,9 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & mo
     m_model.subscribeToLogEntiesChanged([this](const std::vector<Types::LogEntry>& data){logMessagesUpdated(data);});
     QObject::connect(&m_view, &Widgets::LogWidget::onFileDropped, [this](const std::string_view url) {onFileDroppedInView(url);});
 
-    Model::SettingsManager::getLogLevelColorSettings().settingChanged = [this]() {
-        m_view.setBackgroundColors(Model::SettingsManager::getLogLevelColorSettings().backgroundColor);
-    };
+    Model::SettingsManager::getLogLevelColorSettings().backgroundColor.subscribe([this](const auto & map) {
+        m_view.setBackgroundColors(map);
+    });
 }
 
 void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEntries) noexcept

@@ -4,6 +4,7 @@ set(MODEL_HEADERS
         include/model/log_data_context.h
         include/model/log_level_color_settings.h
         include/model/observable.h
+        include/model/observable_map.h
         include/model/settings_manager.h
 
         src/file_reader.h
