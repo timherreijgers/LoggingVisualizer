@@ -28,10 +28,15 @@ void SettingsLogLevelPresenter::colorSelectionChanged(const int row, const Widge
     {
         case Widgets::ColorType::TEXT:
             m_model.textColor[logLevels[row]] = color;
-            return;
+            break;
         case Widgets::ColorType::BACKGROUND:
             m_model.backgroundColor[logLevels[row]] = color;
-            return;
+            break;
+    }
+
+    if (m_model.settingChanged)
+    {
+        m_model.settingChanged();
     }
 }
 

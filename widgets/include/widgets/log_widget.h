@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "types/color.h"
 #include "types/log_entry.h"
 
 
@@ -18,8 +19,13 @@ QT_BEGIN_NAMESPACE
 namespace Ui
 {
 class LogWidget;
-}
+} // namespace Ui
 QT_END_NAMESPACE
+
+namespace ItemModels
+{
+class LogItemModel;
+} // namespace ItemModels
 
 class LogWidget : public QWidget
 {
@@ -30,6 +36,7 @@ public:
     ~LogWidget() override;
 
     void setLogMessages(const std::vector<Types::LogEntry> & messages) noexcept;
+    void setBackgroundColors(std::map<std::string, Types::Color> colorMap) noexcept;
 
 signals:
     void onFileDropped(std::string_view url);
@@ -39,8 +46,8 @@ protected:
     void dropEvent(QDropEvent * event) override;
 
 private:
-    Ui::LogWidget * ui;
-    std::unique_ptr<QAbstractTableModel> m_model;
+    std::unique_ptr<Ui::LogWidget> ui;
+    std::unique_ptr<ItemModels::LogItemModel> m_model;
 };
 
 } // namespace Widgets

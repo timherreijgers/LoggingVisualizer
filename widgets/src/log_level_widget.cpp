@@ -62,10 +62,10 @@ void LogLevelWidget::onCellClicked(const QModelIndex & index)
     indexWidget(index)->setPalette(palette);
 
     Types::Color typesColor {
-        static_cast<uint8_t>(color.rgba() >> 24),
         static_cast<uint8_t>(color.rgba() >> 16),
         static_cast<uint8_t>(color.rgba() >> 8),
-        static_cast<uint8_t>(color.rgba())
+        static_cast<uint8_t>(color.rgba()),
+        static_cast<uint8_t>(color.rgba() >> 24)
     };
     colorSelectionChanged(index.row(), index.column() == 1 ? ColorType::TEXT : ColorType::BACKGROUND, typesColor);
 }
