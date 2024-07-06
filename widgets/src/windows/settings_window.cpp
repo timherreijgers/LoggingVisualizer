@@ -7,9 +7,7 @@
 #include "ui_settings_window.h"
 
 #include <QAbstractItemModel>
-#include <QPushButton>
 
-#include <string>
 #include <array>
 
 class DebugLevelItemModel : public QAbstractTableModel
@@ -66,21 +64,18 @@ namespace Windows
 {
 
 SettingsWindow::SettingsWindow(QWidget *parent) :
-    QMainWindow(parent), ui(new Ui::SettingsWindow)
+    QMainWindow(parent), m_ui(std::unique_ptr<Ui::SettingsWindow>())
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
     static DebugLevelItemModel model;
-    ui->debug_levels_table->setModel(&model);
+    m_ui->debug_levels_table->setModel(&model);
 }
 
-SettingsWindow::~SettingsWindow()
-{
-    delete ui;
-}
+SettingsWindow::~SettingsWindow() = default;
 
 Widgets::LogLevelWidget & SettingsWindow::getLogWidget() const noexcept
 {
-    return *ui->debug_levels_table;
+    return *m_ui->debug_levels_table;
 }
 
 } // Windows
