@@ -15,9 +15,7 @@
 class DebugLevelItemModel : public QAbstractTableModel
 {
 public:
-    explicit DebugLevelItemModel()
-    {
-    }
+    explicit DebugLevelItemModel() = default;
 
     [[nodiscard]] auto rowCount(const QModelIndex & /*parent*/) const noexcept -> int override
     {
@@ -73,7 +71,6 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->setupUi(this);
     static DebugLevelItemModel model;
     ui->debug_levels_table->setModel(&model);
-    // ui->debug_levels_table->setIndexWidget(model.index(0, 0), new QPushButton);
 }
 
 SettingsWindow::~SettingsWindow()
