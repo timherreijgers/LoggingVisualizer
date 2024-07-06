@@ -19,7 +19,13 @@ LogItemModel::LogItemModel(const std::vector<Types::LogEntry> & messages) :
 
 void LogItemModel::setBackgroundColors(std::map<std::string, Types::Color> colorMap) noexcept
 {
-    m_colorMap = std::move(colorMap);
+    m_backgroundColorMap = std::move(colorMap);
+    layoutChanged();
+}
+
+void LogItemModel::setTextColors(std::map<std::string, Types::Color> colorMap) noexcept
+{
+    m_textColorMap = std::move(colorMap);
     layoutChanged();
 }
 
@@ -35,17 +41,24 @@ auto LogItemModel::columnCount(const QModelIndex &) const noexcept -> int
 
 auto LogItemModel::data(const QModelIndex & index, int role) const -> QVariant
 {
-    // if (role == Qt::ForegroundRole)
-    // {
-    //     return QColor(Qt::red);
-    // }
+    if (role == Qt::ForegroundRole)
+    {
+        const auto level = m_messages[index.row()].level;
+        if (m_textColorMap.contains(level))
+        {
+            const auto color = m_textColorMap.at(level);
+            return QColor(color.red, color.green, color.blue, color.alpha);
+        }
+
+        return {};
+    }
 
     if (role == Qt::BackgroundRole)
     {
         const auto level = m_messages[index.row()].level;
-        if (m_colorMap.contains(level))
+        if (m_backgroundColorMap.contains(level))
         {
-            const auto color = m_colorMap.at(level);
+            const auto color = m_backgroundColorMap.at(level);
             return QColor(color.red, color.green, color.blue, color.alpha);
         }
 
@@ -69,4 +82,5 @@ auto LogItemModel::data(const QModelIndex & index, int role) const -> QVariant
         return {};
     }
 }
+
 } // namespace Widgets::ItemModels

@@ -37,6 +37,7 @@ public:
 
     void setLogMessages(const std::vector<Types::LogEntry> & messages) noexcept;
     void setBackgroundColors(std::map<std::string, Types::Color> colorMap) noexcept;
+    void setTextColors(std::map<std::string, Types::Color> colorMap) noexcept;
 
 signals:
     void onFileDropped(std::string_view url);
