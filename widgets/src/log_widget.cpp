@@ -23,10 +23,6 @@ LogWidget::LogWidget(QWidget * parent) :
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    connect(ui->tableView, &QTableView::clicked, [](QModelIndex index) {
-        fmt::print("column: {}, row: {}\n", index.column(), index.row());
-    });
-
     setAcceptDrops(true);
 }
 
