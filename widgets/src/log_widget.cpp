@@ -42,6 +42,14 @@ void LogWidget::setBackgroundColors(std::map<std::string, Types::Color> colorMap
     }
 }
 
+void LogWidget::setTextColors(std::map<std::string, Types::Color> colorMap) noexcept
+{
+    if (m_model)
+    {
+        m_model->setTextColors(std::move(colorMap));
+    }
+}
+
 void LogWidget::dragEnterEvent(QDragEnterEvent * event)
 {
     if (event->mimeData()->hasUrls() && event->mimeData()->urls()[0].isLocalFile())

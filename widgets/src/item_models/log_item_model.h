@@ -20,6 +20,7 @@ public:
     explicit LogItemModel(const std::vector<Types::LogEntry> & messages);
 
     void setBackgroundColors(std::map<std::string, Types::Color> colorMap) noexcept;
+    void setTextColors(std::map<std::string, Types::Color> colorMap) noexcept;
 
     [[nodiscard]] auto rowCount(const QModelIndex & /*parent*/) const noexcept -> int override;
     [[nodiscard]] auto columnCount(const QModelIndex & /*parent*/) const noexcept -> int override;
@@ -27,7 +28,8 @@ public:
 
 private:
     const std::vector<Types::LogEntry> & m_messages;
-    std::map<std::string, Types::Color> m_colorMap;
+    std::map<std::string, Types::Color> m_backgroundColorMap;
+    std::map<std::string, Types::Color> m_textColorMap;
 };
 
 } // namespace Widgets::ItemModels

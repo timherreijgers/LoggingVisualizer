@@ -21,6 +21,10 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & mo
     Model::SettingsManager::getLogLevelColorSettings().backgroundColor.subscribe([this](const auto & map) {
         m_view.setBackgroundColors(map);
     });
+
+    Model::SettingsManager::getLogLevelColorSettings().textColor.subscribe([this](const auto & map) {
+        m_view.setTextColors(map);
+    });
 }
 
 void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEntries) noexcept
