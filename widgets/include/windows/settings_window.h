@@ -27,7 +27,7 @@ public:
 
 
 private:
-    Ui::SettingsWindow *ui;
+    std::unique_ptr<Ui::SettingsWindow> m_ui;
 };
 } // Windows
 

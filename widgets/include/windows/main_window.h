@@ -30,7 +30,7 @@ public:
     [[nodiscard]] Widgets::LogWidget& getLogWidget() const noexcept;
 
 private:
-    Ui::MainWindow* m_ui;
+    std::unique_ptr<Ui::MainWindow> m_ui;
 };
 
 } // Windows
