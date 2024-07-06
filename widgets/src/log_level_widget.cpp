@@ -38,7 +38,6 @@ void LogLevelWidget::setModel(QAbstractItemModel * model)
 
         setIndexWidget(model->index(row, 1), widgetTextColor);
         setIndexWidget(model->index(row, 2), widgetBackgroundColor);
-        setIndexWidget(model->index(row, 3), new QPushButton("-", this));
     }
 
     horizontalHeader()->setStretchLastSection(false);
