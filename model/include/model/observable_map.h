@@ -15,6 +15,39 @@ template<typename Key, typename Value>
 class ObservableMap
 {
 public:
+
+    using SubscriberFunction = std::function<void(std::map<Key, Value>&)>;
+
+    class ObservableMapEntry
+    {
+    public:
+        explicit ObservableMapEntry(Value & value, const std::function<void()>& entryChangedCallback)
+            : m_value(value)
+            , m_entryChangedCallback(entryChangedCallback)
+        {
+        }
+
+        void operator=(Value value)
+        {
+            m_value = value;
+            m_entryChangedCallback();
+        }
+
+        operator const Value&() const
+        {
+            return m_value;
+        }
+
+        operator Value&()
+        {
+            return m_value;
+        }
+
+    private:
+        Value & m_value;
+        std::function<void()> m_entryChangedCallback;
+    };
+
     [[nodiscard]] auto at(const Key & key) const -> const Value &
     {
         return m_map.at(key);
@@ -30,17 +63,17 @@ public:
         return m_map[key];
     }
 
-    void setValue(const Key & key, Value value)
+    [[nodiscard]] auto operator[](const Key & key) -> ObservableMapEntry
     {
-        m_map[key] = value;
-
-        if (m_subscriber)
-        {
-            m_subscriber(m_map);
-        }
+        return ObservableMapEntry(m_map[key], [this]() {
+            if (m_subscriber)
+            {
+                m_subscriber(m_map);
+            }
+        });
     }
 
-    void subscribe(std::function<void(std::map<Key, Value> &)> subscriber) noexcept
+    void subscribe(SubscriberFunction subscriber) noexcept
     {
         m_subscriber = subscriber;
     }
@@ -57,7 +90,7 @@ public:
 
 private:
     std::map<Key, Value> m_map;
-    std::function<void(std::map<Key, Value>&)> m_subscriber;
+    SubscriberFunction m_subscriber;
 };
 
 } // namespace Model
