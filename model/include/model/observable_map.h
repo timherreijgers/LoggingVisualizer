@@ -33,12 +33,12 @@ public:
             m_entryChangedCallback();
         }
 
-        operator const Value&() const
+        explicit(false) operator const Value&() const
         {
             return m_value;
         }
 
-        operator Value&()
+        explicit(false) operator Value&()
         {
             return m_value;
         }

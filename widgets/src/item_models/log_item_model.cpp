@@ -43,8 +43,7 @@ auto LogItemModel::data(const QModelIndex & index, int role) const -> QVariant
 {
     if (role == Qt::ForegroundRole)
     {
-        const auto level = m_messages[index.row()].level;
-        if (m_textColorMap.contains(level))
+        if (const auto level = m_messages[index.row()].level; m_textColorMap.contains(level))
         {
             const auto color = m_textColorMap.at(level);
             return QColor(color.red, color.green, color.blue, color.alpha);
@@ -55,8 +54,7 @@ auto LogItemModel::data(const QModelIndex & index, int role) const -> QVariant
 
     if (role == Qt::BackgroundRole)
     {
-        const auto level = m_messages[index.row()].level;
-        if (m_backgroundColorMap.contains(level))
+        if (const auto level = m_messages[index.row()].level; m_backgroundColorMap.contains(level))
         {
             const auto color = m_backgroundColorMap.at(level);
             return QColor(color.red, color.green, color.blue, color.alpha);
