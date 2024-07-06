@@ -88,6 +88,11 @@ public:
         }
     }
 
+    [[nodiscard]] auto getValue() const -> const std::map<Key, Value>&
+    {
+        return m_map;
+    }
+
 private:
     std::map<Key, Value> m_map;
     SubscriberFunction m_subscriber;

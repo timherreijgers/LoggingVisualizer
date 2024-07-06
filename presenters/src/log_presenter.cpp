@@ -29,7 +29,10 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & mo
 
 void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEntries) noexcept
 {
+    auto & colorSettings = Model::SettingsManager::getLogLevelColorSettings();
     m_view.setLogMessages(logEntries);
+    m_view.setBackgroundColors(colorSettings.backgroundColor.getValue());
+    m_view.setTextColors(colorSettings.textColor.getValue());
 }
 
 void LogPresenter::onFileDroppedInView(const std::string_view url)
