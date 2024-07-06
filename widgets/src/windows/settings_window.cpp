@@ -24,7 +24,7 @@ public:
 
     [[nodiscard]] auto columnCount(const QModelIndex & /*parent*/) const noexcept -> int override
     {
-        return 4;
+        return 3;
     }
 
     [[nodiscard]] auto data(const QModelIndex & index, int role) const -> QVariant override
