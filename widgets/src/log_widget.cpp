@@ -4,6 +4,7 @@
  */
 
 #include "widgets/log_widget.h"
+#include "fmt/printf.h"
 #include "ui_log_widget.h"
 
 #include <QDropEvent>
@@ -57,6 +58,10 @@ LogWidget::LogWidget(QWidget * parent) :
     ui->setupUi(this);
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    connect(ui->tableView, &QTableView::clicked, [](QModelIndex index) {
+        fmt::print("column: {}, row: {}\n", index.column(), index.row());
+    });
 
     setAcceptDrops(true);
 }

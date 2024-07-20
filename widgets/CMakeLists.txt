@@ -1,4 +1,5 @@
 set(WIDGET_HEADERS
+        include/widgets/log_level_widget.h
         include/widgets/log_widget.h
         include/widgets/menubar.h
 
@@ -7,6 +8,7 @@ set(WIDGET_HEADERS
         include/windows/window_manager.h)
 
 set(WIDGET_SOURCES
+        src/log_level_widget.cpp
         src/log_widget.cpp
         src/menubar.cpp
 
@@ -31,4 +33,5 @@ target_include_directories(widgets PUBLIC include)
 
 target_link_libraries(widgets PRIVATE
         types
+        fmt::fmt
         Qt6::Widgets)
