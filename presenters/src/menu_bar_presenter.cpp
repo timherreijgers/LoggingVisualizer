@@ -39,7 +39,7 @@ void MenuBarPresenter::preferencesClicked() noexcept
 {
     auto &settingsWindow = Windows::WindowManager::createSettingsWindow();
     if (!m_settingsLogLevelPresenter)
-        m_settingsLogLevelPresenter = std::make_unique<SettingsLogLevelPresenter>(settingsWindow.getLogWidget(), Model::SettingsManager::getLogLevelColorSettings());
+        m_settingsLogLevelPresenter = std::make_unique<SettingsLogLevelPresenter>(settingsWindow.getLogWidget(), Model::SettingsManager::instance().getLogLevelColorSettings());
 
     settingsWindow.show();
 }
