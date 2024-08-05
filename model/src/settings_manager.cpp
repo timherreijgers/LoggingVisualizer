@@ -6,13 +6,58 @@
 #include "model/settings_manager.h"
 #include "model/log_level_color_settings.h"
 
-namespace Model::SettingsManager
+#include <yaml-cpp/yaml.h>
+
+#include <filesystem>
+#include <iostream>
+#include <fstream>
+
+namespace Model
 {
 
-auto getLogLevelColorSettings() noexcept -> LogLevelColorSettings &
+SettingsManager::SettingsManager()
 {
-    static LogLevelColorSettings settings;
-    return settings;
+    // if (!std::filesystem::exists("settings.yaml"))
+    // {
+    //     createYamlFile();
+    // }
+
+    // YAML::Node settings = YAML::LoadFile("settings.yaml");
 }
 
-} // namespace Model::SettingsManager
+void SettingsManager::createYamlFile()
+{
+    YAML::Node settings;
+
+    YAML::Node textColours;
+    textColours["TRACE"] = "FFFFFFFF";
+    textColours["DEBUG"] = "FFFFFFFF";
+    textColours["INFO"] = "FFFFFFFF";
+    textColours["WARNING"] = "FFFFFFFF";
+    textColours["ERROR"] = "FFFFFFFF";
+    textColours["CRITICAL"] = "FFFFFFFF";
+
+    YAML::Node backgroundColour;
+    backgroundColour["TRACE"] = "000000FF";
+    backgroundColour["DEBUG"] = "000000FF";
+    backgroundColour["INFO"] = "000000FF";
+    backgroundColour["WARNING"] = "000000FF";
+    backgroundColour["ERROR"] = "000000FF";
+    backgroundColour["CRITICAL"] = "000000FF";
+
+    settings["TextColours"] = textColours;
+    settings["BackgroundColours"] = backgroundColour;
+
+    YAML::Emitter out;
+    out << settings;
+
+    std::ofstream filestream("settings.yaml");
+    filestream << out.c_str();
+}
+
+auto SettingsManager::getLogLevelColorSettings() noexcept -> LogLevelColorSettings &
+{
+    return m_logLevelColorSettings;
+}
+
+} // namespace Model

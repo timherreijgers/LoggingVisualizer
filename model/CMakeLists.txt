@@ -25,4 +25,5 @@ target_include_directories(model PUBLIC include)
 
 target_link_libraries(model PRIVATE
         types
+        yaml-cpp::yaml-cpp
 )
