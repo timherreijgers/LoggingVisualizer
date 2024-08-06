@@ -1,4 +1,6 @@
 set(WIDGET_HEADERS
+        include/item_models/log_level_highlight_model.h
+
         include/widgets/log_level_widget.h
         include/widgets/log_widget.h
         include/widgets/menubar.h
@@ -10,6 +12,7 @@ set(WIDGET_HEADERS
 set(WIDGET_SOURCES
         src/item_models/log_item_model.cpp
         src/item_models/log_item_model.h
+        src/item_models/log_level_highlight_model.cpp
 
         src/windows/main_window.cpp
         src/windows/settings_window.cpp

@@ -5,7 +5,7 @@
  
 #pragma once
 
-#include "log_level_color_settings.h"
+#include "log_level_color_settings_entry.h"
 
 namespace Model
 {
@@ -24,13 +24,14 @@ public:
         return instance;
     }
 
-    [[nodiscard]] auto getLogLevelColorSettings() noexcept -> LogLevelColorSettings&;
+    [[nodiscard]] auto getLogLevelColorSettings() noexcept -> ObservableVector<LogLevelColorSettingsEntry>&;
 private:
     SettingsManager();
 
     void createYamlFile();
+    void loadSettingsFromYamlFile();
 
-    LogLevelColorSettings m_logLevelColorSettings;
+    ObservableVector<LogLevelColorSettingsEntry> m_logLevelColorSettings;
 };
 
 

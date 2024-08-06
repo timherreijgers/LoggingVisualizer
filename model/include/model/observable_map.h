@@ -92,7 +92,6 @@ public:
     {
         return m_map;
     }
-
 private:
     std::map<Key, Value> m_map;
     SubscriberFunction m_subscriber;

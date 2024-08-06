@@ -6,6 +6,7 @@
 #pragma once
 
 #include "observable_map.h"
+#include "observable_vector.h"
 
 #include "types/color.h"
 
@@ -16,10 +17,11 @@
 namespace Model
 {
 
-struct LogLevelColorSettings
+struct LogLevelColorSettingsEntry
 {
-    ObservableMap<std::string, Types::Color> textColor;
-    ObservableMap<std::string, Types::Color> backgroundColor;
+    std::string level;
+    Types::Color textColor;
+    Types::Color backgroundColor;
 };
 
 } // namespace Model
