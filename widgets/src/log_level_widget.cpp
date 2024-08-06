@@ -23,28 +23,10 @@ void LogLevelWidget::setModel(QAbstractItemModel * model)
 {
     QTableView::setModel(model);
 
-    QPalette defaultTextColor;
-    defaultTextColor.setColor(QPalette::Base, QApplication::palette().text().color());
-
-    for (int row = 0; row < model->rowCount(); row++)
-    {
-        const auto widgetTextColor = new QWidget(this);
-        const auto widgetBackgroundColor = new QWidget(this);
-
-        widgetTextColor->setAutoFillBackground(true);
-        widgetBackgroundColor->setAutoFillBackground(true);
-
-        widgetTextColor->setPalette(defaultTextColor);
-
-        setIndexWidget(model->index(row, 1), widgetTextColor);
-        setIndexWidget(model->index(row, 2), widgetBackgroundColor);
-    }
-
     horizontalHeader()->setStretchLastSection(false);
     horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     setColumnWidth(1, rowHeight(0) * 3);
     setColumnWidth(2, rowHeight(0) * 3);
-    horizontalHeader()->setSectionResizeMode(3, QHeaderView::ResizeToContents);
 }
 
 void LogLevelWidget::onCellClicked(const QModelIndex & index)

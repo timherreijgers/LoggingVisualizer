@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    add_compile_options(/W4 /WX)
+    add_compile_options(/W3 /WX)
 else ()
     add_compile_options(-Werror -Wextra -Wall -Wpedantic)
 endif ()
