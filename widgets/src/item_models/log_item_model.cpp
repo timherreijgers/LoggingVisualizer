@@ -17,15 +17,9 @@ LogItemModel::LogItemModel(const std::vector<Types::LogEntry> & messages) :
 {
 }
 
-void LogItemModel::setBackgroundColors(std::map<std::string, Types::Color> colorMap) noexcept
+void LogItemModel::setHighlightColors(std::map<std::string, HighlightColorData> colorMap) noexcept
 {
-    m_backgroundColorMap = std::move(colorMap);
-    layoutChanged();
-}
-
-void LogItemModel::setTextColors(std::map<std::string, Types::Color> colorMap) noexcept
-{
-    m_textColorMap = std::move(colorMap);
+    m_highlightColorMap = std::move(colorMap);
     layoutChanged();
 }
 
@@ -43,9 +37,9 @@ auto LogItemModel::data(const QModelIndex & index, int role) const -> QVariant
 {
     if (role == Qt::ForegroundRole)
     {
-        if (const auto level = m_messages[index.row()].level; m_textColorMap.contains(level))
+        if (const auto level = m_messages[index.row()].level; m_highlightColorMap.contains(level))
         {
-            const auto color = m_textColorMap.at(level);
+            const auto color = m_highlightColorMap.at(level).first;
             return QColor(color.red, color.green, color.blue, color.alpha);
         }
 
@@ -54,9 +48,9 @@ auto LogItemModel::data(const QModelIndex & index, int role) const -> QVariant
 
     if (role == Qt::BackgroundRole)
     {
-        if (const auto level = m_messages[index.row()].level; m_backgroundColorMap.contains(level))
+        if (const auto level = m_messages[index.row()].level; m_highlightColorMap.contains(level))
         {
-            const auto color = m_backgroundColorMap.at(level);
+            const auto color = m_highlightColorMap.at(level).second;
             return QColor(color.red, color.green, color.blue, color.alpha);
         }
 

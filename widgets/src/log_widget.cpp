@@ -34,19 +34,11 @@ void LogWidget::setLogMessages(const std::vector<Types::LogEntry> & messages) no
     ui->tableView->setModel(m_model.get());
 }
 
-void LogWidget::setBackgroundColors(std::map<std::string, Types::Color> colorMap) noexcept
+void LogWidget::setHighlightColors(std::map<std::string, HighlightColorData> colorMap) noexcept
 {
     if (m_model)
     {
-        m_model->setBackgroundColors(std::move(colorMap));
-    }
-}
-
-void LogWidget::setTextColors(std::map<std::string, Types::Color> colorMap) noexcept
-{
-    if (m_model)
-    {
-        m_model->setTextColors(std::move(colorMap));
+        m_model->setHighlightColors(std::move(colorMap));
     }
 }
 
