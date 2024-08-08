@@ -44,6 +44,9 @@ void SettingsLogLevelPresenter::colorSelectionChanged(const int row, const Widge
             m_model.getLogLevelColorSettings()[row] = {cachedValue.level, cachedValue.textColor, color};
             break;
     }
+
+    const Model::LogLevelColorSettingsEntry& value = m_model.getLogLevelColorSettings()[row];
+    m_logLevelHighlightModel.changeHighlightLevel(value.level, value.textColor, value.backgroundColor);
 }
 
 } // namespace Presenters
