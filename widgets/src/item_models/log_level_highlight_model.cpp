@@ -68,4 +68,14 @@ void LogLevelHighlightModel::addHighlightLevel(const std::string & level, const 
     dataChanged(index(0, 0), index(2, static_cast<int>(m_colorData.size())));
 }
 
+void LogLevelHighlightModel::changeHighlightLevel(const std::string & level, const Types::Color & textColor, const Types::Color & backgroundColor)
+{
+    auto result = std::find_if(m_colorData.begin(), m_colorData.end(), [&level](const auto & entry) { return entry.level == level; });
+    if (result == m_colorData.end())
+        return;
+
+    result->textColor = textColor;
+    result->backgroundColor = backgroundColor;
+}
+
 } // namespace Widgets::ItemModels

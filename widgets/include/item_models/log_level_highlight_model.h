@@ -25,6 +25,7 @@ public:
     [[nodiscard]] auto headerData(int section, Qt::Orientation orientation, int role) const -> QVariant override;
 
     void addHighlightLevel(const std::string & level, const Types::Color & textColor, const Types::Color & backgroundColor);
+    void changeHighlightLevel(const std::string & level, const Types::Color & textColor, const Types::Color & backgroundColor);
 
 private:
     struct ColorData

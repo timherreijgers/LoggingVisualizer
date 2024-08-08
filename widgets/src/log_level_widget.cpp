@@ -38,9 +38,9 @@ void LogLevelWidget::onCellClicked(const QModelIndex & index)
     if(!color.isValid())
         return;
 
-    QPalette palette;
-    palette.setColor(QPalette::Base, color);
-    indexWidget(index)->setPalette(palette);
+    //QPalette palette;
+    //palette.setColor(QPalette::Base, color);
+    //indexWidget(index)->setPalette(palette);
 
     Types::Color typesColor {
         static_cast<uint8_t>(color.rgba() >> 16),
