@@ -18,21 +18,31 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & mo
     m_model.subscribeToLogEntiesChanged([this](const std::vector<Types::LogEntry>& data){logMessagesUpdated(data);});
     QObject::connect(&m_view, &Widgets::LogWidget::onFileDropped, [this](const std::string_view url) {onFileDroppedInView(url);});
 
-    Model::SettingsManager::getLogLevelColorSettings().backgroundColor.subscribe([this](const auto & map) {
-        m_view.setBackgroundColors(map);
-    });
+    auto& settingsManager = Model::SettingsManager::instance();
 
-    Model::SettingsManager::getLogLevelColorSettings().textColor.subscribe([this](const auto & map) {
-        m_view.setTextColors(map);
+    settingsManager.getLogLevelColorSettings().subscribe([this](const auto & vector) {
+        std::map<std::string, Widgets::LogWidget::HighlightColorData> colorDataMap;
+        for (const auto & entry : vector)
+        {
+            colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};
+        }
+
+        m_view.setHighlightColors(std::move(colorDataMap));
     });
 }
 
 void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEntries) noexcept
 {
-    const auto & colorSettings = Model::SettingsManager::getLogLevelColorSettings();
+    const auto & colorSettings = Model::SettingsManager::instance().getLogLevelColorSettings();
     m_view.setLogMessages(logEntries);
-    m_view.setBackgroundColors(colorSettings.backgroundColor.getValue());
-    m_view.setTextColors(colorSettings.textColor.getValue());
+
+    std::map<std::string, Widgets::LogWidget::HighlightColorData> colorDataMap;
+    for (const auto& entry : colorSettings.getValue())
+    {
+        colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};
+    }
+
+    m_view.setHighlightColors(std::move(colorDataMap));
 }
 
 void LogPresenter::onFileDroppedInView(const std::string_view url)

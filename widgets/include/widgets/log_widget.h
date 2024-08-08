@@ -24,6 +24,7 @@ QT_END_NAMESPACE
 
 namespace ItemModels
 {
+// TODO: timher refactor this so this forward declartion is not needed anymore
 class LogItemModel;
 } // namespace ItemModels
 
@@ -32,12 +33,15 @@ class LogWidget : public QWidget
     Q_OBJECT
 
 public:
+    // TODO: timher refactor this to use a struct
+    using HighlightColorData = std::pair<Types::Color, Types::Color>;
+
     explicit LogWidget(QWidget * parent = nullptr);
     ~LogWidget() override;
 
     void setLogMessages(const std::vector<Types::LogEntry> & messages) noexcept;
-    void setBackgroundColors(std::map<std::string, Types::Color> colorMap) noexcept;
-    void setTextColors(std::map<std::string, Types::Color> colorMap) noexcept;
+
+    void setHighlightColors(std::map<std::string, HighlightColorData> colorMap) noexcept;
 
 signals:
     void onFileDropped(std::string_view url);

@@ -5,11 +5,34 @@
  
 #pragma once
 
-#include "log_level_color_settings.h"
+#include "log_level_color_settings_entry.h"
 
-namespace Model::SettingsManager
+namespace Model
 {
 
-[[nodiscard]] auto getLogLevelColorSettings() noexcept -> LogLevelColorSettings&;
+class SettingsManager
+{
+public:
+    SettingsManager(SettingsManager&) = delete;
+    SettingsManager(SettingsManager&&) = delete;
+    SettingsManager operator=(SettingsManager&) = delete;
+    SettingsManager& operator=(SettingsManager&&) = delete;    
 
-} // namespace Model::SettingsManager
+    [[nodiscard]] auto static instance() noexcept -> SettingsManager&
+    {
+        static SettingsManager instance;
+        return instance;
+    }
+
+    [[nodiscard]] auto getLogLevelColorSettings() noexcept -> ObservableVector<LogLevelColorSettingsEntry>&;
+private:
+    SettingsManager();
+
+    void createYamlFile();
+    void loadSettingsFromYamlFile();
+
+    ObservableVector<LogLevelColorSettingsEntry> m_logLevelColorSettings;
+};
+
+
+} // namespace Model
