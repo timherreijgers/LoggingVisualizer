@@ -25,6 +25,8 @@ public:
     }
 
     [[nodiscard]] auto getLogLevelColorSettings() noexcept -> ObservableVector<LogLevelColorSettingsEntry>&;
+    void saveSettings();
+
 private:
     SettingsManager();
 

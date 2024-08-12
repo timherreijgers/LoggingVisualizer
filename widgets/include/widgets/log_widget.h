@@ -40,6 +40,7 @@ public:
     ~LogWidget() override;
 
     void setLogMessages(const std::vector<Types::LogEntry> & messages) noexcept;
+    void clearLogMessages() noexcept;
 
     void setHighlightColors(std::map<std::string, HighlightColorData> colorMap) noexcept;
 

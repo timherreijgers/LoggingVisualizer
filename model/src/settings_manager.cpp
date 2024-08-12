@@ -32,6 +32,13 @@ static Types::Color convertStringFromHtmlColor(std::string_view htmlcolor)
     };
 }
 
+static std::string convertColorToString(const Types::Color& color)
+{
+    char buffer[10];
+    [[maybe_unused]] const auto _ = snprintf(buffer, 10, "#%02X%02X%02X%02X", color.red, color.green, color.blue, color.alpha);
+    return buffer;
+}
+
 SettingsManager::SettingsManager()
 {
     if (!std::filesystem::exists(SETTINGS_FILE_NAME))
@@ -86,6 +93,29 @@ void SettingsManager::loadSettingsFromYamlFile()
 auto SettingsManager::getLogLevelColorSettings() noexcept -> ObservableVector<LogLevelColorSettingsEntry>&
 {
     return m_logLevelColorSettings;
+}
+
+void SettingsManager::saveSettings()
+{
+    YAML::Node settings;
+    settings["highlightColors"] = YAML::Node{};
+
+    size_t index = 0;
+    for (const auto& setting : getLogLevelColorSettings().getValue())
+    {
+        settings["highlightColors"][index] = YAML::Node{};
+        settings["highlightColors"][index]["level"] = setting.level;
+        settings["highlightColors"][index]["text"] = convertColorToString(setting.textColor);
+        settings["highlightColors"][index]["background"] = convertColorToString(setting.backgroundColor);
+
+        index++;
+    }
+
+    YAML::Emitter out;
+    out << settings;
+
+    std::ofstream filestream(SETTINGS_FILE_NAME);
+    filestream << out.c_str();
 }
 
 } // namespace Model
