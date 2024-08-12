@@ -36,6 +36,12 @@ void LogWidget::setLogMessages(const std::vector<Types::LogEntry> & messages) no
     ui->tableView->setModel(m_model.get());
 }
 
+void LogWidget::clearLogMessages() noexcept
+{
+    m_model = nullptr;
+    ui->tableView->setModel(m_model.get());
+}
+
 void LogWidget::setHighlightColors(std::map<std::string, HighlightColorData> colorMap) noexcept
 {
     if (m_model)

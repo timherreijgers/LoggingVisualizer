@@ -18,7 +18,7 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & mo
 
     auto& settingsManager = Model::SettingsManager::instance();
 
-    settingsManager.getLogLevelColorSettings().subscribe([this](const auto & vector) {
+    settingsManager.getLogLevelColorSettings().subscribe([&](const auto & vector) {
         std::map<std::string, Widgets::LogWidget::HighlightColorData> colorDataMap;
         for (const auto & entry : vector)
         {
@@ -26,11 +26,18 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & mo
         }
 
         m_view.setHighlightColors(std::move(colorDataMap));
+        settingsManager.saveSettings();
     });
 }
 
 void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEntries) noexcept
 {
+    if (logEntries.size() == 0)
+    {
+        m_view.clearLogMessages();
+        return;
+    }
+
     const auto & colorSettings = Model::SettingsManager::instance().getLogLevelColorSettings();
     m_view.setLogMessages(logEntries);
 
