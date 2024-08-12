@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "types/color.h"
+#include "types/highlight_color_pair.h"
 #include "types/log_entry.h"
 
 
@@ -33,16 +33,13 @@ class LogWidget : public QWidget
     Q_OBJECT
 
 public:
-    // TODO: timher refactor this to use a struct
-    using HighlightColorData = std::pair<Types::Color, Types::Color>;
-
     explicit LogWidget(QWidget * parent = nullptr);
     ~LogWidget() override;
 
     void setLogMessages(const std::vector<Types::LogEntry> & messages) noexcept;
     void clearLogMessages() noexcept;
 
-    void setHighlightColors(std::map<std::string, HighlightColorData> colorMap) noexcept;
+    void setHighlightColors(std::map<std::string, Types::HighlightColorPair> colorMap) noexcept;
 
 signals:
     void onFileDropped(std::string_view url);
