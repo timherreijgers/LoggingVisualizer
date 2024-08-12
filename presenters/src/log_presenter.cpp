@@ -19,7 +19,7 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::LogDataContext & mo
     auto& settingsManager = Model::SettingsManager::instance();
 
     settingsManager.getLogLevelColorSettings().subscribe([&](const auto & vector) {
-        std::map<std::string, Widgets::LogWidget::HighlightColorData> colorDataMap;
+        std::map<std::string, Types::HighlightColorPair> colorDataMap;
         for (const auto & entry : vector)
         {
             colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};
@@ -41,7 +41,7 @@ void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEn
     const auto & colorSettings = Model::SettingsManager::instance().getLogLevelColorSettings();
     m_view.setLogMessages(logEntries);
 
-    std::map<std::string, Widgets::LogWidget::HighlightColorData> colorDataMap;
+    std::map<std::string, Types::HighlightColorPair> colorDataMap;
     for (const auto& entry : colorSettings.getValue())
     {
         colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};

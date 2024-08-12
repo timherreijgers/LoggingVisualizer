@@ -42,7 +42,7 @@ void LogWidget::clearLogMessages() noexcept
     ui->tableView->setModel(m_model.get());
 }
 
-void LogWidget::setHighlightColors(std::map<std::string, HighlightColorData> colorMap) noexcept
+void LogWidget::setHighlightColors(std::map<std::string, Types::HighlightColorPair> colorMap) noexcept
 {
     if (m_model)
     {
