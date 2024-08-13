@@ -19,7 +19,7 @@ SettingsLogLevelPresenter::SettingsLogLevelPresenter(Widgets::LogLevelWidget & v
 
     for (const auto & entry : m_model.getLogLevelColorSettings().getValue())
     {
-        const auto level = entry.level;
+        const auto& level = entry.level;
         const auto textColor = entry.textColor;
         const auto backgroundColor = entry.backgroundColor;
 

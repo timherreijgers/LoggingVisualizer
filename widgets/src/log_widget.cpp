@@ -17,10 +17,8 @@ namespace Widgets
 {
 
 LogWidget::LogWidget(QWidget * parent) :
-    QWidget(parent), ui(std::make_unique<Ui::LogWidget>())
+    QWidget(parent), ui(std::make_unique<Ui::LogWidget>()), m_model(nullptr)
 {
-    m_model = nullptr;
-
     ui->setupUi(this);
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
