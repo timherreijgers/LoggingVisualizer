@@ -7,6 +7,8 @@
 
 #include "qcolor.h"
 
+#include <ranges>
+
 namespace Widgets::ItemModels
 {
 
@@ -26,7 +28,6 @@ auto LogLevelHighlightModel::data(const QModelIndex & index, int role) const -> 
     {
         const auto & colorData = m_colorData[index.row()];
 
-        const auto level = colorData.level;
         const auto color = index.column() == 1 ? colorData.textColor : colorData.backgroundColor;
         return QColor(color.red, color.green, color.blue, color.alpha);
     }
@@ -70,7 +71,7 @@ void LogLevelHighlightModel::addHighlightLevel(const std::string & level, const 
 
 void LogLevelHighlightModel::changeHighlightLevel(const std::string & level, const Types::Color & textColor, const Types::Color & backgroundColor)
 {
-    auto result = std::find_if(m_colorData.begin(), m_colorData.end(), [&level](const auto & entry) { return entry.level == level; });
+    auto result = std::ranges::find_if(m_colorData, [&level](const auto & entry) { return entry.level == level; });
     if (result == m_colorData.end())
         return;
 

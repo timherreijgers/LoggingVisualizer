@@ -31,7 +31,7 @@ public:
 private:
     SettingsManager();
 
-    void createYamlFile();
+    static void createYamlFile();
     void loadSettingsFromYamlFile();
 
     ObservableVector<LogLevelColorSettingsEntry> m_logLevelColorSettings;

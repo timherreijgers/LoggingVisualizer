@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $originalComment.match("Copyright © (\d+)", 1, "-", "$today.year")$today.year. Tim Herreijgers
+ * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -7,10 +7,10 @@
 
 #include "model/log_level_color_settings_entry.h"
 
-#include "yaml-cpp/yaml.h"
+#include <yaml-cpp/yaml.h>
+#include <fmt/format.h>
 
 #include <filesystem>
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <string_view>
@@ -34,9 +34,7 @@ static Types::Color convertStringFromHtmlColor(std::string_view htmlcolor)
 
 static std::string convertColorToString(const Types::Color& color)
 {
-    char buffer[10];
-    [[maybe_unused]] const auto _ = snprintf(buffer, 10, "#%02X%02X%02X%02X", color.red, color.green, color.blue, color.alpha);
-    return buffer;
+    return fmt::format("#{:02x}{:02x}{:02x}{:02x}", color.red, color.green, color.blue, color.alpha);
 }
 
 SettingsManager::SettingsManager()
