@@ -14,8 +14,8 @@ jobs:
         include:
           - compiler_c: gcc
             compiler_cpp: g++
-#          - compiler_c: clang
-#            compiler_cpp: clang++
+          - compiler_c: clang
+            compiler_cpp: clang++
 
     steps:
       - uses: actions/checkout@v3

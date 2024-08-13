@@ -85,7 +85,7 @@ public:
     template <class... Args>
     void emplace_back(Args &&... args)
     {
-        m_vector.emplace_back(args...);
+        m_vector.emplace_back(std::forward<Args>(args)...);
 
         if (m_subscriber)
         {
@@ -103,9 +103,9 @@ public:
         }
     }
 
-    constexpr void push_back(T && value)
+    constexpr void push_back(T value)
     {
-        m_vector.push_back(value);
+        m_vector.push_back(std::move(value));
 
         if (m_subscriber)
         {
