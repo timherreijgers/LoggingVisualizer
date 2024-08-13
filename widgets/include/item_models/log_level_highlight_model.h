@@ -33,6 +33,12 @@ private:
         std::string level;
         Types::Color textColor;
         Types::Color backgroundColor;
+
+        ColorData(std::string level, Types::Color textColor, Types::Color backgroundColor)
+            : level(std::move(level)), textColor(textColor), backgroundColor(backgroundColor)
+        {
+
+        }
     };
 
     std::vector<ColorData> m_colorData;

@@ -1,11 +1,12 @@
 /*
- * Copyright (c) 2024 Tim Herreijgers
+ * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
  
 #pragma once
 
 #include "log_level_color_settings_entry.h"
+#include "observable_vector.h"
 
 namespace Model
 {

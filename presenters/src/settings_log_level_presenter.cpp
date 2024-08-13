@@ -31,8 +31,6 @@ SettingsLogLevelPresenter::SettingsLogLevelPresenter(Widgets::LogLevelWidget & v
 
 void SettingsLogLevelPresenter::colorSelectionChanged(const int row, const Widgets::ColorType type, const Types::Color color)
 {
-    static constexpr std::array logLevels = {"TRACE", "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"};
-
     const Model::LogLevelColorSettingsEntry& cachedValue = m_model.getLogLevelColorSettings()[row];
 
     switch (type)
