@@ -8,7 +8,6 @@
 #include <QApplication>
 #include <QColorDialog>
 #include <QHeaderView>
-#include <QPushButton>
 
 namespace Widgets
 {

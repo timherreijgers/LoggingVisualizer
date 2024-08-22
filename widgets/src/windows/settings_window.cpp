@@ -4,11 +4,8 @@
  */
 
 #include "windows/settings_window.h"
+
 #include "ui_settings_window.h"
-
-#include <QAbstractItemModel>
-
-#include <array>
 
 namespace Windows
 {

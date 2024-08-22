@@ -8,7 +8,7 @@
 #include "widgets/log_widget.h"
 #include "item_models/log_item_model.h"
 
-#include "fmt/printf.h"
+#include <fmt/printf.h>
 
 #include <QDropEvent>
 #include <QMimeData>

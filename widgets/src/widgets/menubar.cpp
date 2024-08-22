@@ -8,17 +8,21 @@
 
 #include <iostream>
 
-namespace Widgets {
-MenuBar::MenuBar(QWidget * parent) :
-    QMenuBar(parent), ui(new Ui::MenuBar)
+namespace Widgets
 {
-    ui->setupUi(this);
 
-    connect(ui->actionOpen, &QAction::triggered, this, &MenuBar::actionOpenTriggered);
-    connect(ui->actionClose, &QAction::triggered, this, &MenuBar::actionCloseTriggered);
-    connect(ui->actionPreferences, &QAction::triggered, this, &MenuBar::actionPreferencesTriggered);
-    connect(ui->actionExit, &QAction::triggered, this, &MenuBar::actionExitTriggered);
+MenuBar::MenuBar(QWidget * parent) :
+    QMenuBar(parent), m_ui(std::make_unique<Ui::MenuBar>())
+{
+    m_ui->setupUi(this);
+
+    connect(m_ui->actionOpen, &QAction::triggered, this, &MenuBar::actionOpenTriggered);
+    connect(m_ui->actionClose, &QAction::triggered, this, &MenuBar::actionCloseTriggered);
+    connect(m_ui->actionPreferences, &QAction::triggered, this, &MenuBar::actionPreferencesTriggered);
+    connect(m_ui->actionExit, &QAction::triggered, this, &MenuBar::actionExitTriggered);
 }
+
+MenuBar::~MenuBar() = default;
 
 void MenuBar::actionOpenTriggered(bool)
 {
@@ -38,11 +42,6 @@ void MenuBar::actionPreferencesTriggered(bool)
 void MenuBar::actionExitTriggered(bool)
 {
     exitClicked();
-}
-
-MenuBar::~MenuBar()
-{
-    delete ui;
 }
 
 } // Widgets
