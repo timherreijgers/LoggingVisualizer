@@ -6,7 +6,7 @@
 #include "ui_log_widget.h"
 
 #include "widgets/log_widget.h"
-#include"item_models/log_item_model.h"
+#include "item_models/log_item_model.h"
 
 #include "fmt/printf.h"
 

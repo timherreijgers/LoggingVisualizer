@@ -8,8 +8,6 @@
 #include "types/highlight_color_pair.h"
 #include "types/log_entry.h"
 
-
-#include <qabstractitemmodel.h>
 #include <QWidget>
 
 namespace Widgets

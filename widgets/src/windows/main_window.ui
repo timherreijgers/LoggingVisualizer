@@ -11,8 +11,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>839</width>
-    <height>502</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,6 +26,9 @@
     </sizepolicy>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -38,6 +41,9 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
+    <item>
+     <widget class="Widgets::Toolbar" name="toolbar" native="true"/>
+    </item>
     <item>
      <widget class="Widgets::LogWidget" name="logWidget" native="true">
       <property name="sizePolicy">
@@ -55,8 +61,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>839</width>
-     <height>22</height>
+     <width>1280</width>
+     <height>37</height>
     </rect>
    </property>
   </widget>
@@ -66,7 +72,11 @@
    <class>Widgets::LogWidget</class>
    <extends>QWidget</extends>
    <header>widgets/log_widget.h</header>
-   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Widgets::Toolbar</class>
+   <extends>QWidget</extends>
+   <header>widgets/toolbar.h</header>
   </customwidget>
   <customwidget>
    <class>Widgets::MenuBar</class>
