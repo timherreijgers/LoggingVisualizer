@@ -7,7 +7,9 @@
 
 #include <QMenuBar>
 
-namespace Widgets {
+namespace Widgets
+{
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MenuBar; }
 QT_END_NAMESPACE
@@ -34,4 +36,5 @@ private slots:
 private:
     Ui::MenuBar *ui;
 };
+
 } // Widgets
