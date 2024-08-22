@@ -1,19 +1,23 @@
 add_subdirectory(tests)
 
 set(MODEL_HEADERS
+        include/model/ilog_message_filter.h
+
         include/model/log_data_context.h
-        "include/model/log_level_color_settings_entry.h"
+        include/model/log_level_color_settings_entry.h
         include/model/observable.h
         include/model/observable_map.h
         include/model/observable_vector.h
         include/model/settings_manager.h
 
         src/file_reader.h
+        src/log_message_filter.h
 )
 
 set(MODEL_SRCS
-        src/log_data_context.cpp
         src/file_reader.cpp
+        src/log_data_context.cpp
+        src/log_message_filter.cpp
         src/settings_manager.cpp
 )
 
