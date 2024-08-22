@@ -7,6 +7,7 @@
 
 #include "widgets/log_widget.h"
 #include "widgets/menubar.h"
+#include "widgets/toolbar.h"
 
 #include <QMainWindow>
 
@@ -32,8 +33,9 @@ public:
     MainWindow& operator=(MainWindow&) = delete;
     MainWindow& operator=(MainWindow&&) = delete;
 
-    [[nodiscard]] Widgets::MenuBar& getMenuBar() const noexcept;
-    [[nodiscard]] Widgets::LogWidget& getLogWidget() const noexcept;
+    [[nodiscard]] auto getMenuBar() const noexcept -> Widgets::MenuBar&;
+    [[nodiscard]] auto getLogWidget() const noexcept -> Widgets::LogWidget&;
+    [[nodiscard]] auto getToolbar() const noexcept -> Widgets::Toolbar&;
 
 private:
     std::unique_ptr<Ui::MainWindow> m_ui;

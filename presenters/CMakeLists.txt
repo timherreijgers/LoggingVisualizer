@@ -2,12 +2,14 @@ set(PRESENTER_HEADERS
         include/presenters/log_presenter.h
         include/presenters/menu_bar_presenter.h
         include/presenters/settings_log_level_presenter.h
+        include/presenters/toolbar_presenter.h
 )
 
 set(PRESENTER_SRCS
         src/log_presenter.cpp
         src/menu_bar_presenter.cpp
         src/settings_log_level_presenter.cpp
+        src/toolbar_presenter.cpp
 )
 
 add_library(presenters STATIC

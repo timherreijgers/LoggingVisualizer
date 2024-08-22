@@ -3,14 +3,20 @@
  * Licensed using the MIT license
  */
 
-#include <utility>
+#include "file_reader.h"
 
 #include "exceptions/FileNotFoundException.h"
-#include "file_reader.h"
 #include "model/log_data_context.h"
+
+#include "log_message_filter.h"
 
 namespace Model
 {
+
+LogDataContext::LogDataContext()
+    : m_logMessageFilter(std::make_unique<LogMessageFilter>())
+{
+}
 
 void LogDataContext::openFile(const std::filesystem::path & path)
 {
@@ -38,17 +44,27 @@ void LogDataContext::openFile(const std::filesystem::path & path)
         logEntries.push_back(entry);
     }
 
-    m_logEntriesUpdatedSignal.setValue(std::move(logEntries));
+    m_logMessageFilter->setInputMessages(logEntries);
 }
 
 void LogDataContext::closeFile() noexcept
 {
-    m_logEntriesUpdatedSignal.setValue({});
+    m_logMessageFilter->setInputMessages({});
 }
 
-void LogDataContext::subscribeToLogEntiesChanged(LogEntriesChangedListener listener) noexcept
+auto LogDataContext::getLogMessageFilter() const noexcept -> const ILogMessageFilter &
 {
-    m_logEntriesUpdatedSignal.subscribe(std::move(listener));
+    return *m_logMessageFilter;
+}
+
+auto LogDataContext::getLogMessageFilter() noexcept -> ILogMessageFilter &
+{
+    return *m_logMessageFilter;
+}
+
+void LogDataContext::subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept
+{
+    m_logMessageFilter->subscribeToLogEntriesChanged(std::move(listener));
 }
 
 } // namespace Model

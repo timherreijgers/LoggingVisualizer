@@ -72,7 +72,7 @@ public:
         m_subscriber = subscriber;
     }
 
-    void setValue(std::vector<T> && value) noexcept
+    void setValue(std::vector<T> value) noexcept
     {
         m_vector = std::move(value);
 

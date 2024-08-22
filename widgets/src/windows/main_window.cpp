@@ -22,9 +22,13 @@ Widgets::MenuBar & MainWindow::getMenuBar() const noexcept
     return *m_ui->menubar;
 }
 
-Widgets::LogWidget& MainWindow::getLogWidget() const noexcept
+Widgets::LogWidget & MainWindow::getLogWidget() const noexcept
 {
     return *m_ui->logWidget;
+}
+auto MainWindow::getToolbar() const noexcept -> Widgets::Toolbar &
+{
+    return *m_ui->toolbar;
 }
 
 } // Windows

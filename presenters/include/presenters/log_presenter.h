@@ -6,14 +6,11 @@
 #pragma once
 
 #include "model/log_data_context.h"
+#include "types/log_entry.h"
 #include "widgets/log_widget.h"
 
 #include <vector>
 
-namespace Model
-{
-struct LogEntry;
-}
 namespace Presenters
 {
 

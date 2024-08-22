@@ -5,12 +5,13 @@
 
 #pragma once
 
-#include "model/observable.h"
-
+#include "ilog_message_filter.h"
 #include "types/log_entry.h"
 
 #include <vector>
 #include <filesystem>
+#include <functional>
+#include <memory>
 
 namespace Model
 {
@@ -20,14 +21,18 @@ using LogEntriesChangedListener = std::function<void(const std::vector<Types::Lo
 class LogDataContext
 {
 public:
-    explicit LogDataContext() = default;
+    explicit LogDataContext();
 
     void openFile(const std::filesystem::path & filePath);
     void closeFile() noexcept;
 
-    void subscribeToLogEntiesChanged(LogEntriesChangedListener listener) noexcept;
+    [[nodiscard]] auto getLogMessageFilter() const noexcept -> const ILogMessageFilter&;
+    [[nodiscard]] auto getLogMessageFilter() noexcept -> ILogMessageFilter&;
+
+    void subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept;
+
 private:
-    Observable<std::vector<Types::LogEntry>> m_logEntriesUpdatedSignal;
+    std::unique_ptr<ILogMessageFilter> m_logMessageFilter;
 };
 
 } // namespace Model
