@@ -7,6 +7,8 @@
 
 #include <QWidget>
 
+#include <memory>
+
 namespace Widgets
 {
 
@@ -14,7 +16,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class Toolbar; }
 QT_END_NAMESPACE
 
-class Toolbar : public QWidget {
+class Toolbar : public QWidget
+{
 Q_OBJECT
 
 public:
@@ -22,7 +25,7 @@ public:
     ~Toolbar() override;
 
 private:
-    Ui::Toolbar *ui;
+    std::unique_ptr<Ui::Toolbar> m_ui;
 };
 
 } // namespace Widgets

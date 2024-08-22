@@ -5,7 +5,7 @@
 
 #include "item_models/log_level_highlight_model.h"
 
-#include "qcolor.h"
+#include <qcolor.h>
 
 #include <ranges>
 

@@ -3,20 +3,25 @@
  * Licensed using the MIT license
  */
 
-#ifndef SETTINGS_WINDOW_H
-#define SETTINGS_WINDOW_H
+#pragma once
 
 #include "widgets/log_level_widget.h"
 
 
 #include <QMainWindow>
 
-namespace Windows {
+namespace Windows
+{
+
 QT_BEGIN_NAMESPACE
-namespace Ui { class SettingsWindow; }
+namespace Ui
+{
+class SettingsWindow;
+}
 QT_END_NAMESPACE
 
-class SettingsWindow : public QMainWindow {
+class SettingsWindow : public QMainWindow
+{
 Q_OBJECT
 
 public:
@@ -29,6 +34,5 @@ public:
 private:
     std::unique_ptr<Ui::SettingsWindow> m_ui;
 };
-} // Windows
 
-#endif //SETTINGS_WINDOW_H
+} // Windows

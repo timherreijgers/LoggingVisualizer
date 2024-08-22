@@ -8,8 +8,8 @@
 #include "types/log_entry.h"
 #include "types/highlight_color_pair.h"
 
-#include "QAbstractTableModel"
-#include "QString"
+#include <QAbstractTableModel>
+#include <QString>
 
 namespace Widgets::ItemModels
 {

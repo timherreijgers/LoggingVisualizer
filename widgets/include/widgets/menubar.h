@@ -7,6 +7,8 @@
 
 #include <QMenuBar>
 
+#include <iostream>
+
 namespace Widgets
 {
 
@@ -14,7 +16,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MenuBar; }
 QT_END_NAMESPACE
 
-class MenuBar : public QMenuBar {
+class MenuBar : public QMenuBar
+{
 Q_OBJECT
 
 public:
@@ -34,7 +37,7 @@ private slots:
     void actionExitTriggered(bool);
 
 private:
-    Ui::MenuBar *ui;
+    std::unique_ptr<Ui::MenuBar> m_ui;
 };
 
 } // Widgets
