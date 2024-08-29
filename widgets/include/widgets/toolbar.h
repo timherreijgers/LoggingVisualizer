@@ -8,6 +8,7 @@
 #include <QWidget>
 
 #include <memory>
+#include <string_view>
 
 namespace Widgets
 {
@@ -23,6 +24,9 @@ Q_OBJECT
 public:
     explicit Toolbar(QWidget *parent = nullptr);
     ~Toolbar() override;
+
+signals:
+    void filterChanged(const QString& filter);
 
 private:
     std::unique_ptr<Ui::Toolbar> m_ui;

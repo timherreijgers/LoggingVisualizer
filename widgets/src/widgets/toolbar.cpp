@@ -13,6 +13,8 @@ Toolbar::Toolbar(QWidget *parent) :
     QWidget(parent), m_ui(std::make_unique<Ui::Toolbar>())
 {
     m_ui->setupUi(this);
+
+    connect(m_ui->messageFilter, &QLineEdit::textChanged, this, &Toolbar::filterChanged);
 }
 
 Toolbar::~Toolbar() = default;
