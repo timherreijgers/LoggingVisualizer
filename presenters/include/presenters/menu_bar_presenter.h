@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "model/log_data_context.h"
+#include "model/ilog_data_context.h"
 #include "settings_log_level_presenter.h"
 #include "widgets/menubar.h"
 
@@ -18,7 +18,7 @@ namespace Presenters
 class MenuBarPresenter
 {
 public:
-    explicit MenuBarPresenter(Widgets::MenuBar& view, Model::LogDataContext& model);
+    explicit MenuBarPresenter(Widgets::MenuBar& view, Model::ILogDataContext& model);
 
 private:
     void openFileClicked();
@@ -26,7 +26,7 @@ private:
     void preferencesClicked() noexcept;
 
     Widgets::MenuBar& m_view;
-    Model::LogDataContext& m_model;
+    Model::ILogDataContext& m_model;
 
     std::unique_ptr<SettingsLogLevelPresenter> m_settingsLogLevelPresenter;
 };

@@ -5,7 +5,7 @@
 
 #include <QApplication>
 
-#include "model/log_data_context.h"
+#include "model/log_data_context_factory.h"
 
 #include "presenters/log_presenter.h"
 #include "presenters/menu_bar_presenter.h"
@@ -21,11 +21,11 @@ int main(int argc, char **argv)
     auto &mainWindow = Windows::WindowManager::createMainWindow();
     mainWindow.show();
 
-    Model::LogDataContext logDataContext{};
+    auto logDataContext = Model::LogDataContextFactory::createContext();
 
-    Presenters::LogPresenter logPresenter(mainWindow.getLogWidget(), logDataContext);
-    Presenters::MenuBarPresenter menuBarPresenter(mainWindow.getMenuBar(), logDataContext);
-    Presenters::ToolbarPresenter toolbarPresenter(mainWindow.getToolbar(), logDataContext);
+    Presenters::LogPresenter logPresenter(mainWindow.getLogWidget(), *logDataContext);
+    Presenters::MenuBarPresenter menuBarPresenter(mainWindow.getMenuBar(), *logDataContext);
+    Presenters::ToolbarPresenter toolbarPresenter(mainWindow.getToolbar(), *logDataContext);
 
     return QApplication::exec();
 }
