@@ -15,7 +15,7 @@
 namespace Presenters
 {
 
-MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view, Model::LogDataContext & model) :
+MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view, Model::ILogDataContext & model) :
     m_view(view), m_model(model)
 {
     QObject::connect(&m_view, &Widgets::MenuBar::openFileClicked, [this]() { openFileClicked(); });

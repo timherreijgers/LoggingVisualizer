@@ -8,7 +8,7 @@
 namespace Presenters
 {
 
-ToolbarPresenter::ToolbarPresenter(Widgets::Toolbar & view, Model::LogDataContext &model)
+ToolbarPresenter::ToolbarPresenter(Widgets::Toolbar & view, Model::ILogDataContext &model)
     : m_view(view), m_model(model)
 {
 }

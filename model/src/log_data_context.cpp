@@ -6,7 +6,7 @@
 #include "file_reader.h"
 
 #include "exceptions/FileNotFoundException.h"
-#include "model/log_data_context.h"
+#include "log_data_context.h"
 
 #include "log_message_filter.h"
 

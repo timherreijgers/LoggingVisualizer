@@ -7,7 +7,6 @@
 
 #include "types/log_entry.h"
 
-
 #include <functional>
 #include <string>
 
