@@ -27,7 +27,12 @@ public:
     void subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept final;
 
 private:
+    std::vector<Types::LogEntry> m_inputMessages;
     ObservableVector<Types::LogEntry> m_observableVector;
+
+    std::string m_filter;
+
+    [[nodiscard]] auto filterMessages() -> std::vector<Types::LogEntry>;
 };
 
 } // namespace Model
