@@ -15,6 +15,7 @@ Toolbar::Toolbar(QWidget *parent) :
     m_ui->setupUi(this);
 
     connect(m_ui->messageFilter, &QLineEdit::textChanged, this, &Toolbar::filterChanged);
+    connect(m_ui->filterEnable, &QPushButton::clicked, this, &Toolbar::filterEnabledClicked);
 }
 
 Toolbar::~Toolbar() = default;

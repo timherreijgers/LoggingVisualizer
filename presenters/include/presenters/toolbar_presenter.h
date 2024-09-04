@@ -20,6 +20,7 @@ private:
     [[maybe_unused]] Model::ILogDataContext &m_model;
 
     void filterTextChanged(const std::string &text);
+    void filterEnableClicked();
 };
 
 } // namespace Presenters

@@ -38,3 +38,4 @@ out
 *build*
 
 .DS_Store
+CMakeSettings.json
