@@ -27,6 +27,7 @@ public:
 
 signals:
     void filterChanged(const QString& filter);
+    void filterEnabledClicked();
 
 private:
     std::unique_ptr<Ui::Toolbar> m_ui;
