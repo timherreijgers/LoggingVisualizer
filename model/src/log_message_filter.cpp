@@ -38,7 +38,7 @@ void LogMessageFilter::subscribeToLogEntriesChanged(LogEntriesChangedListener li
     m_observableVector.subscribe(std::move(listener));
 }
 
-auto LogMessageFilter::filterMessages() -> std::vector<Types::LogEntry>
+auto LogMessageFilter::filterMessages() noexcept -> std::vector<Types::LogEntry>
 {
     if (!m_filterEnabled)
     {

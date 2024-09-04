@@ -13,11 +13,6 @@
 namespace Model
 {
 
-LogDataContext::LogDataContext()
-    : m_logMessageFilter(std::make_unique<LogMessageFilter>())
-{
-}
-
 void LogDataContext::openFile(const std::filesystem::path & path)
 {
     FileReader reader{path};
@@ -44,27 +39,27 @@ void LogDataContext::openFile(const std::filesystem::path & path)
         logEntries.push_back(entry);
     }
 
-    m_logMessageFilter->setInputMessages(logEntries);
+    m_logMessageFilter.setInputMessages(logEntries);
 }
 
 void LogDataContext::closeFile() noexcept
 {
-    m_logMessageFilter->setInputMessages({});
+    m_logMessageFilter.setInputMessages({});
 }
 
 auto LogDataContext::getLogMessageFilter() const noexcept -> const ILogMessageFilter &
 {
-    return *m_logMessageFilter;
+    return m_logMessageFilter;
 }
 
 auto LogDataContext::getLogMessageFilter() noexcept -> ILogMessageFilter &
 {
-    return *m_logMessageFilter;
+    return m_logMessageFilter;
 }
 
 void LogDataContext::subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept
 {
-    m_logMessageFilter->subscribeToLogEntriesChanged(std::move(listener));
+    m_logMessageFilter.subscribeToLogEntriesChanged(std::move(listener));
 }
 
 } // namespace Model

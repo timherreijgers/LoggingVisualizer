@@ -16,8 +16,8 @@ class ToolbarPresenter
 public:
     explicit ToolbarPresenter(Widgets::Toolbar &view, Model::ILogDataContext &model);
 private:
-    [[maybe_unused]] Widgets::Toolbar &m_view;
-    [[maybe_unused]] Model::ILogDataContext &m_model;
+    Widgets::Toolbar &m_view;
+    Model::ILogDataContext &m_model;
 
     void filterTextChanged(const std::string &text);
     void filterEnableClicked();

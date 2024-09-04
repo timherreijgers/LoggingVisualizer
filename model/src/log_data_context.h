@@ -6,8 +6,9 @@
 #pragma once
 
 #include "types/log_entry.h"
-#include "model/ilog_message_filter.h"
 #include "model/ilog_data_context.h"
+
+#include "log_message_filter.h"
 
 #include <filesystem>
 #include <functional>
@@ -21,7 +22,7 @@ using LogEntriesChangedListener = std::function<void(const std::vector<Types::Lo
 class LogDataContext : public ILogDataContext
 {
 public:
-    explicit LogDataContext();
+    explicit LogDataContext() = default;
     ~LogDataContext() override = default;
 
     void openFile(const std::filesystem::path & filePath) final;
@@ -33,7 +34,7 @@ public:
     void subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept final;
 
 private:
-    std::unique_ptr<ILogMessageFilter> m_logMessageFilter;
+    LogMessageFilter m_logMessageFilter;
 };
 
 } // namespace Model

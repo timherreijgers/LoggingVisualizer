@@ -25,8 +25,8 @@ public:
 
     [[nodiscard]] auto filterEnabled() const noexcept -> bool final;
 
-    void setInputMessages(const std::vector<Types::LogEntry>& messages) final;
-    void subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept final;
+    void setInputMessages(const std::vector<Types::LogEntry>& messages);
+    void subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept;
 
 private:
     std::vector<Types::LogEntry> m_inputMessages;
@@ -35,7 +35,7 @@ private:
     std::string m_filter;
     bool m_filterEnabled = true;
 
-    [[nodiscard]] auto filterMessages() -> std::vector<Types::LogEntry>;
+    [[nodiscard]] auto filterMessages() noexcept -> std::vector<Types::LogEntry>;
 };
 
 } // namespace Model
