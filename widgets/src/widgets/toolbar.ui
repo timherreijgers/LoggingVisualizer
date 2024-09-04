@@ -28,9 +28,6 @@
      <property name="toolTip">
       <string>Enable/disable the message filter</string>
      </property>
-     <property name="text">
-      <string>Enabled</string>
-     </property>
     </widget>
    </item>
    <item>

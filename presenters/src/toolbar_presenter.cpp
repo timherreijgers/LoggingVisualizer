@@ -13,6 +13,8 @@ ToolbarPresenter::ToolbarPresenter(Widgets::Toolbar & view, Model::ILogDataConte
 {
     QObject::connect(&m_view, &Widgets::Toolbar::filterChanged, [this](const QString &filter) {filterTextChanged(filter.toStdString());});
     QObject::connect(&m_view, &Widgets::Toolbar::filterEnabledClicked, [this]() {filterEnableClicked();});
+
+    m_view.setFilterEnabled(m_model.getLogMessageFilter().filterEnabled());
 }
 
 void ToolbarPresenter::filterTextChanged(const std::string & text)
@@ -23,7 +25,10 @@ void ToolbarPresenter::filterTextChanged(const std::string & text)
 void ToolbarPresenter::filterEnableClicked()
 {
     auto & filter = m_model.getLogMessageFilter();
-    filter.setFilterEnabled(!filter.filterEnabled());
+    const auto filterEnabled = !filter.filterEnabled();
+
+    filter.setFilterEnabled(filterEnabled);
+    m_view.setFilterEnabled(filterEnabled);
 }
 
 } // namespace Presenters

@@ -25,6 +25,8 @@ public:
     explicit Toolbar(QWidget *parent = nullptr);
     ~Toolbar() override;
 
+    void setFilterEnabled(bool enabled);
+
 signals:
     void filterChanged(const QString& filter);
     void filterEnabledClicked();
