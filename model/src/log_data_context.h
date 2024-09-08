@@ -11,13 +11,10 @@
 #include "log_message_filter.h"
 
 #include <filesystem>
-#include <functional>
 #include <vector>
 
 namespace Model
 {
-
-using LogEntriesChangedListener = std::function<void(const std::vector<Types::LogEntry>&)>;
 
 class LogDataContext : public ILogDataContext
 {
@@ -31,7 +28,9 @@ public:
     [[nodiscard]] auto getLogMessageFilter() const noexcept -> const ILogMessageFilter& final;
     [[nodiscard]] auto getLogMessageFilter() noexcept -> ILogMessageFilter& final;
 
-    void subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept final;
+    [[nodiscard]] auto getLogMessages() const noexcept -> const std::vector<Types::LogEntry>& final;
+
+    auto connectLogMessagesChanged(logMessageChangedSignal::slot_type slot) noexcept -> is::signals::connection final;
 
 private:
     LogMessageFilter m_logMessageFilter;

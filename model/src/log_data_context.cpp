@@ -57,9 +57,14 @@ auto LogDataContext::getLogMessageFilter() noexcept -> ILogMessageFilter &
     return m_logMessageFilter;
 }
 
-void LogDataContext::subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept
+auto LogDataContext::getLogMessages() const noexcept -> const std::vector<Types::LogEntry> &
 {
-    m_logMessageFilter.subscribeToLogEntriesChanged(std::move(listener));
+    return m_logMessageFilter.getLogMessages();
+}
+
+auto LogDataContext::connectLogMessagesChanged(logMessageChangedSignal::slot_type slot) noexcept -> is::signals::connection
+{
+    return m_logMessageFilter.connectLogMessagesChanged(std::move(slot));
 }
 
 } // namespace Model

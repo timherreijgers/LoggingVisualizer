@@ -7,3 +7,6 @@
 [submodule "third-party/yaml-cpp"]
 	path = third-party/yaml-cpp
 	url = https://github.com/jbeder/yaml-cpp
+[submodule "third-party/fast_signals"]
+	path = third-party/fast_signals
+	url = https://github.com/timherreijgers/FastSignals.git

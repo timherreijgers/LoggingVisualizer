@@ -31,7 +31,10 @@ add_library(model STATIC
 
 target_include_directories(model PUBLIC include)
 
-target_link_libraries(model PRIVATE
+target_link_libraries(model
+    PUBLIC
+        libfastsignals
+    PRIVATE
         types
         yaml-cpp::yaml-cpp
         fmt::fmt

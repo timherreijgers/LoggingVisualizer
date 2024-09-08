@@ -5,7 +5,13 @@
 
 #include <QApplication>
 
+#pragma push_macro("signals")
+#pragma push_macro("slots")
+#undef signals
+#undef slots
 #include "model/log_data_context_factory.h"
+#pragma pop_macro("signals")
+#pragma pop_macro("slots")
 
 #include "presenters/log_presenter.h"
 #include "presenters/menu_bar_presenter.h"

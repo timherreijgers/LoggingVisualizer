@@ -7,15 +7,15 @@
 
 #include "model/ilog_message_filter.h"
 #include "types/log_entry.h"
-#include "model/observable_vector.h"
 
-#include <functional>
+#include "libfastsignals/signal.h"
+
 #include <vector>
 
 namespace Model
 {
 
-using LogEntriesChangedListener = std::function<void(const std::vector<Types::LogEntry>&)>;
+using logMessageChangedSignal = is::signals::signal<void()>;
 
 class LogMessageFilter : public ILogMessageFilter
 {
@@ -26,11 +26,13 @@ public:
     [[nodiscard]] auto filterEnabled() const noexcept -> bool final;
 
     void setInputMessages(const std::vector<Types::LogEntry>& messages);
-    void subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept;
+    auto connectLogMessagesChanged(logMessageChangedSignal::slot_type slot) noexcept -> is::signals::connection;
+    [[nodiscard]] auto getLogMessages() const noexcept -> const std::vector<Types::LogEntry>&;
 
 private:
     std::vector<Types::LogEntry> m_inputMessages;
-    ObservableVector<Types::LogEntry> m_observableVector;
+    std::vector<Types::LogEntry> m_outputMessages;
+    logMessageChangedSignal m_logMessageChangedSignal;
 
     std::string m_filter;
     bool m_filterEnabled = true;
