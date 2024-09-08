@@ -7,8 +7,6 @@
 
 #include "ilog_data_context.h"
 
-#include <memory>
-
 namespace Model
 {
 

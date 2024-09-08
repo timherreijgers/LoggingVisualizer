@@ -13,7 +13,7 @@ namespace Presenters
 LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::ILogDataContext & model) :
     m_view(view), m_model(model)
 {
-    m_model.subscribeToLogEntriesChanged([this](const std::vector<Types::LogEntry>& data){logMessagesUpdated(data);});
+    m_model.connectLogMessagesChanged([this]() {logMessagesUpdated(m_model.getLogMessages());});
     QObject::connect(&m_view, &Widgets::LogWidget::onFileDropped, [this](const std::string_view url) {onFileDroppedInView(url);});
 
     auto& settingsManager = Model::SettingsManager::instance();

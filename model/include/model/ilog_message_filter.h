@@ -5,15 +5,10 @@
 
 #pragma once
 
-#include "types/log_entry.h"
-
 #include <functional>
-#include <string>
 
 namespace Model
 {
-
-using LogEntriesChangedListener = std::function<void(const std::vector<Types::LogEntry> &)>;
 
 class ILogMessageFilter
 {

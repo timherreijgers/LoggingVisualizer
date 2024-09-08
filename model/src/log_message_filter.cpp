@@ -13,13 +13,15 @@ namespace Model
 void LogMessageFilter::setFilter(const std::string & filter) noexcept
 {
     m_filter = filter;
-    m_observableVector.setValue(filterMessages());
+    m_outputMessages = filterMessages();
+    m_logMessageChangedSignal();
 }
 
 void LogMessageFilter::setFilterEnabled(bool enabled) noexcept
 {
     m_filterEnabled = enabled;
-    m_observableVector.setValue(filterMessages());
+    m_outputMessages = filterMessages();
+    m_logMessageChangedSignal();
 }
 
 auto LogMessageFilter::filterEnabled() const noexcept -> bool
@@ -30,12 +32,18 @@ auto LogMessageFilter::filterEnabled() const noexcept -> bool
 void LogMessageFilter::setInputMessages(const std::vector<Types::LogEntry>& messages)
 {
     m_inputMessages = messages;
-    m_observableVector.setValue(filterMessages());
+    m_outputMessages = filterMessages();
+    m_logMessageChangedSignal();
 }
 
-void LogMessageFilter::subscribeToLogEntriesChanged(LogEntriesChangedListener listener) noexcept
+auto LogMessageFilter::connectLogMessagesChanged(logMessageChangedSignal::slot_type slot) noexcept -> is::signals::connection
 {
-    m_observableVector.subscribe(std::move(listener));
+    return m_logMessageChangedSignal.connect(std::move(slot));
+}
+
+auto LogMessageFilter::getLogMessages() const noexcept -> const std::vector<Types::LogEntry> &
+{
+    return m_outputMessages;
 }
 
 auto LogMessageFilter::filterMessages() noexcept -> std::vector<Types::LogEntry>
