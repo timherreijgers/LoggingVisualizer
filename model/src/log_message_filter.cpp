@@ -13,14 +13,14 @@ namespace Model
 void LogMessageFilter::setFilter(const std::string & filter) noexcept
 {
     m_filter = filter;
-    m_outputMessages = filterMessages();
+    filterMessages();
     m_logMessageChangedSignal();
 }
 
 void LogMessageFilter::setFilterEnabled(bool enabled) noexcept
 {
     m_filterEnabled = enabled;
-    m_outputMessages = filterMessages();
+    filterMessages();
     m_logMessageChangedSignal();
 }
 
@@ -32,7 +32,8 @@ auto LogMessageFilter::filterEnabled() const noexcept -> bool
 void LogMessageFilter::setInputMessages(const std::vector<Types::LogEntry>& messages)
 {
     m_inputMessages = messages;
-    m_outputMessages = filterMessages();
+    m_filteredMessages.setSource(&m_inputMessages);
+    filterMessages();
     m_logMessageChangedSignal();
 }
 
@@ -41,27 +42,30 @@ auto LogMessageFilter::connectLogMessagesChanged(logMessageChangedSignal::slot_t
     return m_logMessageChangedSignal.connect(std::move(slot));
 }
 
-auto LogMessageFilter::getLogMessages() const noexcept -> const std::vector<Types::LogEntry> &
+auto LogMessageFilter::getLogMessages() const noexcept -> const FilteredLogMessageView &
 {
-    return m_outputMessages;
+    return m_filteredMessages;
 }
 
-auto LogMessageFilter::filterMessages() noexcept -> std::vector<Types::LogEntry>
+void LogMessageFilter::filterMessages() noexcept
 {
+    m_filteredMessages.clearIndices();
+
     if (!m_filterEnabled)
     {
-        return m_inputMessages;
+        for (size_t i = 0; i < m_inputMessages.size(); i++)
+        {
+            m_filteredMessages.addIndex(i);
+        }
     }
 
-    std::vector<Types::LogEntry> filteredMessages;
-
-    for (const auto& entry : m_inputMessages)
+    for (size_t i = 0; i < m_inputMessages.size(); i++)
     {
-        if (entry.message.contains(m_filter))
-            filteredMessages.push_back(entry);
+        if (m_inputMessages[i].message.contains(m_filter))
+        {
+            m_filteredMessages.addIndex(i);
+        }
     }
-
-    return filteredMessages;
 }
 
 } // namespace Model

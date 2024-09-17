@@ -6,9 +6,35 @@
 #include "presenters/log_presenter.h"
 
 #include "model/settings_manager.h"
+#include "item_models/abstract_item_model.h"
 
 namespace Presenters
 {
+
+class LogItemModel : public Widgets::ItemModels::AbstractItemModel<Types::LogEntry>
+{
+public:
+    explicit LogItemModel(const Model::IFilteredLogMessageView& entries) :  m_entries(entries) {}
+    [[nodiscard]] auto rowCount() const noexcept -> int override
+    {
+        return static_cast<int>(m_entries.size());
+    }
+
+    [[nodiscard]] auto columnCount() const noexcept -> int override
+    {
+        return 1;
+    }
+
+    [[nodiscard]] auto data(size_t row, size_t /*column*/) const -> Types::LogEntry override
+    {
+        return m_entries[row];
+    }
+
+private:
+    const Model::IFilteredLogMessageView & m_entries;
+};
+
+static std::unique_ptr<LogItemModel> logItemModelPtr;
 
 LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::ILogDataContext & model) :
     m_view(view), m_model(model)
@@ -30,7 +56,7 @@ LogPresenter::LogPresenter(Widgets::LogWidget & view, Model::ILogDataContext & m
     });
 }
 
-void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEntries) noexcept
+void LogPresenter::logMessagesUpdated(const Model::IFilteredLogMessageView & logEntries) noexcept
 {
     if (logEntries.empty())
     {
@@ -38,8 +64,10 @@ void LogPresenter::logMessagesUpdated(const std::vector<Types::LogEntry> & logEn
         return;
     }
 
+    logItemModelPtr = std::make_unique<LogItemModel>(logEntries);
+    m_view.setLogMessages(*logItemModelPtr);
+
     const auto & colorSettings = Model::SettingsManager::instance().getLogLevelColorSettings();
-    m_view.setLogMessages(logEntries);
 
     std::map<std::string, Types::HighlightColorPair> colorDataMap;
     for (const auto& entry : colorSettings.getValue())

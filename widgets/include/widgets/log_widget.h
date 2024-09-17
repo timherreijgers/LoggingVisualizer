@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "item_models/abstract_item_model.h"
 #include "types/highlight_color_pair.h"
 #include "types/log_entry.h"
 
@@ -34,7 +35,7 @@ public:
     explicit LogWidget(QWidget * parent = nullptr);
     ~LogWidget() override;
 
-    void setLogMessages(const std::vector<Types::LogEntry> & messages) noexcept;
+    void setLogMessages(const ItemModels::AbstractItemModel<Types::LogEntry> & messages) noexcept;
     void clearLogMessages() noexcept;
 
     void setHighlightColors(std::map<std::string, Types::HighlightColorPair> colorMap) noexcept;

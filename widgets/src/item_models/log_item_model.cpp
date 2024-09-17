@@ -5,14 +5,12 @@
 
 #include "log_item_model.h"
 
-#include "fmt/printf.h"
-
 #include <QColor>
 
 namespace Widgets::ItemModels
 {
 
-LogItemModel::LogItemModel(const std::vector<Types::LogEntry> & messages) :
+LogItemModel::LogItemModel(const AbstractItemModel<Types::LogEntry> & messages) :
     m_messages(messages)
 {
 }
@@ -25,7 +23,7 @@ void LogItemModel::setHighlightColors(std::map<std::string, Types::HighlightColo
 
 auto LogItemModel::rowCount(const QModelIndex &) const noexcept -> int
 {
-    return static_cast<int>(m_messages.size());
+    return m_messages.rowCount();
 }
 
 auto LogItemModel::columnCount(const QModelIndex &) const noexcept -> int
@@ -37,7 +35,7 @@ auto LogItemModel::data(const QModelIndex & index, int role) const -> QVariant
 {
     if (role == Qt::ForegroundRole)
     {
-        if (const auto level = m_messages[index.row()].level; m_highlightColorMap.contains(level))
+        if (const auto level = m_messages.data(index.row(), 0).level; m_highlightColorMap.contains(level))
         {
             const auto color = m_highlightColorMap.at(level).text;
             return QColor(color.red, color.green, color.blue, color.alpha);
@@ -48,7 +46,7 @@ auto LogItemModel::data(const QModelIndex & index, int role) const -> QVariant
 
     if (role == Qt::BackgroundRole)
     {
-        if (const auto level = m_messages[index.row()].level; m_highlightColorMap.contains(level))
+        if (const auto level = m_messages.data(index.row(), 0).level; m_highlightColorMap.contains(level))
         {
             const auto color = m_highlightColorMap.at(level).background;
             return QColor(color.red, color.green, color.blue, color.alpha);
@@ -65,11 +63,11 @@ auto LogItemModel::data(const QModelIndex & index, int role) const -> QVariant
     switch (index.column())
     {
     case 0:
-        return QString(m_messages[index.row()].time.c_str());
+        return QString(m_messages.data(index.row(), 0).time.c_str());
     case 1:
-        return QString(m_messages[index.row()].level.c_str());
+        return QString(m_messages.data(index.row(), 0).level.c_str());
     case 2:
-        return QString(m_messages[index.row()].message.c_str());
+        return QString(m_messages.data(index.row(), 0).message.c_str());
     default:
         return {};
     }

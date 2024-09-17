@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "filtered_log_message_view.h"
 #include "model/ilog_message_filter.h"
 #include "types/log_entry.h"
 
@@ -20,6 +21,8 @@ using logMessageChangedSignal = is::signals::signal<void()>;
 class LogMessageFilter : public ILogMessageFilter
 {
 public:
+    explicit LogMessageFilter() = default;
+
     void setFilter(const std::string & filter) noexcept final;
     void setFilterEnabled(bool enabled) noexcept final;
 
@@ -27,17 +30,17 @@ public:
 
     void setInputMessages(const std::vector<Types::LogEntry>& messages);
     auto connectLogMessagesChanged(logMessageChangedSignal::slot_type slot) noexcept -> is::signals::connection;
-    [[nodiscard]] auto getLogMessages() const noexcept -> const std::vector<Types::LogEntry>&;
+    [[nodiscard]] auto getLogMessages() const noexcept -> const FilteredLogMessageView&;
 
 private:
     std::vector<Types::LogEntry> m_inputMessages;
-    std::vector<Types::LogEntry> m_outputMessages;
+    FilteredLogMessageView m_filteredMessages;
     logMessageChangedSignal m_logMessageChangedSignal;
 
     std::string m_filter;
     bool m_filterEnabled = true;
 
-    [[nodiscard]] auto filterMessages() noexcept -> std::vector<Types::LogEntry>;
+    void filterMessages() noexcept;
 };
 
 } // namespace Model

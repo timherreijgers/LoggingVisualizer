@@ -28,7 +28,7 @@ public:
     [[nodiscard]] auto getLogMessageFilter() const noexcept -> const ILogMessageFilter& final;
     [[nodiscard]] auto getLogMessageFilter() noexcept -> ILogMessageFilter& final;
 
-    [[nodiscard]] auto getLogMessages() const noexcept -> const std::vector<Types::LogEntry>& final;
+    [[nodiscard]] auto getLogMessages() const noexcept -> const IFilteredLogMessageView& final;
 
     auto connectLogMessagesChanged(logMessageChangedSignal::slot_type slot) noexcept -> is::signals::connection final;
 
