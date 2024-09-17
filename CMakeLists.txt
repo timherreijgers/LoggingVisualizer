@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.20)
 
+find_program(CCACHE_FOUND ccache)
+if(CCACHE_FOUND)
+    message(STATUS "ccache found, using ccache")
+    set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
+endif()
+
 project(LoggingVisualizer VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 23)
