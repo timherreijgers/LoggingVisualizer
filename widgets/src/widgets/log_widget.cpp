@@ -8,8 +8,6 @@
 #include "widgets/log_widget.h"
 #include "item_models/log_item_model.h"
 
-#include <fmt/printf.h>
-
 #include <QDropEvent>
 #include <QMimeData>
 
@@ -28,7 +26,7 @@ LogWidget::LogWidget(QWidget * parent) :
 
 LogWidget::~LogWidget() = default;
 
-void LogWidget::setLogMessages(const std::vector<Types::LogEntry> & messages) noexcept
+void LogWidget::setLogMessages(const ItemModels::AbstractItemModel<Types::LogEntry> & messages) noexcept
 {
     m_model = std::make_unique<ItemModels::LogItemModel>(messages);
     ui->tableView->setModel(m_model.get());

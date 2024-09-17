@@ -57,7 +57,7 @@ auto LogDataContext::getLogMessageFilter() noexcept -> ILogMessageFilter &
     return m_logMessageFilter;
 }
 
-auto LogDataContext::getLogMessages() const noexcept -> const std::vector<Types::LogEntry> &
+auto LogDataContext::getLogMessages() const noexcept -> const IFilteredLogMessageView &
 {
     return m_logMessageFilter.getLogMessages();
 }
