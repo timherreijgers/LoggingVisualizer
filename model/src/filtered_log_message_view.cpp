@@ -5,6 +5,8 @@
 
 #include "filtered_log_message_view.h"
 
+#include <stdexcept>
+
 namespace Model
 {
 
