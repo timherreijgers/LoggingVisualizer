@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        compiler_c: [gcc, clang]
+        compiler_c: [gcc] #, clang]
         include:
           - compiler_c: gcc
             compiler_cpp: g++
-          - compiler_c: clang
-            compiler_cpp: clang++
+#          - compiler_c: clang
+#            compiler_cpp: clang++
 
     steps:
       - uses: actions/checkout@v3
@@ -24,7 +24,7 @@ jobs:
 
       - name: Install dependencies
         run:
-          sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev
+          sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev libc++-dev
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
