@@ -44,4 +44,4 @@ void MenuBar::actionExitTriggered(bool)
     exitClicked();
 }
 
-} // Widgets
+} // namespace Widgets

@@ -7,21 +7,22 @@
 
 #include <QMenuBar>
 
-#include <iostream>
-
 namespace Widgets
 {
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MenuBar; }
+namespace Ui
+{
+class MenuBar;
+}
 QT_END_NAMESPACE
 
 class MenuBar : public QMenuBar
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-    explicit MenuBar(QWidget *parent = nullptr);
+    explicit MenuBar(QWidget * parent = nullptr);
     ~MenuBar() override;
 
 signals:
@@ -40,4 +41,4 @@ private:
     std::unique_ptr<Ui::MenuBar> m_ui;
 };
 
-} // Widgets
+} // namespace Widgets

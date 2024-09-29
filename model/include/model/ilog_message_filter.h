@@ -25,4 +25,4 @@ public:
     [[nodiscard]] virtual auto filterEnabled() const noexcept -> bool = 0;
 };
 
-}
+} // namespace Model

@@ -10,12 +10,7 @@
 namespace Model
 {
 
-// FilteredLogMessageView::FilteredLogMessageView(const std::vector<Types::LogEntry> & logs) :
-//     m_sourceMessages(logs)
-// {
-// }
-
-auto FilteredLogMessageView::get(size_t index) const -> const Types::LogEntry &
+auto FilteredLogMessageView::get(size_t index) const -> const Types::LogEntry&
 {
     if (!m_sourceMessages)
     {
@@ -25,7 +20,7 @@ auto FilteredLogMessageView::get(size_t index) const -> const Types::LogEntry &
     return (*m_sourceMessages)[m_logIndices[index]];
 }
 
-auto FilteredLogMessageView::operator[](size_t index) const -> const Types::LogEntry &
+auto FilteredLogMessageView::operator[](size_t index) const -> const Types::LogEntry&
 {
     return get(index);
 }

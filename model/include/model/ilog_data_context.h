@@ -5,14 +5,12 @@
 
 #pragma once
 
-#include "ilog_message_filter.h"
-#include "types/log_entry.h"
 #include "ifiltered_log_message_view.h"
+#include "ilog_message_filter.h"
 
 #include "libfastsignals/signal.h"
 
 #include <filesystem>
-#include <vector>
 
 namespace Model
 {
@@ -30,7 +28,7 @@ public:
     ILogDataContext(ILogDataContext&&) = delete;
     ILogDataContext& operator=(ILogDataContext&&) = delete;
 
-    virtual void openFile(const std::filesystem::path & filePath) = 0;
+    virtual void openFile(const std::filesystem::path& filePath) = 0;
     virtual void closeFile() noexcept = 0;
 
     [[nodiscard]] virtual auto getLogMessageFilter() const noexcept -> const ILogMessageFilter& = 0;

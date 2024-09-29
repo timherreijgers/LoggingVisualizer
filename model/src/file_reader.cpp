@@ -8,8 +8,8 @@
 namespace Model
 {
 
-FileReader::FileReader(const std::filesystem::path & path)
-    : m_stream(std::ifstream(path))
+FileReader::FileReader(const std::filesystem::path& path) :
+    m_stream(std::ifstream(path))
 {
 }
 

@@ -35,7 +35,7 @@ public:
     explicit LogWidget(QWidget * parent = nullptr);
     ~LogWidget() override;
 
-    void setLogMessages(const ItemModels::AbstractItemModel<Types::LogEntry> & messages) noexcept;
+    void setLogMessages(const ItemModels::AbstractItemModel<Types::LogEntry>& messages) noexcept;
     void clearLogMessages() noexcept;
 
     void setHighlightColors(std::map<std::string, Types::HighlightColorPair> colorMap) noexcept;
@@ -49,7 +49,7 @@ protected:
 
 private:
     std::unique_ptr<Ui::LogWidget> ui;
-    std::unique_ptr<ItemModels::LogItemModel> m_model;
+    std::unique_ptr<ItemModels::LogItemModel> m_model{nullptr};
 };
 
 } // namespace Widgets

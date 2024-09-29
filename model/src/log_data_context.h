@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "types/log_entry.h"
 #include "model/ilog_data_context.h"
+#include "types/log_entry.h"
 
 #include "log_message_filter.h"
 
@@ -22,7 +22,7 @@ public:
     explicit LogDataContext() = default;
     ~LogDataContext() override = default;
 
-    void openFile(const std::filesystem::path & filePath) final;
+    void openFile(const std::filesystem::path& filePath) final;
     void closeFile() noexcept final;
 
     [[nodiscard]] auto getLogMessageFilter() const noexcept -> const ILogMessageFilter& final;

@@ -3,9 +3,10 @@
  * Licensed using the MIT license
  */
 
+#include "widgets/log_widget.h"
+
 #include "ui_log_widget.h"
 
-#include "widgets/log_widget.h"
 #include "item_models/log_item_model.h"
 
 #include <QDropEvent>
@@ -15,7 +16,7 @@ namespace Widgets
 {
 
 LogWidget::LogWidget(QWidget * parent) :
-    QWidget(parent), ui(std::make_unique<Ui::LogWidget>()), m_model(nullptr)
+    QWidget(parent), ui(std::make_unique<Ui::LogWidget>())
 {
     ui->setupUi(this);
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
@@ -26,7 +27,7 @@ LogWidget::LogWidget(QWidget * parent) :
 
 LogWidget::~LogWidget() = default;
 
-void LogWidget::setLogMessages(const ItemModels::AbstractItemModel<Types::LogEntry> & messages) noexcept
+void LogWidget::setLogMessages(const ItemModels::AbstractItemModel<Types::LogEntry>& messages) noexcept
 {
     m_model = std::make_unique<ItemModels::LogItemModel>(messages);
     ui->tableView->setModel(m_model.get());
@@ -64,4 +65,4 @@ void LogWidget::dropEvent(QDropEvent * event)
     }
 }
 
-}// namespace Widgets
+} // namespace Widgets

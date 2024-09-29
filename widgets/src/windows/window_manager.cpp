@@ -5,14 +5,14 @@
 
 #include "windows/window_manager.h"
 
-auto Windows::WindowManager::createMainWindow() noexcept -> MainWindow &
+auto Windows::WindowManager::createMainWindow() noexcept -> MainWindow&
 {
     static MainWindow mainWindow;
 
     return mainWindow;
 }
 
-auto Windows::WindowManager::createSettingsWindow() noexcept -> SettingsWindow &
+auto Windows::WindowManager::createSettingsWindow() noexcept -> SettingsWindow&
 {
     static SettingsWindow settingsWindow;
     return settingsWindow;

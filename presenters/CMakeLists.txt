@@ -3,9 +3,13 @@ set(PRESENTER_HEADERS
         include/presenters/menu_bar_presenter.h
         include/presenters/settings_log_level_presenter.h
         include/presenters/toolbar_presenter.h
+
+        src/item_models/log_item_model.h
 )
 
 set(PRESENTER_SRCS
+        src/item_models/log_item_model.cpp
+
         src/log_presenter.cpp
         src/menu_bar_presenter.cpp
         src/settings_log_level_presenter.cpp

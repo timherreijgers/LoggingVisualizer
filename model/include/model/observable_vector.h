@@ -6,8 +6,8 @@
 #pragma once
 
 #include <functional>
-#include <vector>
 #include <utility>
+#include <vector>
 
 namespace Model
 {
@@ -16,12 +16,12 @@ template <typename T>
 class ObservableVector
 {
 public:
-    using SubscriberFunction = std::function<void(std::vector<T> &)>;
+    using SubscriberFunction = std::function<void(std::vector<T>&)>;
 
     class ObservableVectorEntry
     {
     public:
-        explicit ObservableVectorEntry(T & value, const std::function<void()> & entryChangedCallback) :
+        explicit ObservableVectorEntry(T& value, const std::function<void()>& entryChangedCallback) :
             m_value(value), m_entryChangedCallback(entryChangedCallback)
         {
         }
@@ -43,16 +43,16 @@ public:
         }
 
     private:
-        T & m_value;
+        T& m_value;
         std::function<void()> m_entryChangedCallback;
     };
 
-    [[nodiscard]] auto at(size_t index) const -> const T &
+    [[nodiscard]] auto at(size_t index) const -> const T&
     {
         return m_vector.at(index);
     }
 
-    [[nodiscard]] auto operator[](size_t index) const -> const T &
+    [[nodiscard]] auto operator[](size_t index) const -> const T&
     {
         return m_vector[index];
     }
@@ -83,7 +83,7 @@ public:
     }
 
     template <class... Args>
-    void emplace_back(Args &&... args)
+    void emplace_back(Args&&... args)
     {
         m_vector.emplace_back(std::forward<Args>(args)...);
 
@@ -113,7 +113,7 @@ public:
         }
     }
 
-    [[nodiscard]] auto getValue() const -> const std::vector<T> &
+    [[nodiscard]] auto getValue() const -> const std::vector<T>&
     {
         return m_vector;
     }

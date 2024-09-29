@@ -1,6 +1,6 @@
 set(WIDGET_HEADERS
-        include/item_models/abstract_item_model.h
-        include/item_models/log_level_highlight_model.h
+        include/widgets/item_models/abstract_item_model.h
+        include/widgets/item_models/log_level_highlight_model.h
 
         include/widgets/log_level_widget.h
         include/widgets/log_widget.h

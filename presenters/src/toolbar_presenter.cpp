@@ -8,23 +8,23 @@
 namespace Presenters
 {
 
-ToolbarPresenter::ToolbarPresenter(Widgets::Toolbar & view, Model::ILogDataContext & model) :
+ToolbarPresenter::ToolbarPresenter(Widgets::Toolbar& view, Model::ILogDataContext& model) :
     m_view(view), m_model(model)
 {
-    QObject::connect(&m_view, &Widgets::Toolbar::filterChanged, [this](const QString &filter) {filterTextChanged(filter.toStdString());});
-    QObject::connect(&m_view, &Widgets::Toolbar::filterEnabledClicked, [this]() {filterEnableClicked();});
+    QObject::connect(&m_view, &Widgets::Toolbar::filterChanged, [this](const QString& filter) { filterTextChanged(filter.toStdString()); });
+    QObject::connect(&m_view, &Widgets::Toolbar::filterEnabledClicked, [this]() { filterEnableClicked(); });
 
     m_view.setFilterEnabled(m_model.getLogMessageFilter().filterEnabled());
 }
 
-void ToolbarPresenter::filterTextChanged(const std::string & text)
+void ToolbarPresenter::filterTextChanged(const std::string& text)
 {
     m_model.getLogMessageFilter().setFilter(text);
 }
 
 void ToolbarPresenter::filterEnableClicked()
 {
-    auto & filter = m_model.getLogMessageFilter();
+    auto& filter = m_model.getLogMessageFilter();
     const auto filterEnabled = !filter.filterEnabled();
 
     filter.setFilterEnabled(filterEnabled);

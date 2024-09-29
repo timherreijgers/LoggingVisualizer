@@ -10,7 +10,7 @@
 namespace Widgets::ItemModels
 {
 
-LogItemModel::LogItemModel(const AbstractItemModel<Types::LogEntry> & messages) :
+LogItemModel::LogItemModel(const AbstractItemModel<Types::LogEntry>& messages) :
     m_messages(messages)
 {
 }
@@ -21,17 +21,17 @@ void LogItemModel::setHighlightColors(std::map<std::string, Types::HighlightColo
     layoutChanged();
 }
 
-auto LogItemModel::rowCount(const QModelIndex &) const noexcept -> int
+auto LogItemModel::rowCount(const QModelIndex&) const noexcept -> int
 {
     return m_messages.rowCount();
 }
 
-auto LogItemModel::columnCount(const QModelIndex &) const noexcept -> int
+auto LogItemModel::columnCount(const QModelIndex&) const noexcept -> int
 {
     return 3;
 }
 
-auto LogItemModel::data(const QModelIndex & index, int role) const -> QVariant
+auto LogItemModel::data(const QModelIndex& index, int role) const -> QVariant
 {
     if (role == Qt::ForegroundRole)
     {
