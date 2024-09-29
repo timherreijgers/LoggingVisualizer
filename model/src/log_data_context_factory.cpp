@@ -3,9 +3,9 @@
  * Licensed using the MIT license
  */
 
-#include "log_data_context.h"
-
 #include "model/log_data_context_factory.h"
+
+#include "log_data_context.h"
 
 namespace Model
 {

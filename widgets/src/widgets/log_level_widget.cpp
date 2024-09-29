@@ -28,21 +28,20 @@ void LogLevelWidget::setModel(QAbstractItemModel * model)
     setColumnWidth(2, rowHeight(0) * 3);
 }
 
-void LogLevelWidget::onCellClicked(const QModelIndex & index)
+void LogLevelWidget::onCellClicked(const QModelIndex& index)
 {
-    if(index.column() != 1 && index.column() != 2)
+    if (index.column() != 1 && index.column() != 2)
         return;
 
     const auto color = QColorDialog::getColor();
-    if(!color.isValid())
+    if (!color.isValid())
         return;
 
-    Types::Color typesColor {
+    Types::Color typesColor{
         static_cast<uint8_t>(color.rgba() >> 16),
         static_cast<uint8_t>(color.rgba() >> 8),
         static_cast<uint8_t>(color.rgba()),
-        static_cast<uint8_t>(color.rgba() >> 24)
-    };
+        static_cast<uint8_t>(color.rgba() >> 24)};
     colorSelectionChanged(index.row(), index.column() == 1 ? ColorType::TEXT : ColorType::BACKGROUND, typesColor);
 }
 

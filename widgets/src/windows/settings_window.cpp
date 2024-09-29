@@ -10,7 +10,7 @@
 namespace Windows
 {
 
-SettingsWindow::SettingsWindow(QWidget *parent) :
+SettingsWindow::SettingsWindow(QWidget * parent) :
     QMainWindow(parent), m_ui(std::make_unique<Ui::SettingsWindow>())
 {
     m_ui->setupUi(this);
@@ -18,9 +18,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
 
 SettingsWindow::~SettingsWindow() = default;
 
-Widgets::LogLevelWidget & SettingsWindow::getLogWidget() const noexcept
+Widgets::LogLevelWidget& SettingsWindow::getLogWidget() const noexcept
 {
     return *m_ui->debug_levels_table;
 }
 
-} // Windows
+} // namespace Windows

@@ -10,14 +10,14 @@
 namespace Presenters
 {
 
-SettingsLogLevelPresenter::SettingsLogLevelPresenter(Widgets::LogLevelWidget & view, Model::SettingsManager & model) :
+SettingsLogLevelPresenter::SettingsLogLevelPresenter(Widgets::LogLevelWidget& view, Model::SettingsManager& model) :
     m_view(view), m_model(model)
 {
     QObject::connect(&m_view, &Widgets::LogLevelWidget::colorSelectionChanged, [this](const int row, const Widgets::ColorType type, const Types::Color color) {
         colorSelectionChanged(row, type, color);
     });
 
-    for (const auto & entry : m_model.getLogLevelColorSettings().getValue())
+    for (const auto& entry : m_model.getLogLevelColorSettings().getValue())
     {
         const auto& level = entry.level;
         const auto textColor = entry.textColor;
@@ -35,12 +35,12 @@ void SettingsLogLevelPresenter::colorSelectionChanged(const int row, const Widge
 
     switch (type)
     {
-        case Widgets::ColorType::TEXT:
-            m_model.getLogLevelColorSettings()[row] = {cachedValue.level, color, cachedValue.backgroundColor};
-            break;
-        case Widgets::ColorType::BACKGROUND:
-            m_model.getLogLevelColorSettings()[row] = {cachedValue.level, cachedValue.textColor, color};
-            break;
+    case Widgets::ColorType::TEXT:
+        m_model.getLogLevelColorSettings()[row] = {cachedValue.level, color, cachedValue.backgroundColor};
+        break;
+    case Widgets::ColorType::BACKGROUND:
+        m_model.getLogLevelColorSettings()[row] = {cachedValue.level, cachedValue.textColor, color};
+        break;
     }
 
     const Model::LogLevelColorSettingsEntry& value = m_model.getLogLevelColorSettings()[row];

@@ -84,3 +84,4 @@ IncludeCategories:
   - Regex:           '.*'
     Priority:        1
 AlignConsecutiveMacros: AcrossEmptyLines
+ReferenceAlignment: Left

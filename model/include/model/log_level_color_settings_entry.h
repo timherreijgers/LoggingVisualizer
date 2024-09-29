@@ -2,14 +2,14 @@
  * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
- 
+
 #pragma once
 
 #include "types/color.h"
 
+#include <functional>
 #include <map>
 #include <string>
-#include <functional>
 
 namespace Model
 {
@@ -20,10 +20,9 @@ struct LogLevelColorSettingsEntry
     Types::Color textColor;
     Types::Color backgroundColor;
 
-    LogLevelColorSettingsEntry(std::string level, Types::Color textColor, Types::Color backgroundColor)
-        : level(std::move(level)), textColor(textColor), backgroundColor(backgroundColor)
+    LogLevelColorSettingsEntry(std::string level, Types::Color textColor, Types::Color backgroundColor) :
+        level(std::move(level)), textColor(textColor), backgroundColor(backgroundColor)
     {
-
     }
 };
 

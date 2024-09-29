@@ -6,10 +6,7 @@
 #pragma once
 
 #include "model/ilog_data_context.h"
-#include "types/log_entry.h"
 #include "widgets/log_widget.h"
-
-#include <vector>
 
 namespace Presenters
 {
@@ -23,8 +20,9 @@ private:
     void logMessagesUpdated(const Model::IFilteredLogMessageView& logEntries) noexcept;
     void onFileDroppedInView(std::string_view url);
 
-    Widgets::LogWidget & m_view;
+    Widgets::LogWidget& m_view;
     Model::ILogDataContext& m_model;
+    std::unique_ptr<Widgets::ItemModels::AbstractItemModel<Types::LogEntry>> m_logModel;
 };
 
 } // namespace Presenters

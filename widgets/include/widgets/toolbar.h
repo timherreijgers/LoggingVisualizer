@@ -14,15 +14,18 @@ namespace Widgets
 {
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class Toolbar; }
+namespace Ui
+{
+class Toolbar;
+}
 QT_END_NAMESPACE
 
 class Toolbar : public QWidget
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-    explicit Toolbar(QWidget *parent = nullptr);
+    explicit Toolbar(QWidget * parent = nullptr);
     ~Toolbar() override;
 
     void setFilterEnabled(bool enabled);

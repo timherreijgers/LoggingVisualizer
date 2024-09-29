@@ -22,10 +22,10 @@ QT_END_NAMESPACE
 
 class SettingsWindow : public QMainWindow
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-    explicit SettingsWindow(QWidget *parent = nullptr);
+    explicit SettingsWindow(QWidget * parent = nullptr);
     ~SettingsWindow() override;
 
     [[nodiscard]] Widgets::LogLevelWidget& getLogWidget() const noexcept;
@@ -35,4 +35,4 @@ private:
     std::unique_ptr<Ui::SettingsWindow> m_ui;
 };
 
-} // Windows
+} // namespace Windows

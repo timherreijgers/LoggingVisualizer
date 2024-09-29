@@ -1,5 +1,5 @@
 /*
-* Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -17,4 +17,4 @@ struct LogEntry
     std::string message;
 };
 
-};
+}; // namespace Types

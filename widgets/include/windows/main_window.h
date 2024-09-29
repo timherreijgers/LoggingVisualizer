@@ -23,10 +23,10 @@ QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget * parent = nullptr);
     ~MainWindow() override;
     MainWindow(MainWindow&) = delete;
     MainWindow(MainWindow&&) = delete;
@@ -41,4 +41,4 @@ private:
     std::unique_ptr<Ui::MainWindow> m_ui;
 };
 
-} // Windows
+} // namespace Windows

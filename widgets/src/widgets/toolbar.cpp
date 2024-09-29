@@ -7,11 +7,9 @@
 
 #include "ui_toolbar.h"
 
-#include <QDirIterator>
-
 namespace Widgets
 {
-Toolbar::Toolbar(QWidget *parent) :
+Toolbar::Toolbar(QWidget * parent) :
     QWidget(parent), m_ui(std::make_unique<Ui::Toolbar>())
 {
     m_ui->setupUi(this);
@@ -24,7 +22,7 @@ Toolbar::~Toolbar() = default;
 
 void Toolbar::setFilterEnabled(bool enabled)
 {
-    if(enabled)
+    if (enabled)
     {
         m_ui->filterEnable->setIcon(QIcon(":/images/check_accept.png"));
         m_ui->filterEnable->setToolTip("Disable the message filter");

@@ -7,8 +7,8 @@
 
 #include "model/log_level_color_settings_entry.h"
 
-#include <yaml-cpp/yaml.h>
 #include <fmt/format.h>
+#include <yaml-cpp/yaml.h>
 
 #include <filesystem>
 #include <fstream>
@@ -23,8 +23,7 @@ static constexpr auto SETTINGS_FILE_NAME = "settings.yaml";
 static Types::Color convertStringFromHtmlColor(std::string_view htmlcolor)
 {
     const auto colorAsInt = std::stoul(htmlcolor.substr(1).data(), nullptr, 16);
-    return Types::Color
-    {
+    return Types::Color{
         static_cast<uint8_t>(colorAsInt >> 24 & 0xFF),
         static_cast<uint8_t>(colorAsInt >> 16 & 0xFF),
         static_cast<uint8_t>(colorAsInt >> 8 & 0xFF),

@@ -14,7 +14,7 @@ namespace Model
 class FileReader
 {
 public:
-    explicit FileReader(const std::filesystem::path & path);
+    explicit FileReader(const std::filesystem::path& path);
 
     [[nodiscard]] auto exists() const noexcept -> bool;
     [[nodiscard]] auto hasNextLine() -> bool;

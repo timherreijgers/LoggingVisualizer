@@ -5,19 +5,19 @@
 
 #pragma once
 
-#include <optional>
 #include <functional>
+#include <optional>
 
 namespace Model
 {
 
-template<typename T>
+template <typename T>
 class Observable
 {
 public:
     explicit Observable() = default;
 
-    void subscribe(std::function<void(const T &)> subscriber) noexcept
+    void subscribe(std::function<void(const T&)> subscriber) noexcept
     {
         m_subscriber = subscriber;
     }
@@ -26,7 +26,7 @@ public:
     {
         m_data = std::move(value);
 
-        if(m_subscriber)
+        if (m_subscriber)
         {
             m_subscriber(m_data.value());
         }
@@ -44,7 +44,7 @@ public:
 
 private:
     std::optional<T> m_data;
-    std::function<void(const T &)> m_subscriber;
+    std::function<void(const T&)> m_subscriber;
 };
 
 } // namespace Model

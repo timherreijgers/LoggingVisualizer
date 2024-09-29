@@ -14,7 +14,8 @@ namespace Widgets
 
 enum class ColorType
 {
-    TEXT, BACKGROUND
+    TEXT,
+    BACKGROUND
 };
 
 class LogLevelWidget : public QTableView

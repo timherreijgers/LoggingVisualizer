@@ -23,7 +23,7 @@ class LogMessageFilter : public ILogMessageFilter
 public:
     explicit LogMessageFilter() = default;
 
-    void setFilter(const std::string & filter) noexcept final;
+    void setFilter(const std::string& filter) noexcept final;
     void setFilterEnabled(bool enabled) noexcept final;
 
     [[nodiscard]] auto filterEnabled() const noexcept -> bool final;

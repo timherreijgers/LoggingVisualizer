@@ -14,12 +14,13 @@ namespace Presenters
 class ToolbarPresenter
 {
 public:
-    explicit ToolbarPresenter(Widgets::Toolbar &view, Model::ILogDataContext &model);
-private:
-    Widgets::Toolbar &m_view;
-    Model::ILogDataContext &m_model;
+    explicit ToolbarPresenter(Widgets::Toolbar& view, Model::ILogDataContext& model);
 
-    void filterTextChanged(const std::string &text);
+private:
+    Widgets::Toolbar& m_view;
+    Model::ILogDataContext& m_model;
+
+    void filterTextChanged(const std::string& text);
     void filterEnableClicked();
 };
 

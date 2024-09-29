@@ -2,7 +2,7 @@
  * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
- 
+
 #pragma once
 
 #include "log_level_color_settings_entry.h"
@@ -17,7 +17,7 @@ public:
     SettingsManager(SettingsManager&) = delete;
     SettingsManager(SettingsManager&&) = delete;
     SettingsManager operator=(SettingsManager&) = delete;
-    SettingsManager& operator=(SettingsManager&&) = delete;    
+    SettingsManager& operator=(SettingsManager&&) = delete;
 
     [[nodiscard]] auto static instance() noexcept -> SettingsManager&
     {

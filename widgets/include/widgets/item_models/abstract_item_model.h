@@ -10,7 +10,7 @@
 namespace Widgets::ItemModels
 {
 
-template<typename T>
+template <typename T>
 class AbstractItemModel
 {
 public:
@@ -18,8 +18,8 @@ public:
     virtual ~AbstractItemModel() = default;
     AbstractItemModel(const AbstractItemModel&) = delete;
     AbstractItemModel& operator=(const AbstractItemModel&) = delete;
-    AbstractItemModel(AbstractItemModel&&) = default;
-    AbstractItemModel& operator=(AbstractItemModel&&) = default;
+    AbstractItemModel(AbstractItemModel&&) noexcept = default;
+    AbstractItemModel& operator=(AbstractItemModel&&) noexcept = default;
 
     [[nodiscard]] virtual auto rowCount() const noexcept -> int = 0;
     [[nodiscard]] virtual auto columnCount() const noexcept -> int = 0;

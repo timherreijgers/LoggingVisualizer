@@ -3,14 +3,14 @@
  * Licensed using the MIT license
  */
 
-#include <utility>
-
 #include "log_message_filter.h"
+
+#include <utility>
 
 namespace Model
 {
 
-void LogMessageFilter::setFilter(const std::string & filter) noexcept
+void LogMessageFilter::setFilter(const std::string& filter) noexcept
 {
     m_filter = filter;
     filterMessages();
@@ -42,7 +42,7 @@ auto LogMessageFilter::connectLogMessagesChanged(logMessageChangedSignal::slot_t
     return m_logMessageChangedSignal.connect(std::move(slot));
 }
 
-auto LogMessageFilter::getLogMessages() const noexcept -> const FilteredLogMessageView &
+auto LogMessageFilter::getLogMessages() const noexcept -> const FilteredLogMessageView&
 {
     return m_filteredMessages;
 }

@@ -26,7 +26,7 @@ TEST(ObservableTestSuite, getData_WithoutData_ThrowsBadOptionalException)
 {
     Model::Observable<int> observable{};
 
-    ASSERT_THROW((void) observable.getData(), std::bad_optional_access);
+    ASSERT_THROW((void)observable.getData(), std::bad_optional_access);
 }
 
 TEST(ObservableTestSuite, getData_WithData_ReturnsCorrectData)
@@ -40,7 +40,9 @@ TEST(ObservableTestSuite, getData_WithData_ReturnsCorrectData)
 TEST(ObservableTestSuite, setValue_WithoutSubscriber_DoesntCallSubscriber)
 {
     bool subscriberCalled = false;
-    [[maybe_unused]] const auto subscriber = [&subscriberCalled](const int&){subscriberCalled = true;};
+    [[maybe_unused]] const auto subscriber = [&subscriberCalled](const int&) {
+        subscriberCalled = true;
+    };
     Model::Observable<int> observable{};
     observable.setValue(20);
 
@@ -50,7 +52,9 @@ TEST(ObservableTestSuite, setValue_WithoutSubscriber_DoesntCallSubscriber)
 TEST(ObservableTestSuite, setValue_WithSubscriber_CallsSubscriber)
 {
     bool subscriberCalled = false;
-    const auto subscriber = [&subscriberCalled](const int&){subscriberCalled = true;};
+    const auto subscriber = [&subscriberCalled](const int&) {
+        subscriberCalled = true;
+    };
 
     Model::Observable<int> observable{};
     observable.subscribe(subscriber);
@@ -62,7 +66,9 @@ TEST(ObservableTestSuite, setValue_WithSubscriber_CallsSubscriber)
 TEST(ObservableTestSuite, setValue_WithSubscriber_CallsSubscriberWithCorrectValue)
 {
     int subscriberReceivedValue = 0;
-    const auto subscriber = [&subscriberReceivedValue](const int& value){subscriberReceivedValue = value;};
+    const auto subscriber = [&subscriberReceivedValue](const int& value) {
+        subscriberReceivedValue = value;
+    };
 
     Model::Observable<int> observable{};
     observable.subscribe(subscriber);

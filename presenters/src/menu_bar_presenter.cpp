@@ -15,12 +15,12 @@
 namespace Presenters
 {
 
-MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar & view, Model::ILogDataContext & model) :
+MenuBarPresenter::MenuBarPresenter(Widgets::MenuBar& view, Model::ILogDataContext& model) :
     m_view(view), m_model(model)
 {
     QObject::connect(&m_view, &Widgets::MenuBar::openFileClicked, [this]() { openFileClicked(); });
     QObject::connect(&m_view, &Widgets::MenuBar::closeFileClicked, [this]() { closeFileClicked(); });
-    QObject::connect(&m_view, &Widgets::MenuBar::preferencesClicked, [this](){ preferencesClicked(); });
+    QObject::connect(&m_view, &Widgets::MenuBar::preferencesClicked, [this]() { preferencesClicked(); });
     QObject::connect(&m_view, &Widgets::MenuBar::exitClicked, []() { QApplication::exit(0); });
 }
 
@@ -37,7 +37,7 @@ void MenuBarPresenter::closeFileClicked() noexcept
 
 void MenuBarPresenter::preferencesClicked() noexcept
 {
-    auto &settingsWindow = Windows::WindowManager::createSettingsWindow();
+    auto& settingsWindow = Windows::WindowManager::createSettingsWindow();
     if (!m_settingsLogLevelPresenter)
         m_settingsLogLevelPresenter = std::make_unique<SettingsLogLevelPresenter>(settingsWindow.getLogWidget(), Model::SettingsManager::instance());
 
