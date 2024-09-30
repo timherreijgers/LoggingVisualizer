@@ -9,6 +9,7 @@
 #include "types/highlight_color_pair.h"
 #include "types/log_entry.h"
 
+#include <QAbstractTableModel>
 #include <QWidget>
 
 namespace Widgets
@@ -20,12 +21,6 @@ namespace Ui
 class LogWidget;
 } // namespace Ui
 QT_END_NAMESPACE
-
-namespace ItemModels
-{
-// TODO: timher refactor this so this forward declartion is not needed anymore
-class LogItemModel;
-} // namespace ItemModels
 
 class LogWidget : public QWidget
 {
@@ -49,7 +44,7 @@ protected:
 
 private:
     std::unique_ptr<Ui::LogWidget> ui;
-    std::unique_ptr<ItemModels::LogItemModel> m_model{nullptr};
+    std::unique_ptr<QAbstractTableModel> m_model{nullptr};
 };
 
 } // namespace Widgets
