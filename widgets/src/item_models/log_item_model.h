@@ -5,12 +5,11 @@
 
 #pragma once
 
-#include "widgets/item_models/abstract_item_model.h"
 #include "types/highlight_color_pair.h"
 #include "types/log_entry.h"
+#include "widgets/item_models/abstract_item_model.h"
 
 #include <QAbstractTableModel>
-#include <QString>
 
 namespace Widgets::ItemModels
 {

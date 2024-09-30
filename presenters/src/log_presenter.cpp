@@ -5,8 +5,8 @@
 
 #include "presenters/log_presenter.h"
 
-#include "model/settings_manager.h"
 #include "item_models/log_item_model.h"
+#include "model/settings_manager.h"
 
 namespace Presenters
 {

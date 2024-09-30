@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "widgets/item_models/abstract_item_model.h"
-#include "types/log_entry.h"
 #include "model/ifiltered_log_message_view.h"
+#include "types/log_entry.h"
+#include "widgets/item_models/abstract_item_model.h"
 
 namespace Presenters
 {
