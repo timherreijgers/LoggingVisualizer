@@ -43,7 +43,8 @@ void LogWidget::setHighlightColors(std::map<std::string, Types::HighlightColorPa
 {
     if (m_model)
     {
-        m_model->setHighlightColors(std::move(colorMap));
+        // TODO: Refactor that this dynamic cast can be removed
+        dynamic_cast<ItemModels::LogItemModel*>(m_model.get())->setHighlightColors(std::move(colorMap));
     }
 }
 
