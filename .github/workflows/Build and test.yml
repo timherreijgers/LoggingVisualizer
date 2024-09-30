@@ -21,6 +21,9 @@ jobs:
       - name: Verify copyright
         run: python ./scripts/check_copyright.py
 
+      - name: Verify include order
+        run: python ./scripts/check_include_order.py
+
   build-and-test-linux:
     runs-on: ubuntu-latest
     needs: check-styling
