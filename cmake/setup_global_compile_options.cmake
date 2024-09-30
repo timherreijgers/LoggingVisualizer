@@ -1,6 +1,6 @@
 function(setup_global_compile_options)
     if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-        add_compile_options(/W3 /WX /wd4996)
+        add_compile_options(/W3 /WX /wd4996 /MP)
     else ()
         add_compile_options(-Werror -Wextra -Wall -Wpedantic)
     endif ()

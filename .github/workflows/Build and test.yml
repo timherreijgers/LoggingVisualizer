@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Verify formatting
         uses: jidicula/clang-format-action@v4.11.0
@@ -21,18 +21,12 @@ jobs:
       - name: Verify copyright
         run: python ./scripts/check_copyright.py
 
-  build-and-test:
+  build-and-test-linux:
     runs-on: ubuntu-latest
     needs: check-styling
-#    strategy:
-#      matrix:
-#        compiler_c: [gcc] #, clang]
-#        include:
-#          - compiler_c: gcc
-#            compiler_cpp: g++
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run:
@@ -45,6 +39,62 @@ jobs:
           host: 'linux'
           target: 'desktop'
           arch: 'gcc_64'
+
+      - name: Configure CMake
+        env:
+          CC: ${{ matrix.compiler_c }}
+          CXX: ${{ matrix.compiler_cpp }}
+        run: cmake -DCMAKE_PREFIX_PATH=$QT_ROOT_DIR -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build  -j 4 --config ${{env.BUILD_TYPE}}
+
+      - name: Test
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C ${{env.BUILD_TYPE}}
+
+  build-and-test-windows:
+    runs-on: windows-latest
+    needs: check-styling
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: 6.6.*
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2019_64'
+
+      - name: Configure CMake
+        env:
+          CC: ${{ matrix.compiler_c }}
+          CXX: ${{ matrix.compiler_cpp }}
+        run: cmake -DCMAKE_PREFIX_PATH=$QT_ROOT_DIR -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build -j4 --config ${{env.BUILD_TYPE}}
+
+      - name: Test
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C ${{env.BUILD_TYPE}}
+
+  build-and-test-macos:
+    runs-on: macos-latest
+    needs: check-styling
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: 6.6.*
+          host: 'mac'
+          target: 'desktop'
+          arch: 'clang_64'
 
       - name: Configure CMake
         env:
