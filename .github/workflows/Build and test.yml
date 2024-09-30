@@ -6,7 +6,7 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-  check-formatting:
+  check-styling:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,9 +18,12 @@ jobs:
           clang-format-version: '16'
           check-path: '.'
 
+      - name: Verify copyright
+        run: python ./scripts/check_copyright.py
+
   build-and-test:
     runs-on: ubuntu-latest
-    needs: check-formatting
+    needs: check-styling
 #    strategy:
 #      matrix:
 #        compiler_c: [gcc] #, clang]
@@ -50,7 +53,7 @@ jobs:
         run: cmake -DCMAKE_PREFIX_PATH=$QT_ROOT_DIR -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: Build
-        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -j 4
+        run: cmake --build ${{github.workspace}}/build  -j 4 --config ${{env.BUILD_TYPE}}
 
       - name: Test
         working-directory: ${{github.workspace}}/build
