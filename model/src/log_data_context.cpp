@@ -6,6 +6,7 @@
 #include "log_data_context.h"
 
 #include "exceptions/FileNotFoundException.h"
+#include "types/log_entry.h"
 
 #include "file_reader.h"
 #include "log_message_filter.h"
@@ -13,17 +14,22 @@
 namespace Model
 {
 
+LogDataContext::LogDataContext(std::unique_ptr<IFileReader> file_reader)
+    : m_fileReader(std::move(file_reader))
+{
+}
+
 void LogDataContext::openFile(const std::filesystem::path& path)
 {
-    FileReader reader{path};
-    if (!reader.exists())
+    m_fileReader->setPath(path);
+    if (!m_fileReader->exists())
         throw Exceptions::FileNotFoundException(path);
 
     std::vector<Types::LogEntry> logEntries{};
 
-    while (reader.hasNextLine())
+    while (m_fileReader->hasNextLine())
     {
-        const auto line = reader.readNextLine();
+        const auto line = m_fileReader->readNextLine();
 
         const auto timeStart = line.find('[', 0) + 1;
         const auto timeEnd = line.find(']', timeStart);
