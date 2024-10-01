@@ -14,8 +14,8 @@
 namespace Model
 {
 
-LogDataContext::LogDataContext(std::unique_ptr<IFileReader> file_reader)
-    : m_fileReader(std::move(file_reader))
+LogDataContext::LogDataContext(std::unique_ptr<IFileReader> file_reader) :
+    m_fileReader(std::move(file_reader))
 {
 }
 
