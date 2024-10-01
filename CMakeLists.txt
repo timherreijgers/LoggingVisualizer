@@ -26,6 +26,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 add_subdirectory(application)
+add_subdirectory(benchmarks)
 add_subdirectory(model)
 add_subdirectory(presenters)
 add_subdirectory(types)
