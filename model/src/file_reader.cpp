@@ -8,9 +8,9 @@
 namespace Model
 {
 
-FileReader::FileReader(const std::filesystem::path& path) :
-    m_stream(std::ifstream(path))
+void FileReader::setPath(const std::filesystem::path& path) noexcept
 {
+    m_stream = std::ifstream(path);
 }
 
 auto FileReader::exists() const noexcept -> bool

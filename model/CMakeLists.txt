@@ -14,6 +14,7 @@ set(MODEL_HEADERS
 
         src/file_reader.h
         src/filtered_log_message_view.h
+        src/ifile_reader.h
         src/log_data_context.h
         src/log_message_filter.h
 )

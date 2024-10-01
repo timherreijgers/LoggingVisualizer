@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "ifile_reader.h"
 #include "model/ilog_data_context.h"
 #include "types/log_entry.h"
 
@@ -19,7 +20,7 @@ namespace Model
 class LogDataContext : public ILogDataContext
 {
 public:
-    explicit LogDataContext() = default;
+    explicit LogDataContext(std::unique_ptr<IFileReader> file_reader);
     ~LogDataContext() override = default;
 
     void openFile(const std::filesystem::path& filePath) final;
@@ -33,6 +34,7 @@ public:
     auto connectLogMessagesChanged(logMessageChangedSignal::slot_type slot) noexcept -> is::signals::connection final;
 
 private:
+    std::unique_ptr<IFileReader> m_fileReader;
     LogMessageFilter m_logMessageFilter;
 };
 

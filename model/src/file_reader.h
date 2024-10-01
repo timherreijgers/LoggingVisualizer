@@ -5,20 +5,24 @@
 
 #pragma once
 
+#include "file_reader.h"
+#include "ifile_reader.h"
+
 #include <filesystem>
 #include <fstream>
 
 namespace Model
 {
 
-class FileReader
+class FileReader : public IFileReader
 {
 public:
-    explicit FileReader(const std::filesystem::path& path);
+    explicit FileReader() = default;
 
-    [[nodiscard]] auto exists() const noexcept -> bool;
-    [[nodiscard]] auto hasNextLine() -> bool;
-    [[nodiscard]] auto readNextLine() -> std::string;
+    void setPath(const std::filesystem::path& path) noexcept override;
+    [[nodiscard]] auto exists() const noexcept -> bool final;
+    [[nodiscard]] auto hasNextLine() -> bool final;
+    [[nodiscard]] auto readNextLine() -> std::string final;
 
 private:
     std::ifstream m_stream;
