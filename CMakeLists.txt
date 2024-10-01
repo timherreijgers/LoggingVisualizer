@@ -19,6 +19,11 @@ setup_global_compile_options()
 
 enable_testing()
 
+option(BUILD_CODE_COVERAGE "Enable gcc code coverage" OFF)
+if (${BUILD_CODE_COVERAGE})
+    add_compile_options(-fprofile-arcs -ftest-coverage)
+endif()
+
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 qt_standard_project_setup()
