@@ -14,6 +14,7 @@ set(MODEL_HEADERS
 
         src/file_reader.h
         src/filtered_log_message_view.h
+        src/ifile_reader.h
         src/log_data_context.h
         src/log_message_filter.h
 )
@@ -37,8 +38,8 @@ target_include_directories(model PUBLIC include)
 target_link_libraries(model
     PUBLIC
         libfastsignals
-    PRIVATE
         types
+    PRIVATE
         yaml-cpp::yaml-cpp
         fmt::fmt
 )
