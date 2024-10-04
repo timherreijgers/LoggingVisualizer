@@ -9,7 +9,7 @@
 #include "ifile_reader.h"
 
 #include <filesystem>
-#include <fstream>
+#include <cstdio>
 
 namespace Model
 {
@@ -25,7 +25,8 @@ public:
     [[nodiscard]] auto readNextLine() -> std::string final;
 
 private:
-    std::ifstream m_stream;
+    FILE *m_file{nullptr};
+    ssize_t m_bytesRead{0};
 };
 
 } // namespace Model
