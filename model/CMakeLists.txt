@@ -12,7 +12,7 @@ set(MODEL_HEADERS
         include/model/observable_vector.h
         include/model/settings_manager.h
 
-        src/file_reader.h
+        src/generic_file_reader.h
         src/filtered_log_message_view.h
         src/ifile_reader.h
         src/log_data_context.h
@@ -20,7 +20,7 @@ set(MODEL_HEADERS
 )
 
 set(MODEL_SRCS
-        src/file_reader.cpp
+        src/generic_file_reader.cpp
         src/filtered_log_message_view.cpp
         src/log_data_context.cpp
         src/log_data_context_factory.cpp

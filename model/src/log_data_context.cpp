@@ -8,7 +8,7 @@
 #include "exceptions/FileNotFoundException.h"
 #include "types/log_entry.h"
 
-#include "file_reader.h"
+#include "generic_file_reader.h"
 #include "log_message_filter.h"
 
 namespace Model
