@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "file_reader.h"
+#include "generic_file_reader.h"
 #include "ifile_reader.h"
 
 #include <filesystem>
@@ -14,10 +14,10 @@
 namespace Model
 {
 
-class FileReader : public IFileReader
+class GenericFileReader : public IFileReader
 {
 public:
-    explicit FileReader() = default;
+    explicit GenericFileReader() = default;
 
     void setPath(const std::filesystem::path& path) noexcept override;
     [[nodiscard]] auto exists() const noexcept -> bool final;
@@ -26,7 +26,7 @@ public:
 
 private:
     FILE *m_file{nullptr};
-    ssize_t m_bytesRead{0};
+    bool m_couldReadFile{true};
 };
 
 } // namespace Model

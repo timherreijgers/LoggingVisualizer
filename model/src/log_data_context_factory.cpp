@@ -5,7 +5,7 @@
 
 #include "model/log_data_context_factory.h"
 
-#include "file_reader.h"
+#include "generic_file_reader.h"
 #include "log_data_context.h"
 
 namespace Model
@@ -13,7 +13,7 @@ namespace Model
 
 auto LogDataContextFactory::createContext() noexcept -> std::unique_ptr<ILogDataContext>
 {
-    return std::make_unique<LogDataContext>(std::make_unique<FileReader>());
+    return std::make_unique<LogDataContext>(std::make_unique<GenericFileReader>());
 }
 
 } // namespace Model
