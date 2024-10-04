@@ -10,23 +10,25 @@ namespace Model
 
 void FileReader::setPath(const std::filesystem::path& path) noexcept
 {
-    m_stream = std::ifstream(path);
+    m_file = fopen(path.string().c_str(), "r");
 }
 
 auto FileReader::exists() const noexcept -> bool
 {
-    return m_stream.is_open();
+    return m_file != nullptr;
 }
 
 auto FileReader::hasNextLine() -> bool
 {
-    return m_stream.peek() != EOF;
+    return m_bytesRead != -1;
 }
 
 auto FileReader::readNextLine() -> std::string
 {
-    std::string line;
-    std::getline(m_stream, line);
+    char * line = NULL;
+    size_t len = 0;
+
+    m_bytesRead = getline(&line, &len, m_file);
     return line;
 }
 
