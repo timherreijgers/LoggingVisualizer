@@ -8,8 +8,8 @@
 #include "generic_file_reader.h"
 #include "ifile_reader.h"
 
-#include <filesystem>
 #include <cstdio>
+#include <filesystem>
 
 namespace Model
 {
@@ -25,7 +25,7 @@ public:
     [[nodiscard]] auto readNextLine() -> std::string final;
 
 private:
-    FILE *m_file{nullptr};
+    FILE * m_file{nullptr};
     bool m_couldReadFile{true};
 };
 
