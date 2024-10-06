@@ -28,9 +28,8 @@ auto GenericFileReader::hasNextLine() -> bool
 auto GenericFileReader::readNextLine() -> std::string
 {
     char line[512] = {0};
-    size_t len = 0;
 
-    m_couldReadFile = fgets(line, 1024, m_file) != nullptr;
+    m_couldReadFile = fgets(line, 512, m_file) != nullptr;
     return line;
 }
 

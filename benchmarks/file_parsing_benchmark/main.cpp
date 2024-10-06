@@ -64,7 +64,7 @@ static void BM_FileReadingSmallFile(benchmark::State& state)
 
 static void BM_FileReadingBigFile(benchmark::State& state)
 {
-    Model::LogDataContext context(std::make_unique<MockFile>(1'000'000));
+    Model::LogDataContext context(std::make_unique<MockFile>(16'000'000));
 
     for (auto _ : state)
     {
