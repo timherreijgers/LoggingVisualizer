@@ -8,6 +8,7 @@
 #include <fmt/format.h>
 
 #include <cstdio>
+#include <array>
 
 namespace Model
 {
@@ -41,10 +42,9 @@ auto GenericFileReader::hasNextLine() -> bool
 
 auto GenericFileReader::readNextLine() -> std::string
 {
-    char line[512] = {0};
-
-    m_couldReadFile = fgets(line, 512, m_file) != nullptr;
-    return line;
+    std::array<char, 512> line{};
+    m_couldReadFile = fgets(line.data(), 512, m_file) != nullptr;
+    return line.data();
 }
 
 } // namespace Model
