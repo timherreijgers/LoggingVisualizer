@@ -19,7 +19,8 @@ class GenericFileReader : public IFileReader
 public:
     explicit GenericFileReader() = default;
 
-    void setPath(const std::filesystem::path& path) noexcept override;
+    void openFile(const std::filesystem::path& path) override;
+    void closeFile() override;
     [[nodiscard]] auto exists() const noexcept -> bool final;
     [[nodiscard]] auto hasNextLine() -> bool final;
     [[nodiscard]] auto readNextLine() -> std::string final;
