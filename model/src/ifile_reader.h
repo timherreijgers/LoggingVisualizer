@@ -27,7 +27,7 @@ public:
 
     [[nodiscard]] virtual auto exists() const noexcept -> bool = 0;
     [[nodiscard]] virtual auto hasNextLine() -> bool = 0;
-    [[nodiscard]] virtual auto readNextLine() -> std::string = 0;
+    [[nodiscard]] virtual auto readNextLine() -> std::string_view = 0;
 };
 
 } // namespace Model

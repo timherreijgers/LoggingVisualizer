@@ -24,7 +24,7 @@ public:
 
     [[nodiscard]] auto exists() const noexcept -> bool override;
     [[nodiscard]] auto hasNextLine() -> bool override;
-    [[nodiscard]] auto readNextLine() -> std::string override;
+    [[nodiscard]] auto readNextLine() -> std::string_view override;
 
 private:
     int m_fileHandle{0};

@@ -42,7 +42,7 @@ public:
     }
     [[nodiscard]] auto exists() const noexcept -> bool override { return true; }
     [[nodiscard]] auto hasNextLine() -> bool override { return m_index < m_maxIndex; }
-    [[nodiscard]] auto readNextLine() -> std::string override
+    [[nodiscard]] auto readNextLine() -> std::string_view override
     {
         return m_lines[m_index++];
     }

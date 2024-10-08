@@ -52,9 +52,9 @@ auto MemoryMappedFile::hasNextLine() -> bool
     return m_memoryMappedFileParser->hasNextLine();
 }
 
-auto MemoryMappedFile::readNextLine() -> std::string
+auto MemoryMappedFile::readNextLine() -> std::string_view
 {
-    return std::string{m_memoryMappedFileParser->getNextLine()};
+    return m_memoryMappedFileParser->getNextLine();
 }
 
 } // namespace Model::Platform
