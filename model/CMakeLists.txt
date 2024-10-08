@@ -38,6 +38,7 @@ set(MODEL_HEADERS
         src/ifile_reader.h
         src/log_data_context.h
         src/log_message_filter.h
+        src/memory_mapped_file_parser.h
 )
 
 set(MODEL_SRCS
@@ -47,6 +48,7 @@ set(MODEL_SRCS
         src/log_data_context_factory.cpp
         src/log_message_filter.cpp
         src/settings_manager.cpp
+        src/memory_mapped_file_parser.cpp
 )
 
 add_library(model STATIC

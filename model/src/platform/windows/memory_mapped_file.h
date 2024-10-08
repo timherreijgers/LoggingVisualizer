@@ -6,6 +6,7 @@
 #pragma once
 
 #include "ifile_reader.h"
+#include "memory_mapped_file_parser.h"
 
 #include <string_view>
 #include <Windows.h>
@@ -27,8 +28,7 @@ public:
 private:
     HANDLE m_fileHandle;
     char * m_fileData{nullptr};
-    std::string_view m_fileView;
-    size_t m_lastNewLine = 0;
+    std::unique_ptr<MemoryMappedFileParser> m_memoryMappedFileParser;
 };
 
 } // namespace Model::Platform
