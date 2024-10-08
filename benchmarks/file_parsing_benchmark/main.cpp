@@ -28,8 +28,14 @@ public:
         populateVectorOfStrings();
     }
 
-    void openFile(const std::filesystem::path&) noexcept override {}
-    void closeFile() noexcept override {}
+    void openFile(const std::filesystem::path&) noexcept override
+    {
+        // No need to implement this function in this benchmark
+    }
+    void closeFile() noexcept override
+    {
+        // No need to implement this function in this benchmark
+    }
     [[nodiscard]] auto exists() const noexcept -> bool override { return true; }
     [[nodiscard]] auto hasNextLine() -> bool override { return m_index < m_maxIndex; }
     [[nodiscard]] auto readNextLine() -> std::string override

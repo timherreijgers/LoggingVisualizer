@@ -5,6 +5,8 @@
 
 #include "generic_file_reader.h"
 
+#include "exceptions/FileNotFoundException.h"
+
 #include <fmt/format.h>
 
 #include <array>
@@ -19,7 +21,7 @@ void GenericFileReader::openFile(const std::filesystem::path& path)
     m_file = fopen(path.string().c_str(), "r");
     if (m_file == nullptr)
     {
-        throw std::runtime_error(fmt::format("Failed to open file {}", path.string()));
+        throw Exceptions::FileNotFoundException(path);
     }
 }
 
@@ -38,8 +40,7 @@ auto GenericFileReader::exists() const noexcept -> bool
 
 auto GenericFileReader::hasNextLine() -> bool
 {
-    const auto c = getc(m_file);
-    if (c == EOF)
+    if (getc(m_file) == EOF)
     {
         return false;
     }

@@ -5,15 +5,12 @@
 
 #include "memory_mapped_file.h"
 
-#include <Windows.h>
-
 namespace Model::Platform
 {
 
 void MemoryMappedFile::openFile(const std::filesystem::path& path)
 {
     m_fileHandle = CreateFileA(path.string().c_str(), GENERIC_READ, 0, nullptr, OPEN_EXISTING, 0, nullptr);
-    // auto filesize = GetFileSize(m_fileHandle, nullptr);
     auto mappedFile = CreateFileMappingA(m_fileHandle, nullptr, PAGE_READONLY, 0, 0, nullptr);
     m_fileData = static_cast<char *>(MapViewOfFile(mappedFile, FILE_MAP_READ, 0, 0, 0));
     m_fileView = std::string_view{m_fileData};
