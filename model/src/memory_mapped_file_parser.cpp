@@ -13,7 +13,7 @@ MemoryMappedFileParser::MemoryMappedFileParser(std::string_view stringView) :
 {
 }
 
-auto MemoryMappedFileParser::getNextLine() -> std::string_view
+auto MemoryMappedFileParser::getNextLine() noexcept -> std::string_view
 {
     const auto nextNewLine = m_stringView.find('\n', m_lastNewLine + 1) + 1;
     const auto line = nextNewLine != 0 ? m_stringView.substr(m_lastNewLine, nextNewLine - m_lastNewLine) : m_stringView.substr(m_lastNewLine);
@@ -21,7 +21,7 @@ auto MemoryMappedFileParser::getNextLine() -> std::string_view
     return line;
 }
 
-auto MemoryMappedFileParser::hasNextLine() const -> bool
+auto MemoryMappedFileParser::hasNextLine() const noexcept -> bool
 {
     return m_lastNewLine < m_stringView.size();
 }
