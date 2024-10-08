@@ -23,6 +23,13 @@ void GenericFileReader::openFile(const std::filesystem::path& path)
     {
         throw Exceptions::FileNotFoundException(path);
     }
+
+    std::array<char, 512> line{};
+    while (hasNextLine())
+    {
+        m_couldReadFile = fgets(line.data(), 512, m_file) != nullptr;
+        m_lines.emplace_back(line.data());
+    }
 }
 
 void GenericFileReader::closeFile()
@@ -40,6 +47,11 @@ auto GenericFileReader::exists() const noexcept -> bool
 
 auto GenericFileReader::hasNextLine() -> bool
 {
+    if (!m_lines.empty())
+    {
+        return m_index < m_lines.size();
+    }
+
     if (getc(m_file) == EOF)
     {
         return false;
@@ -49,11 +61,9 @@ auto GenericFileReader::hasNextLine() -> bool
     return true;
 }
 
-auto GenericFileReader::readNextLine() -> std::string
+auto GenericFileReader::readNextLine() -> std::string_view
 {
-    std::array<char, 512> line{};
-    m_couldReadFile = fgets(line.data(), 512, m_file) != nullptr;
-    return line.data();
+    return m_lines[m_index++];
 }
 
 } // namespace Model

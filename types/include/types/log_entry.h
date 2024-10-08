@@ -12,9 +12,9 @@ namespace Types
 
 struct LogEntry
 {
-    std::string time;
-    std::string level;
-    std::string message;
+    std::string_view time;
+    std::string_view level;
+    std::string_view message;
 };
 
 }; // namespace Types
