@@ -10,6 +10,11 @@ elseif (APPLE)
             src/platform/unix/memory_mapped_file.cpp
             src/platform/unix/memory_mapped_file.h
     )
+elseif(UNIX)
+    set(PLATFORM_SOURCES_HEADERS
+            src/platform/unix/memory_mapped_file.cpp
+            src/platform/unix/memory_mapped_file.h
+    )
 else()
     set(PLATFORM_SOURCES_HEADERS)
 endif (WIN32)
@@ -61,8 +66,8 @@ target_link_libraries(model
         fmt::fmt
 )
 
-if (WIN32 OR APPLE)
+if (WIN32 OR APPLE OR UNIX)
     target_compile_definitions(model PRIVATE MEMORY_MAPPED_FILE_AVAILABLE=1)
 else()
     target_compile_definitions(model PRIVATE MEMORY_MAPPED_FILE_AVAILABLE=0)
-endif (WIN32)
+endif (WIN32 OR APPLE OR UNIX)

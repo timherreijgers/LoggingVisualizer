@@ -9,6 +9,7 @@
 
 #include <cstdio>
 #include <array>
+#include <fcntl.h>
 
 namespace Model
 {
@@ -16,7 +17,7 @@ namespace Model
 void GenericFileReader::openFile(const std::filesystem::path& path)
 {
     m_file = fopen(path.string().c_str(), "r");
-    if (m_file != nullptr)
+    if (m_file == nullptr)
     {
         throw std::runtime_error(fmt::format("Failed to open file {}", path.string()));
     }
@@ -37,7 +38,14 @@ auto GenericFileReader::exists() const noexcept -> bool
 
 auto GenericFileReader::hasNextLine() -> bool
 {
-    return m_couldReadFile;
+    const auto c = getc(m_file);
+    if (c == EOF)
+    {
+        return false;
+    }
+
+    fseek(m_file, -1, SEEK_CUR);
+    return true;
 }
 
 auto GenericFileReader::readNextLine() -> std::string

@@ -7,6 +7,6 @@
 
 #ifdef WIN32
 #include "windows/memory_mapped_file.h"
-#elifdef APPLE
+#elifdef APPLE || UNIX
 #include "unix/memory_mapped_file.h"
 #endif
