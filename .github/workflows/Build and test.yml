@@ -85,7 +85,7 @@ jobs:
         run: ctest -C ${{env.BUILD_TYPE}}
 
   build-and-test-macos:
-    runs-on: macos-latest
+    runs-on: unix-latest
     needs: check-styling
 
     steps:

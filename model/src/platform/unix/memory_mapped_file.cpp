@@ -5,30 +5,34 @@
 
 #include "memory_mapped_file.h"
 
-#include <Windows.h>
+#include <cstdio>
+#include <sys/mman.h>
+#include <fcntl.h>
 
 namespace Model::Platform
 {
 
 void MemoryMappedFile::openFile(const std::filesystem::path& path)
 {
-    m_fileHandle = CreateFileA(path.string().c_str(), GENERIC_READ, 0, nullptr, OPEN_EXISTING, 0, nullptr);
-    // auto filesize = GetFileSize(m_fileHandle, nullptr);
-    auto mappedFile = CreateFileMappingA(m_fileHandle, nullptr, PAGE_READONLY, 0, 0, nullptr);
-    m_fileData = static_cast<char *>(MapViewOfFile(mappedFile, FILE_MAP_READ, 0, 0, 0));
-    m_fileView = std::string_view{m_fileData};
+    auto fileHandle = fopen(path.string().c_str(), "r");
+    fseek(fileHandle, 0L, SEEK_END);
+    m_fileSize = ftell(fileHandle);
+    fseek(fileHandle, 0L, SEEK_SET);
+
+    m_fileHandle = open(path.string().c_str(), O_RDWR, 0);
+    m_fileData = static_cast<char *>(mmap(nullptr, m_fileSize, PROT_READ, MAP_SHARED, m_fileHandle, 0));
+    m_fileView = std::string_view{m_fileData};;
 }
 
 void MemoryMappedFile::closeFile()
 {
-    UnmapViewOfFile(m_fileView.data());
-    CloseHandle(m_fileHandle);
+    munmap(m_fileData, m_fileSize);
     m_lastNewLine = 0;
 }
 
 auto MemoryMappedFile::exists() const noexcept -> bool
 {
-    return m_fileData != nullptr;
+    return true;
 }
 
 auto MemoryMappedFile::hasNextLine() -> bool
@@ -36,7 +40,6 @@ auto MemoryMappedFile::hasNextLine() -> bool
     return m_lastNewLine < m_fileView.size();
 }
 
-// TODO: Cleanup this function
 auto MemoryMappedFile::readNextLine() -> std::string
 {
     const auto nextNewLine = m_fileView.find('\n', m_lastNewLine + 1) + 1;

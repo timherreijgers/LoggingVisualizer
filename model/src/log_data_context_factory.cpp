@@ -17,7 +17,7 @@ auto LogDataContextFactory::createContext() noexcept -> std::unique_ptr<ILogData
 {
     if constexpr (MEMORY_MAPPED_FILE_AVAILABLE)
     {
-        return std::make_unique<LogDataContext>(std::make_unique<Platform::Windows::MemoryMappedFile>());
+        return std::make_unique<LogDataContext>(std::make_unique<Platform::MemoryMappedFile>());
     }
     else
     {
