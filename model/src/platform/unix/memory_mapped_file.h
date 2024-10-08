@@ -19,15 +19,18 @@ public:
 
     void openFile(const std::filesystem::path& path) override;
     void closeFile() override;
+
     [[nodiscard]] auto exists() const noexcept -> bool override;
     [[nodiscard]] auto hasNextLine() -> bool override;
     [[nodiscard]] auto readNextLine() -> std::string override;
 
 private:
-    void * m_fileHandle;
+    int m_fileHandle{0};
+    size_t m_fileSize{0};
+
     char * m_fileData{nullptr};
     std::string_view m_fileView;
-    size_t m_lastNewLine = 0;
+    size_t m_lastNewLine{0};
 };
 
 } // namespace Model::Platform

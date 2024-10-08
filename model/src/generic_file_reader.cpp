@@ -15,8 +15,8 @@ namespace Model
 
 void GenericFileReader::openFile(const std::filesystem::path& path)
 {
-    const auto result = fopen_s(&m_file, path.string().c_str(), "r");
-    if (result != 0)
+    m_file = fopen(path.string().c_str(), "r");
+    if (m_file != nullptr)
     {
         throw std::runtime_error(fmt::format("Failed to open file {}", path.string()));
     }
