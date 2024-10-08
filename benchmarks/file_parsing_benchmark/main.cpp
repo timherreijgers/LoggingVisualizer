@@ -29,6 +29,7 @@ public:
     }
 
     void openFile(const std::filesystem::path&) noexcept override {}
+    void closeFile() noexcept override {}
     [[nodiscard]] auto exists() const noexcept -> bool override { return true; }
     [[nodiscard]] auto hasNextLine() -> bool override { return m_index < m_maxIndex; }
     [[nodiscard]] auto readNextLine() -> std::string override

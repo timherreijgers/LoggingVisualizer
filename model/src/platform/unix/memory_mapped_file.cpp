@@ -27,9 +27,9 @@ void MemoryMappedFile::openFile(const std::filesystem::path& path)
     m_fileHandle = open(path.string().c_str(), O_RDWR, 0);
     m_fileData = static_cast<char *>(mmap(nullptr, m_fileSize, PROT_READ, MAP_SHARED, m_fileHandle, 0));
     m_fileView = std::string_view{m_fileData};
-    ;
 
     m_lastNewLine = 0UL;
+    fclose(fileHandle);
 }
 
 void MemoryMappedFile::closeFile()
