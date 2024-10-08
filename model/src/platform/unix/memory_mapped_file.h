@@ -16,6 +16,7 @@ class MemoryMappedFile : public IFileReader
 {
 public:
     explicit MemoryMappedFile() = default;
+    ~MemoryMappedFile() override;
 
     void openFile(const std::filesystem::path& path) override;
     void closeFile() override;
@@ -30,7 +31,7 @@ private:
 
     char * m_fileData{nullptr};
     std::string_view m_fileView;
-    size_t m_lastNewLine{0};
+    size_t m_lastNewLine = 0UL;
 };
 
 } // namespace Model::Platform
