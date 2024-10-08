@@ -6,15 +6,16 @@
 #pragma once
 
 #include "model/ilog_data_context.h"
+#include "presenters/base_presenter.h"
 #include "widgets/log_widget.h"
 
 namespace Presenters
 {
 
-class LogPresenter
+class LogPresenter : public BasePresenter
 {
 public:
-    explicit LogPresenter(Widgets::LogWidget& view, Model::ILogDataContext& model);
+    explicit LogPresenter(Windows::WindowManager& manager, Widgets::LogWidget& view, Model::ILogDataContext& model);
 
 private:
     void logMessagesUpdated(const Model::IFilteredLogMessageView& logEntries) noexcept;
