@@ -33,16 +33,13 @@ void MemoryMappedFile::openFile(const std::filesystem::path& path)
 
     m_fileHandle = open(path.string().c_str(), O_RDWR, 0);
     m_fileData = static_cast<char *>(mmap(nullptr, m_fileSize, PROT_READ, MAP_SHARED, m_fileHandle, 0));
-    m_fileView = std::string_view{m_fileData};
-
-    m_lastNewLine = 0UL;
+    m_memoryMappedFileParser = std::make_unique<MemoryMappedFileParser>(m_fileData);
     fclose(fileHandle);
 }
 
 void MemoryMappedFile::closeFile()
 {
     munmap(m_fileData, m_fileSize);
-    m_lastNewLine = 0;
 }
 
 auto MemoryMappedFile::exists() const noexcept -> bool
@@ -52,15 +49,12 @@ auto MemoryMappedFile::exists() const noexcept -> bool
 
 auto MemoryMappedFile::hasNextLine() -> bool
 {
-    return m_lastNewLine < m_fileView.size();
+    return m_memoryMappedFileParser->hasNextLine();
 }
 
 auto MemoryMappedFile::readNextLine() -> std::string
 {
-    const auto nextNewLine = m_fileView.find('\n', m_lastNewLine + 1) + 1;
-    const auto line = nextNewLine != 0 ? std::string(m_fileView.substr(m_lastNewLine, nextNewLine - m_lastNewLine)) : std::string(m_fileView.substr(m_lastNewLine));
-    m_lastNewLine = nextNewLine != 0 ? nextNewLine : m_fileView.size();
-    return line;
+    return std::string{m_memoryMappedFileParser->getNextLine()};
 }
 
 } // namespace Model::Platform
