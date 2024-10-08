@@ -7,8 +7,8 @@
 
 #include <fmt/format.h>
 
-#include <cstdio>
 #include <array>
+#include <cstdio>
 #include <fcntl.h>
 
 namespace Model
