@@ -8,7 +8,7 @@
 #include "exceptions/FileNotFoundException.h"
 #include "types/log_entry.h"
 
-#include "file_reader.h"
+#include "generic_file_reader.h"
 #include "log_message_filter.h"
 
 namespace Model
@@ -21,7 +21,7 @@ LogDataContext::LogDataContext(std::unique_ptr<IFileReader> file_reader) :
 
 void LogDataContext::openFile(const std::filesystem::path& path)
 {
-    m_fileReader->setPath(path);
+    m_fileReader->openFile(path);
     if (!m_fileReader->exists())
         throw Exceptions::FileNotFoundException(path);
 
@@ -50,6 +50,7 @@ void LogDataContext::openFile(const std::filesystem::path& path)
 void LogDataContext::closeFile() noexcept
 {
     m_logMessageFilter.setInputMessages({});
+    m_fileReader->closeFile();
 }
 
 auto LogDataContext::getLogMessageFilter() const noexcept -> const ILogMessageFilter&

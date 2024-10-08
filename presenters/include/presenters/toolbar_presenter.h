@@ -6,15 +6,16 @@
 #pragma once
 
 #include "model/ilog_data_context.h"
+#include "presenters/base_presenter.h"
 #include "widgets/toolbar.h"
 
 namespace Presenters
 {
 
-class ToolbarPresenter
+class ToolbarPresenter : public BasePresenter
 {
 public:
-    explicit ToolbarPresenter(Widgets::Toolbar& view, Model::ILogDataContext& model);
+    explicit ToolbarPresenter(Windows::WindowManager& manager, Widgets::Toolbar& view, Model::ILogDataContext& model);
 
 private:
     Widgets::Toolbar& m_view;

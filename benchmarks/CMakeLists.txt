@@ -1,1 +1,1 @@
-add_subdirectory(file_parsing_benchmark)
+add_subdirectory(file_loading_benchmark)

@@ -7,7 +7,8 @@
 #pragma once
 
 #include "model/ilog_data_context.h"
-#include "settings_log_level_presenter.h"
+#include "presenters/base_presenter.h"
+#include "presenters/settings_log_level_presenter.h"
 #include "widgets/menubar.h"
 
 #include <memory>
@@ -15,10 +16,10 @@
 namespace Presenters
 {
 
-class MenuBarPresenter
+class MenuBarPresenter : public BasePresenter
 {
 public:
-    explicit MenuBarPresenter(Widgets::MenuBar& view, Model::ILogDataContext& model);
+    explicit MenuBarPresenter(Windows::WindowManager& manager, Widgets::MenuBar& view, Model::ILogDataContext& model);
 
 private:
     void openFileClicked();

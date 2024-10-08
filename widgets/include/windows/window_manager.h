@@ -14,8 +14,12 @@ namespace Windows
 class WindowManager
 {
 public:
-    [[nodiscard]] static auto createMainWindow() noexcept -> MainWindow&;
-    [[nodiscard]] static auto createSettingsWindow() noexcept -> SettingsWindow&;
+    [[nodiscard]] auto getMainWindow() noexcept -> MainWindow&;
+    [[nodiscard]] auto getSettingsWindow() noexcept -> SettingsWindow&;
+
+private:
+    MainWindow m_mainWindow;
+    SettingsWindow m_settingsWindow;
 };
 
 } // namespace Windows

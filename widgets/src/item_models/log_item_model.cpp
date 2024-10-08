@@ -35,7 +35,7 @@ auto LogItemModel::data(const QModelIndex& index, int role) const -> QVariant
 {
     if (role == Qt::ForegroundRole)
     {
-        if (const auto level = m_messages.data(index.row(), 0).level; m_highlightColorMap.contains(level))
+        if (const auto level = std::string{m_messages.data(index.row(), 0).level}; m_highlightColorMap.contains(level))
         {
             const auto color = m_highlightColorMap.at(level).text;
             return QColor(color.red, color.green, color.blue, color.alpha);
@@ -46,7 +46,7 @@ auto LogItemModel::data(const QModelIndex& index, int role) const -> QVariant
 
     if (role == Qt::BackgroundRole)
     {
-        if (const auto level = m_messages.data(index.row(), 0).level; m_highlightColorMap.contains(level))
+        if (const auto level = std::string{m_messages.data(index.row(), 0).level}; m_highlightColorMap.contains(level))
         {
             const auto color = m_highlightColorMap.at(level).background;
             return QColor(color.red, color.green, color.blue, color.alpha);
@@ -63,11 +63,11 @@ auto LogItemModel::data(const QModelIndex& index, int role) const -> QVariant
     switch (index.column())
     {
     case 0:
-        return QString(m_messages.data(index.row(), 0).time.c_str());
+        return QString(std::string{m_messages.data(index.row(), 0).time}.c_str());
     case 1:
-        return QString(m_messages.data(index.row(), 0).level.c_str());
+        return QString(std::string{m_messages.data(index.row(), 0).level}.c_str());
     case 2:
-        return QString(m_messages.data(index.row(), 0).message.c_str());
+        return QString(std::string{m_messages.data(index.row(), 0).message}.c_str());
     default:
         return {};
     }
