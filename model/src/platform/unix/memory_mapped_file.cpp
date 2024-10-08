@@ -5,6 +5,8 @@
 
 #include "memory_mapped_file.h"
 
+#include "exceptions/FileNotFoundException.h"
+
 #include <cstdio>
 #include <fcntl.h>
 #include <sys/mman.h>
@@ -14,12 +16,17 @@ namespace Model::Platform
 
 MemoryMappedFile::~MemoryMappedFile()
 {
-    closeFile();
+    MemoryMappedFile::closeFile();
 }
 
 void MemoryMappedFile::openFile(const std::filesystem::path& path)
 {
     auto fileHandle = fopen(path.string().c_str(), "r");
+    if (!fileHandle)
+    {
+        throw Exceptions::FileNotFoundException(path);
+    }
+
     fseek(fileHandle, 0L, SEEK_END);
     m_fileSize = ftell(fileHandle);
     fseek(fileHandle, 0L, SEEK_SET);

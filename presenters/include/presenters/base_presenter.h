@@ -13,7 +13,7 @@ namespace Presenters
 class BasePresenter
 {
 public:
-    BasePresenter(Windows::WindowManager& windowManager);
+    explicit BasePresenter(Windows::WindowManager& windowManager);
 
 protected:
     [[nodiscard]] auto getWindowManager() const noexcept -> Windows::WindowManager&;

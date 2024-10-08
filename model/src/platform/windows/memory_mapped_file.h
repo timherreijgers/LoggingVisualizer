@@ -8,6 +8,7 @@
 #include "ifile_reader.h"
 
 #include <string_view>
+#include <Windows.h>
 
 namespace Model::Platform
 {
@@ -24,7 +25,7 @@ public:
     [[nodiscard]] auto readNextLine() -> std::string override;
 
 private:
-    void * m_fileHandle;
+    HANDLE m_fileHandle;
     char * m_fileData{nullptr};
     std::string_view m_fileView;
     size_t m_lastNewLine = 0;
