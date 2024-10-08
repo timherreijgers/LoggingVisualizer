@@ -11,8 +11,8 @@
 namespace Presenters
 {
 
-LogPresenter::LogPresenter(Widgets::LogWidget& view, Model::ILogDataContext& model) :
-    m_view(view), m_model(model)
+LogPresenter::LogPresenter(Windows::WindowManager& manager, Widgets::LogWidget& view, Model::ILogDataContext& model) :
+    BasePresenter(manager), m_view(view), m_model(model)
 {
     m_model.connectLogMessagesChanged([this]() { logMessagesUpdated(m_model.getLogMessages()); });
     QObject::connect(&m_view, &Widgets::LogWidget::onFileDropped, [this](const std::string_view url) { onFileDroppedInView(url); });

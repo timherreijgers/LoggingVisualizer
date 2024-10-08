@@ -18,14 +18,16 @@ int main(int argc, char ** argv)
 {
     QApplication application(argc, argv);
 
-    auto& mainWindow = Windows::WindowManager::createMainWindow();
+    Windows::WindowManager windowManager;
+
+    auto& mainWindow = windowManager.getMainWindow();
     mainWindow.show();
 
     auto logDataContext = Model::LogDataContextFactory::createContext();
 
-    Presenters::LogPresenter logPresenter(mainWindow.getLogWidget(), *logDataContext);
-    Presenters::MenuBarPresenter menuBarPresenter(mainWindow.getMenuBar(), *logDataContext);
-    Presenters::ToolbarPresenter toolbarPresenter(mainWindow.getToolbar(), *logDataContext);
+    Presenters::LogPresenter logPresenter(windowManager, mainWindow.getLogWidget(), *logDataContext);
+    Presenters::MenuBarPresenter menuBarPresenter(windowManager, mainWindow.getMenuBar(), *logDataContext);
+    Presenters::ToolbarPresenter toolbarPresenter(windowManager, mainWindow.getToolbar(), *logDataContext);
 
     return QApplication::exec();
 }
