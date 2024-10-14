@@ -21,7 +21,7 @@ static constexpr std::array m_defaultLines =
         "[00-00-2000 00.00.04][ERROR] This is a error message",
         "[00-00-2000 00.00.05][CRITICAL] This is a critical message"};
 
-static constexpr std::string_view fileName = "dummy_log.log";
+static constexpr auto fileName = "dummy_log.log";
 
 class MockFile : public Model::IFileReader
 {
