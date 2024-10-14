@@ -30,12 +30,12 @@ auto MemoryMappedFile::exists() const noexcept -> bool
 
 auto MemoryMappedFile::hasNextLine() -> bool
 {
-    return m_memoryMappedFileParser.getNextLine();
+    return m_memoryMappedFileParser->hasNextLine();
 }
 
 auto MemoryMappedFile::readNextLine() -> std::string_view
 {
-    return m_memoryMappedFileParser.getNextLine();
+    return m_memoryMappedFileParser->getNextLine();
 }
 
 } // namespace Model::Platform
