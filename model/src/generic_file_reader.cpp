@@ -1,7 +1,5 @@
-/*
- * Copyright © 2024 Tim Herreijgers
- * Licensed using the MIT license
- */
+// Copyright © 2024 Tim Herreijgers
+// Licensed using the MIT license
 
 #include "generic_file_reader.h"
 
@@ -24,8 +22,18 @@ void GenericFileReader::openFile(const std::filesystem::path& path)
         throw Exceptions::FileNotFoundException(path);
     }
 
+    const auto hasNextLineInternal = [=]() {
+        if (getc(m_file) == EOF)
+        {
+            return false;
+        }
+
+        fseek(m_file, -1, SEEK_CUR);
+        return true;
+    };
+
     std::array<char, 512> line{};
-    while (hasNextLine())
+    while (hasNextLineInternal())
     {
         m_couldReadFile = fgets(line.data(), 512, m_file) != nullptr;
         m_lines.emplace_back(line.data());
@@ -38,6 +46,8 @@ void GenericFileReader::closeFile()
     {
         fclose(m_file);
     }
+
+    m_lines.clear();
 }
 
 auto GenericFileReader::exists() const noexcept -> bool
@@ -47,18 +57,7 @@ auto GenericFileReader::exists() const noexcept -> bool
 
 auto GenericFileReader::hasNextLine() -> bool
 {
-    if (!m_lines.empty())
-    {
-        return m_index < m_lines.size();
-    }
-
-    if (getc(m_file) == EOF)
-    {
-        return false;
-    }
-
-    fseek(m_file, -1, SEEK_CUR);
-    return true;
+    return m_index < m_lines.size();
 }
 
 auto GenericFileReader::readNextLine() -> std::string_view

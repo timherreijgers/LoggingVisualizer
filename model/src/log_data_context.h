@@ -1,18 +1,14 @@
-/*
- * Copyright © 2024 Tim Herreijgers
- * Licensed using the MIT license
- */
+// Copyright © 2024 Tim Herreijgers
+// Licensed using the MIT license
 
 #pragma once
 
 #include "ifile_reader.h"
 #include "model/ilog_data_context.h"
-#include "types/log_entry.h"
 
 #include "log_message_filter.h"
 
 #include <filesystem>
-#include <vector>
 
 namespace Model
 {

@@ -1,7 +1,5 @@
-/*
- * Copyright © 2024 Tim Herreijgers
- * Licensed using the MIT license
- */
+// Copyright © 2024 Tim Herreijgers
+// Licensed using the MIT license
 
 #include "log_message_filter.h"
 
@@ -29,9 +27,9 @@ auto LogMessageFilter::filterEnabled() const noexcept -> bool
     return m_filterEnabled;
 }
 
-void LogMessageFilter::setInputMessages(const std::vector<Types::LogEntry>& messages)
+void LogMessageFilter::setInputMessages(std::vector<Types::LogEntry> messages)
 {
-    m_inputMessages = messages;
+    m_inputMessages = std::move(messages);
     m_filteredMessages.setSource(&m_inputMessages);
     filterMessages();
     m_logMessageChangedSignal();
