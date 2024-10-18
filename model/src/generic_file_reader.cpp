@@ -1,5 +1,7 @@
-// Copyright © 2024 Tim Herreijgers
-// Licensed using the MIT license
+/*
+ * Copyright © 2024 Tim Herreijgers
+ * Licensed using the MIT license
+ */
 
 #include "generic_file_reader.h"
 
@@ -22,7 +24,7 @@ void GenericFileReader::openFile(const std::filesystem::path& path)
         throw Exceptions::FileNotFoundException(path);
     }
 
-    const auto hasNextLineInternal = [=]() {
+    const auto hasNextLineInternal = [&]() {
         if (getc(m_file) == EOF)
         {
             return false;

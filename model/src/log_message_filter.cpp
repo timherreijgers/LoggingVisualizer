@@ -1,5 +1,7 @@
-// Copyright © 2024 Tim Herreijgers
-// Licensed using the MIT license
+/*
+ * Copyright © 2024 Tim Herreijgers
+ * Licensed using the MIT license
+ */
 
 #include "log_message_filter.h"
 
