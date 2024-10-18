@@ -1,7 +1,5 @@
-/*
- * Copyright © 2024 Tim Herreijgers
- * Licensed using the MIT license
- */
+// Copyright © 2024 Tim Herreijgers
+// Licensed using the MIT license
 
 #include "log_data_context.h"
 
@@ -44,7 +42,7 @@ void LogDataContext::openFile(const std::filesystem::path& path)
         logEntries.push_back(entry);
     }
 
-    m_logMessageFilter.setInputMessages(logEntries);
+    m_logMessageFilter.setInputMessages(std::move(logEntries));
 }
 
 void LogDataContext::closeFile() noexcept

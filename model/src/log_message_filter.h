@@ -1,7 +1,5 @@
-/*
- * Copyright © 2024 Tim Herreijgers
- * Licensed using the MIT license
- */
+// Copyright © 2024 Tim Herreijgers
+// Licensed using the MIT license
 
 #pragma once
 
@@ -28,7 +26,7 @@ public:
 
     [[nodiscard]] auto filterEnabled() const noexcept -> bool final;
 
-    void setInputMessages(const std::vector<Types::LogEntry>& messages);
+    void setInputMessages(std::vector<Types::LogEntry> messages);
     auto connectLogMessagesChanged(logMessageChangedSignal::slot_type slot) noexcept -> is::signals::connection;
     [[nodiscard]] auto getLogMessages() const noexcept -> const FilteredLogMessageView&;
 
