@@ -10,6 +10,7 @@
 #include <cstdio>
 #include <fcntl.h>
 #include <sys/mman.h>
+#include <unistd.h>
 
 namespace Model::Platform
 {
@@ -21,7 +22,12 @@ MemoryMappedFile::~MemoryMappedFile()
 
 void MemoryMappedFile::openFile(const std::filesystem::path& path)
 {
-    auto fileHandle = fopen(path.string().c_str(), "r");
+    if (m_fileData != nullptr)
+    {
+        closeFile();
+    }
+
+    const auto fileHandle = fopen(path.string().c_str(), "r");
     if (!fileHandle)
     {
         throw Exceptions::FileNotFoundException(path);
@@ -40,6 +46,8 @@ void MemoryMappedFile::openFile(const std::filesystem::path& path)
 void MemoryMappedFile::closeFile()
 {
     munmap(m_fileData, m_fileSize);
+    close(m_fileHandle);
+    m_fileHandle = 0;
 }
 
 auto MemoryMappedFile::exists() const noexcept -> bool
