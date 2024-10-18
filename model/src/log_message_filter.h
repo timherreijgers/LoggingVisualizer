@@ -9,14 +9,14 @@
 #include "model/ilog_message_filter.h"
 #include "types/log_entry.h"
 
-#include "libfastsignals/signal.h"
+#include "model/signal.h"
 
 #include <vector>
 
 namespace Model
 {
 
-using logMessageChangedSignal = is::signals::signal<void()>;
+using logMessageChangedSignal = Signals::signal<void()>;
 
 class LogMessageFilter : public ILogMessageFilter
 {

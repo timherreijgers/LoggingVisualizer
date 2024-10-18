@@ -14,6 +14,7 @@
 #include <fstream>
 #include <string>
 #include <string_view>
+#include <utility>
 
 namespace Model
 {
@@ -87,7 +88,18 @@ void SettingsManager::loadSettingsFromYamlFile()
     }
 }
 
-auto SettingsManager::getLogLevelColorSettings() noexcept -> ObservableVector<LogLevelColorSettingsEntry>&
+void SettingsManager::setLogLevelColorSettings(std::string level, Types::Color textColor, Types::Color backgroundColor)
+{
+    auto result = std::ranges::find_if(m_logLevelColorSettings, [&level](const auto& entry) { return entry.level == level; });
+    if (result != m_logLevelColorSettings.end())
+    {
+        result->textColor = textColor;
+        result->backgroundColor = backgroundColor;
+        m_settingsChangedSignal();
+    }
+}
+
+auto SettingsManager::getLogLevelColorSettings() noexcept -> const std::vector<LogLevelColorSettingsEntry>&
 {
     return m_logLevelColorSettings;
 }
@@ -98,7 +110,7 @@ void SettingsManager::saveSettings()
     settings["highlightColors"] = YAML::Node{};
 
     size_t index = 0;
-    for (const auto& setting : getLogLevelColorSettings().getValue())
+    for (const auto& setting : getLogLevelColorSettings())
     {
         settings["highlightColors"][index] = YAML::Node{};
         settings["highlightColors"][index]["level"] = setting.level;
@@ -113,6 +125,11 @@ void SettingsManager::saveSettings()
 
     std::ofstream filestream(SETTINGS_FILE_NAME);
     filestream << out.c_str();
+}
+
+void SettingsManager::connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot)
+{
+    m_settingsChangedSignal.connect(std::move(slot));
 }
 
 } // namespace Model
