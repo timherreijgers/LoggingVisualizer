@@ -28,7 +28,7 @@ public:
 
     [[nodiscard]] auto filterEnabled() const noexcept -> bool final;
 
-    void setInputMessages(std::vector<Types::LogEntry> messages);
+    void setInputMessages(std::vector<Types::LogEntry>&& messages);
     auto connectLogMessagesChanged(logMessageChangedSignal::slot_type slot) noexcept -> is::signals::connection;
     [[nodiscard]] auto getLogMessages() const noexcept -> const FilteredLogMessageView&;
 

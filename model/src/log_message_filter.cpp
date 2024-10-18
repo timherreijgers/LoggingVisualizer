@@ -29,7 +29,7 @@ auto LogMessageFilter::filterEnabled() const noexcept -> bool
     return m_filterEnabled;
 }
 
-void LogMessageFilter::setInputMessages(std::vector<Types::LogEntry> messages)
+void LogMessageFilter::setInputMessages(std::vector<Types::LogEntry>&& messages)
 {
     m_inputMessages = std::move(messages);
     m_filteredMessages.setSource(&m_inputMessages);

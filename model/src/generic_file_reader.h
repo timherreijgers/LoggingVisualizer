@@ -8,7 +8,6 @@
 #include "generic_file_reader.h"
 #include "ifile_reader.h"
 
-#include <cstdio>
 #include <filesystem>
 #include <vector>
 
@@ -30,7 +29,7 @@ private:
     FILE * m_file{nullptr};
     bool m_couldReadFile{true};
     std::vector<std::string> m_lines;
-    size_t m_index;
+    size_t m_index{0};
 };
 
 } // namespace Model

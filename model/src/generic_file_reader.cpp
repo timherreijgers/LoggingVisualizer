@@ -7,8 +7,6 @@
 
 #include "exceptions/FileNotFoundException.h"
 
-#include <fmt/format.h>
-
 #include <array>
 #include <cstdio>
 #include <fcntl.h>
