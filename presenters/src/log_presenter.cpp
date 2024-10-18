@@ -2,7 +2,6 @@
  * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
-
 #include "presenters/log_presenter.h"
 
 #include "item_models/log_item_model.h"
@@ -19,9 +18,9 @@ LogPresenter::LogPresenter(Windows::WindowManager& manager, Widgets::LogWidget& 
 
     auto& settingsManager = Model::SettingsManager::instance();
 
-    settingsManager.getLogLevelColorSettings().subscribe([this, &settingsManager](const auto& vector) {
+    settingsManager.connectSettingsChangedSignal([this, &settingsManager]() {
         std::map<std::string, Types::HighlightColorPair> colorDataMap;
-        for (const auto& entry : vector)
+        for (const auto& entry : settingsManager.getLogLevelColorSettings())
         {
             colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};
         }
@@ -45,7 +44,7 @@ void LogPresenter::logMessagesUpdated(const Model::IFilteredLogMessageView& logE
     const auto& colorSettings = Model::SettingsManager::instance().getLogLevelColorSettings();
 
     std::map<std::string, Types::HighlightColorPair> colorDataMap;
-    for (const auto& entry : colorSettings.getValue())
+    for (const auto& entry : colorSettings)
     {
         colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};
     }

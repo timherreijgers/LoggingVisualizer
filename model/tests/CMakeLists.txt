@@ -1,5 +1,5 @@
 add_executable(model_test
-    observable_test.cpp)
+    empty_test.cpp)
 
 target_link_libraries(model_test PRIVATE
         model

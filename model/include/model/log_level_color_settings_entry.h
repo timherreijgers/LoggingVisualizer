@@ -7,8 +7,6 @@
 
 #include "types/color.h"
 
-#include <functional>
-#include <map>
 #include <string>
 
 namespace Model

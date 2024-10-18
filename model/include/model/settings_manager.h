@@ -6,10 +6,15 @@
 #pragma once
 
 #include "log_level_color_settings_entry.h"
-#include "observable_vector.h"
+
+#include "model/signal.h"
+
+#include <vector>
 
 namespace Model
 {
+
+using SettingsChangedSignal = Signals::signal<void()>;
 
 class SettingsManager
 {
@@ -25,8 +30,11 @@ public:
         return instance;
     }
 
-    [[nodiscard]] auto getLogLevelColorSettings() noexcept -> ObservableVector<LogLevelColorSettingsEntry>&;
+    void setLogLevelColorSettings(std::string level, Types::Color textColor, Types::Color backgroundColor);
+    [[nodiscard]] auto getLogLevelColorSettings() noexcept -> const std::vector<LogLevelColorSettingsEntry>&;
     void saveSettings();
+
+    void connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot);
 
 private:
     SettingsManager();
@@ -34,7 +42,8 @@ private:
     static void createYamlFile();
     void loadSettingsFromYamlFile();
 
-    ObservableVector<LogLevelColorSettingsEntry> m_logLevelColorSettings;
+    std::vector<LogLevelColorSettingsEntry> m_logLevelColorSettings;
+    SettingsChangedSignal m_settingsChangedSignal;
 };
 
 

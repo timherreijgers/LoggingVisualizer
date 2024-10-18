@@ -5,8 +5,6 @@
 
 #include "presenters/settings_log_level_presenter.h"
 
-#include <array>
-
 namespace Presenters
 {
 
@@ -17,7 +15,7 @@ SettingsLogLevelPresenter::SettingsLogLevelPresenter(Windows::WindowManager& man
         colorSelectionChanged(row, type, color);
     });
 
-    for (const auto& entry : m_model.getLogLevelColorSettings().getValue())
+    for (const auto& entry : m_model.getLogLevelColorSettings())
     {
         const auto& level = entry.level;
         const auto textColor = entry.textColor;
@@ -36,10 +34,10 @@ void SettingsLogLevelPresenter::colorSelectionChanged(const int row, const Widge
     switch (type)
     {
     case Widgets::ColorType::TEXT:
-        m_model.getLogLevelColorSettings()[row] = {cachedValue.level, color, cachedValue.backgroundColor};
+        m_model.setLogLevelColorSettings(cachedValue.level, color, cachedValue.backgroundColor);
         break;
     case Widgets::ColorType::BACKGROUND:
-        m_model.getLogLevelColorSettings()[row] = {cachedValue.level, cachedValue.textColor, color};
+        m_model.setLogLevelColorSettings(cachedValue.level, cachedValue.textColor, color);
         break;
     }
 

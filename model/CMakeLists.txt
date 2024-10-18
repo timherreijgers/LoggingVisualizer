@@ -26,10 +26,8 @@ set(MODEL_HEADERS
 
         include/model/log_data_context_factory.h
         include/model/log_level_color_settings_entry.h
-        include/model/observable.h
-        include/model/observable_map.h
-        include/model/observable_vector.h
         include/model/settings_manager.h
+        include/model/signal.h
 
         src/platform/memory_mapped_file.h
 

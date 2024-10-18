@@ -8,14 +8,14 @@
 #include "ifiltered_log_message_view.h"
 #include "ilog_message_filter.h"
 
-#include "libfastsignals/signal.h"
+#include "model/signal.h"
 
 #include <filesystem>
 
 namespace Model
 {
 
-using logMessageChangedSignal = is::signals::signal<void()>;
+using logMessageChangedSignal = Signals::signal<void()>;
 
 class ILogDataContext
 {
