@@ -7,7 +7,6 @@
 
 #include "generic_file_reader.h"
 #include "log_data_context.h"
-
 #include "platform/memory_mapped_file.h"
 
 namespace Model
