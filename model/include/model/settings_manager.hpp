@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "log_level_color_settings_entry.h"
+#include "log_level_color_settings_entry.hpp"
 
-#include "model/signal.h"
+#include "model/signal.hpp"
 
 #include <vector>
 

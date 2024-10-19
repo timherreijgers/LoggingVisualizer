@@ -3,11 +3,11 @@
  * Licensed using the MIT license
  */
 
-#include "model/log_data_context_factory.h"
+#include "model/log_data_context_factory.hpp"
 
-#include "generic_file_reader.h"
-#include "log_data_context.h"
-#include "platform/memory_mapped_file.h"
+#include "generic_file_reader.hpp"
+#include "log_data_context.hpp"
+#include "platform/memory_mapped_file.hpp"
 
 namespace Model
 {

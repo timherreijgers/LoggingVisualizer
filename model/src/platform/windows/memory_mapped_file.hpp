@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "ifile_reader.h"
-#include "memory_mapped_file_parser.h"
+#include "ifile_reader.hpp"
+#include "memory_mapped_file_parser.hpp"
 
 #include <string_view>
 #include <Windows.h>

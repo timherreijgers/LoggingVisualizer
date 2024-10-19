@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "ifiltered_log_message_view.h"
-#include "ilog_message_filter.h"
+#include "ifiltered_log_message_view.hpp"
+#include "ilog_message_filter.hpp"
 
-#include "model/signal.h"
+#include "model/signal.hpp"
 
 #include <filesystem>
 

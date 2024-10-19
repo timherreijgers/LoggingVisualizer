@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "ifile_reader.h"
-#include "model/ilog_data_context.h"
+#include "ifile_reader.hpp"
+#include "model/ilog_data_context.hpp"
 
-#include "log_message_filter.h"
+#include "log_message_filter.hpp"
 
 #include <filesystem>
 

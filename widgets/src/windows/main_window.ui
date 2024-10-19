@@ -71,17 +71,17 @@
   <customwidget>
    <class>Widgets::LogWidget</class>
    <extends>QWidget</extends>
-   <header>widgets/log_widget.h</header>
+   <header>widgets/log_widget.hpp</header>
   </customwidget>
   <customwidget>
    <class>Widgets::Toolbar</class>
    <extends>QWidget</extends>
-   <header>widgets/toolbar.h</header>
+   <header>widgets/toolbar.hpp</header>
   </customwidget>
   <customwidget>
    <class>Widgets::MenuBar</class>
    <extends>QMenuBar</extends>
-   <header>widgets/menubar.h</header>
+   <header>widgets/menubar.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

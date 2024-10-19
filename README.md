@@ -13,18 +13,14 @@ the CMake configure command using -DCMAKE_PREFIX_PATH
 2. Configure CMake from the build directory (`cmake -S .. -B . -DCMAKE_PREFIX_PATH=/path/to/qt/installation`)
 3. Build using CMake from the build directory (`cmake --build .`)
 
-
-
-
 ## Current features
 - Loading of files through the file menu and drag-and-drop
 - Loading of log files with a specific format, where the date is interpreted as a string:
   - [date][level]Message
-  - Non persistent colouring of line colors and text
+- Highlighting of line text colours and background based on log level
+- Filtering of log messages
 
 ## Planned features:
-- Highlighting of lines according to configurable colours and log level string
-- Filtering of log messages
 - Configurable log format
 - Live updating of new lines in loaded log file
 - Multiple different logging sources

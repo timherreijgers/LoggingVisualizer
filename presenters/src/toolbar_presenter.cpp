@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "presenters/toolbar_presenter.h"
+#include "presenters/toolbar_presenter.hpp"
 
 namespace Presenters
 {

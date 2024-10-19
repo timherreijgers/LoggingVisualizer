@@ -3,11 +3,11 @@
  * Licensed using the MIT license
  */
 
-#include "widgets/log_widget.h"
+#include "widgets/log_widget.hpp"
 
 #include "ui_log_widget.h"
 
-#include "item_models/log_item_model.h"
+#include "item_models/log_item_model.hpp"
 
 #include <QDropEvent>
 #include <QMimeData>

@@ -6,7 +6,7 @@
 #pragma once
 
 #ifdef WIN32
-#include "windows/memory_mapped_file.h"
+#include "windows/memory_mapped_file.hpp"
 #elif defined(__APPLE__) || defined(__unix__)
-#include "unix/memory_mapped_file.h"
+#include "unix/memory_mapped_file.hpp"
 #endif

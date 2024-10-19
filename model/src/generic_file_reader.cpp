@@ -3,9 +3,9 @@
  * Licensed using the MIT license
  */
 
-#include "generic_file_reader.h"
+#include "generic_file_reader.hpp"
 
-#include "exceptions/FileNotFoundException.h"
+#include "exceptions/FileNotFoundException.hpp"
 
 #include <array>
 #include <cstdio>

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Copyright © 2024 Tim Herreijgers
+  - Licensed using the MIT license
+  -->
+
 <ui version="4.0">
  <class>Windows::SettingsWindow</class>
  <widget class="QMainWindow" name="Windows::SettingsWindow">
@@ -44,7 +49,7 @@
   <customwidget>
    <class>Widgets::LogLevelWidget</class>
    <extends>QTableView</extends>
-   <header>widgets/log_level_widget.h</header>
+   <header>widgets/log_level_widget.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

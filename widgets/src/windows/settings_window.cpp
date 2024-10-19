@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "windows/settings_window.h"
+#include "windows/settings_window.hpp"
 
 #include "ui_settings_window.h"
 

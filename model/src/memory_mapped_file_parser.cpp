@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "memory_mapped_file_parser.h"
+#include "memory_mapped_file_parser.hpp"
 
 namespace Model
 {

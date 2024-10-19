@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "model/ilog_data_context.h"
-#include "presenters/base_presenter.h"
-#include "widgets/toolbar.h"
+#include "model/ilog_data_context.hpp"
+#include "presenters/base_presenter.hpp"
+#include "widgets/toolbar.hpp"
 
 namespace Presenters
 {

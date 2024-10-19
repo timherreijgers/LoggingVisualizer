@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "filtered_log_message_view.h"
+#include "filtered_log_message_view.hpp"
 
 #include <stdexcept>
 

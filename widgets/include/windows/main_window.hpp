@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "widgets/log_widget.h"
-#include "widgets/menubar.h"
-#include "widgets/toolbar.h"
+#include "widgets/log_widget.hpp"
+#include "widgets/menubar.hpp"
+#include "widgets/toolbar.hpp"
 
 #include <QMainWindow>
 

@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "main_window.h"
-#include "settings_window.h"
+#include "main_window.hpp"
+#include "settings_window.hpp"
 
 namespace Windows
 {

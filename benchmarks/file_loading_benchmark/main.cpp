@@ -3,10 +3,10 @@
  * Licensed using the MIT license
  */
 
-#include "log_data_context.h"
+#include "log_data_context.hpp"
 
 #include "benchmark/benchmark.h"
-#include "model/log_data_context_factory.h"
+#include "model/log_data_context_factory.hpp"
 
 #include <array>
 #include <cstddef>

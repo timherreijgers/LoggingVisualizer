@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "types/color.h"
+#include "types/color.hpp"
 
 #include "QAbstractTableModel"
 

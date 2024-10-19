@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "widgets/menubar.h"
+#include "widgets/menubar.hpp"
 #include "ui_menubar.h"
 
 #include <iostream>

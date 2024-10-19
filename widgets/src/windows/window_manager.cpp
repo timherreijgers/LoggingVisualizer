@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "windows/window_manager.h"
+#include "windows/window_manager.hpp"
 
 auto Windows::WindowManager::getMainWindow() noexcept -> MainWindow&
 {

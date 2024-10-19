@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "widgets/log_level_widget.h"
+#include "widgets/log_level_widget.hpp"
 
 
 #include <QMainWindow>

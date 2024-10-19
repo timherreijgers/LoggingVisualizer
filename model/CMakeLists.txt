@@ -3,40 +3,40 @@ add_subdirectory(tests)
 if (WIN32)
     set(PLATFORM_SOURCES_HEADERS
             src/platform/windows/memory_mapped_file.cpp
-            src/platform/windows/memory_mapped_file.h
+            src/platform/windows/memory_mapped_file.hpp
     )
 elseif (APPLE)
     set(PLATFORM_SOURCES_HEADERS
             src/platform/unix/memory_mapped_file.cpp
-            src/platform/unix/memory_mapped_file.h
+            src/platform/unix/memory_mapped_file.hpp
     )
 elseif(UNIX)
     set(PLATFORM_SOURCES_HEADERS
             src/platform/unix/memory_mapped_file.cpp
-            src/platform/unix/memory_mapped_file.h
+            src/platform/unix/memory_mapped_file.hpp
     )
 else()
     set(PLATFORM_SOURCES_HEADERS)
 endif (WIN32)
 
 set(MODEL_HEADERS
-        include/model/ilog_message_filter.h
-        include/model/ilog_data_context.h
-        include/model/ifiltered_log_message_view.h
+        include/model/ilog_message_filter.hpp
+        include/model/ilog_data_context.hpp
+        include/model/ifiltered_log_message_view.hpp
 
-        include/model/log_data_context_factory.h
-        include/model/log_level_color_settings_entry.h
-        include/model/settings_manager.h
-        include/model/signal.h
+        include/model/log_data_context_factory.hpp
+        include/model/log_level_color_settings_entry.hpp
+        include/model/settings_manager.hpp
+        include/model/signal.hpp
 
-        src/platform/memory_mapped_file.h
+        src/platform/memory_mapped_file.hpp
 
-        src/generic_file_reader.h
-        src/filtered_log_message_view.h
-        src/ifile_reader.h
-        src/log_data_context.h
-        src/log_message_filter.h
-        src/memory_mapped_file_parser.h
+        src/generic_file_reader.hpp
+        src/filtered_log_message_view.hpp
+        src/ifile_reader.hpp
+        src/log_data_context.hpp
+        src/log_message_filter.hpp
+        src/memory_mapped_file_parser.hpp
 )
 
 set(MODEL_SRCS

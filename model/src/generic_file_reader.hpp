@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "generic_file_reader.h"
-#include "ifile_reader.h"
+#include "generic_file_reader.hpp"
+#include "ifile_reader.hpp"
 
 #include <filesystem>
 #include <vector>

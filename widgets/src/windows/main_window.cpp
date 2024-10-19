@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "windows/main_window.h"
+#include "windows/main_window.hpp"
 
 #include "ui_main_window.h"
 

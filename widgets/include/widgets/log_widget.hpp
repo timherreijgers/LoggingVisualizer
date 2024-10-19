@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "item_models/abstract_item_model.h"
-#include "types/highlight_color_pair.h"
-#include "types/log_entry.h"
+#include "item_models/abstract_item_model.hpp"
+#include "types/highlight_color_pair.hpp"
+#include "types/log_entry.hpp"
 
 #include <QAbstractTableModel>
 #include <QWidget>
