@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "widgets/toolbar.h"
+#include "widgets/toolbar.hpp"
 
 #include "ui_toolbar.h"
 

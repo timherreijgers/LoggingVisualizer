@@ -3,10 +3,10 @@
  * Licensed using the MIT license
  */
 
-#include "presenters/menu_bar_presenter.h"
+#include "presenters/menu_bar_presenter.hpp"
 
-#include "model/settings_manager.h"
-#include "windows/window_manager.h"
+#include "model/settings_manager.hpp"
+#include "windows/window_manager.hpp"
 
 #include <QApplication>
 #include <QFileDialog>

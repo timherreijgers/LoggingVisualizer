@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "types/log_entry.h"
+#include "types/log_entry.hpp"
 
 namespace Model
 {

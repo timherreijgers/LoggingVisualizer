@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "widgets/item_models/log_level_highlight_model.h"
+#include "widgets/item_models/log_level_highlight_model.hpp"
 
 #include <qcolor.h>
 

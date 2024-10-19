@@ -3,9 +3,9 @@
  * Licensed using the MIT license
  */
 
-#include "model/settings_manager.h"
+#include "model/settings_manager.hpp"
 
-#include "model/log_level_color_settings_entry.h"
+#include "model/log_level_color_settings_entry.hpp"
 
 #include <fmt/format.h>
 #include <yaml-cpp/yaml.h>
@@ -14,7 +14,6 @@
 #include <fstream>
 #include <string>
 #include <string_view>
-#include <utility>
 
 namespace Model
 {

@@ -1,19 +1,20 @@
 set(WIDGET_HEADERS
-        include/widgets/item_models/abstract_item_model.h
-        include/widgets/item_models/log_level_highlight_model.h
+        include/widgets/item_models/abstract_item_model.hpp
+        include/widgets/item_models/log_level_highlight_model.hpp
 
-        include/widgets/log_level_widget.h
-        include/widgets/log_widget.h
-        include/widgets/menubar.h
-        include/widgets/toolbar.h
+        include/widgets/log_level_widget.hpp
+        include/widgets/log_widget.hpp
+        include/widgets/menubar.hpp
+        include/widgets/toolbar.hpp
 
-        include/windows/main_window.h
-        include/windows/settings_window.h
-        include/windows/window_manager.h)
+        include/windows/main_window.hpp
+        include/windows/settings_window.hpp
+        include/windows/window_manager.hpp
+
+        src/item_models/log_item_model.hpp)
 
 set(WIDGET_SOURCES
         src/item_models/log_item_model.cpp
-        src/item_models/log_item_model.h
         src/item_models/log_level_highlight_model.cpp
 
         src/windows/main_window.cpp

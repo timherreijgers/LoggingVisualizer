@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "filtered_log_message_view.h"
-#include "model/ilog_message_filter.h"
-#include "types/log_entry.h"
+#include "filtered_log_message_view.hpp"
+#include "model/ilog_message_filter.hpp"
+#include "types/log_entry.hpp"
 
-#include "model/signal.h"
+#include "model/signal.hpp"
 
 #include <vector>
 

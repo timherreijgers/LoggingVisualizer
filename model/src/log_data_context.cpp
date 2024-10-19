@@ -3,12 +3,12 @@
  * Licensed using the MIT license
  */
 
-#include "log_data_context.h"
+#include "log_data_context.hpp"
 
-#include "exceptions/FileNotFoundException.h"
-#include "types/log_entry.h"
+#include "exceptions/FileNotFoundException.hpp"
+#include "types/log_entry.hpp"
 
-#include "log_message_filter.h"
+#include "log_message_filter.hpp"
 
 namespace Model
 {

@@ -8,7 +8,6 @@
 #include <QWidget>
 
 #include <memory>
-#include <string_view>
 
 namespace Widgets
 {

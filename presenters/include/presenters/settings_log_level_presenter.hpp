@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "model/settings_manager.h"
-#include "presenters/base_presenter.h"
-#include "widgets/item_models/log_level_highlight_model.h"
-#include "widgets/log_level_widget.h"
+#include "model/settings_manager.hpp"
+#include "presenters/base_presenter.hpp"
+#include "widgets/item_models/log_level_highlight_model.hpp"
+#include "widgets/log_level_widget.hpp"
 
 namespace Presenters
 {

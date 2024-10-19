@@ -2,10 +2,10 @@
  * Copyright © 2024 Tim Herreijgers
  * Licensed using the MIT license
  */
-#include "presenters/log_presenter.h"
+#include "presenters/log_presenter.hpp"
 
-#include "item_models/log_item_model.h"
-#include "model/settings_manager.h"
+#include "item_models/log_item_model.hpp"
+#include "model/settings_manager.hpp"
 
 namespace Presenters
 {

@@ -1,11 +1,11 @@
 set(PRESENTER_HEADERS
-        include/presenters/base_presenter.h
-        include/presenters/log_presenter.h
-        include/presenters/menu_bar_presenter.h
-        include/presenters/settings_log_level_presenter.h
-        include/presenters/toolbar_presenter.h
+        include/presenters/base_presenter.hpp
+        include/presenters/log_presenter.hpp
+        include/presenters/menu_bar_presenter.hpp
+        include/presenters/settings_log_level_presenter.hpp
+        include/presenters/toolbar_presenter.hpp
 
-        src/item_models/log_item_model.h
+        src/item_models/log_item_model.hpp
 )
 
 set(PRESENTER_SRCS

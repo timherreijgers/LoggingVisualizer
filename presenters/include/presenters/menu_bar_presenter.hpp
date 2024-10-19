@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include "model/ilog_data_context.h"
-#include "presenters/base_presenter.h"
-#include "presenters/settings_log_level_presenter.h"
-#include "widgets/menubar.h"
+#include "model/ilog_data_context.hpp"
+#include "presenters/base_presenter.hpp"
+#include "presenters/settings_log_level_presenter.hpp"
+#include "widgets/menubar.hpp"
 
 #include <memory>
 

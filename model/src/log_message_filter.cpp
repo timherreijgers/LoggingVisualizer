@@ -3,9 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "log_message_filter.h"
-
-#include <utility>
+#include "log_message_filter.hpp"
 
 namespace Model
 {

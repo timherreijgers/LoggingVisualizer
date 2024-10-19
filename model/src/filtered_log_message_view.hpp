@@ -5,10 +5,9 @@
 
 #pragma once
 
-#include "model/ifiltered_log_message_view.h"
-#include "types/log_entry.h"
+#include "model/ifiltered_log_message_view.hpp"
+#include "types/log_entry.hpp"
 
-#include <set>
 #include <vector>
 
 namespace Model

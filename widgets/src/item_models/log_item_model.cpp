@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "log_item_model.h"
+#include "log_item_model.hpp"
 
 #include <QColor>
 

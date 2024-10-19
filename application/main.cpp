@@ -3,14 +3,14 @@
  * Licensed using the MIT license
  */
 
-#include "model/log_data_context_factory.h"
+#include "model/log_data_context_factory.hpp"
 
-#include "presenters/log_presenter.h"
-#include "presenters/menu_bar_presenter.h"
-#include "presenters/toolbar_presenter.h"
+#include "presenters/log_presenter.hpp"
+#include "presenters/menu_bar_presenter.hpp"
+#include "presenters/toolbar_presenter.hpp"
 
-#include "windows/main_window.h"
-#include "windows/window_manager.h"
+#include "windows/main_window.hpp"
+#include "windows/window_manager.hpp"
 
 #include <QApplication>
 

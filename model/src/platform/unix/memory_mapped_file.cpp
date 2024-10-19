@@ -3,9 +3,9 @@
  * Licensed using the MIT license
  */
 
-#include "memory_mapped_file.h"
+#include "memory_mapped_file.hpp"
 
-#include "exceptions/FileNotFoundException.h"
+#include "exceptions/FileNotFoundException.hpp"
 
 #include <cstdio>
 #include <fcntl.h>

@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "windows/window_manager.h"
+#include "windows/window_manager.hpp"
 
 namespace Presenters
 {
