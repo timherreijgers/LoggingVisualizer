@@ -38,7 +38,7 @@ private:
     logMessageChangedSignal m_logMessageChangedSignal;
 
     std::string m_filter;
-    bool m_filterEnabled = true;
+    bool m_filterEnabled = false;
 
     void filterMessages() noexcept;
 };
