@@ -17,6 +17,11 @@ auto FilteredLogMessageView::get(size_t index) const -> const Types::LogEntry&
         throw std::runtime_error("FilteredLogMessageView::get: Source message is empty");
     }
 
+    if (index >= m_logIndices.size())
+    {
+        throw std::out_of_range("FilteredLogMessageView::get: Index is out of range");
+    }
+
     return (*m_sourceMessages)[m_logIndices[index]];
 }
 
