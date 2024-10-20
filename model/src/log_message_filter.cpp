@@ -55,6 +55,7 @@ void LogMessageFilter::filterMessages() noexcept
         {
             m_filteredMessages.addIndex(i);
         }
+        return;
     }
 
     for (size_t i = 0; i < m_inputMessages.size(); i++)
