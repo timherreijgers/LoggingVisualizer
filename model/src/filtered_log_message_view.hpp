@@ -30,7 +30,7 @@ public:
     void clearIndices();
 
 private:
-    const std::vector<Types::LogEntry> * m_sourceMessages;
+    const std::vector<Types::LogEntry> * m_sourceMessages = nullptr;
     std::vector<size_t> m_logIndices;
 };
 
