@@ -40,7 +40,7 @@ TEST_F(LogMessageFilterTest, SetInputMessages_CallsLogMessagesChangedSlot)
 {
     LogMessageFilter filter;
     bool callbackCalled = false;
-    filter.connectLogMessagesChanged([&callbackCalled]() {callbackCalled = true; });
+    filter.connectLogMessagesChanged([&callbackCalled]() { callbackCalled = true; });
 
     filter.setInputMessages(getLogMessages());
     ASSERT_TRUE(callbackCalled) << "Adding input messages should call the connected LogMessagesChanged slot";
@@ -50,7 +50,7 @@ TEST_F(LogMessageFilterTest, SetInputMessages_WithoutAFilter_OutputsUnfilteredMe
 {
     LogMessageFilter filter;
     bool callbackCalled = false;
-    filter.connectLogMessagesChanged([&callbackCalled]() {callbackCalled = true; });
+    filter.connectLogMessagesChanged([&callbackCalled]() { callbackCalled = true; });
 
     filter.setInputMessages(getLogMessages());
 
@@ -64,7 +64,7 @@ TEST_F(LogMessageFilterTest, SetInputMessages_WithAFilterWithFilterDisabled_Outp
 {
     LogMessageFilter filter;
     bool callbackCalled = false;
-    filter.connectLogMessagesChanged([&callbackCalled]() {callbackCalled = true; });
+    filter.connectLogMessagesChanged([&callbackCalled]() { callbackCalled = true; });
 
     filter.setInputMessages(getLogMessages());
     filter.setFilter("error");
@@ -79,7 +79,7 @@ TEST_F(LogMessageFilterTest, SetInputMessages_WithAFilterWithFilterEnabled_Outpu
 {
     LogMessageFilter filter;
     bool callbackCalled = false;
-    filter.connectLogMessagesChanged([&callbackCalled]() {callbackCalled = true; });
+    filter.connectLogMessagesChanged([&callbackCalled]() { callbackCalled = true; });
 
     filter.setInputMessages(getLogMessages());
     filter.setFilter("error");
@@ -94,7 +94,7 @@ TEST_F(LogMessageFilterTest, SetInputMessages_WithoutAFilterWithFilterEnabled_Ou
 {
     LogMessageFilter filter;
     bool callbackCalled = false;
-    filter.connectLogMessagesChanged([&callbackCalled]() {callbackCalled = true; });
+    filter.connectLogMessagesChanged([&callbackCalled]() { callbackCalled = true; });
 
     filter.setInputMessages(getLogMessages());
     filter.setFilterEnabled(true);

@@ -21,7 +21,6 @@ protected:
             {"time", "error", "message2"},
         };
     }
-
 };
 
 TEST_F(FilteredLogMessageViewTest, Size_WithoutSourceAdded_ReturnsZero)
@@ -80,7 +79,7 @@ TEST_F(FilteredLogMessageViewTest, Empty_WithSourceAddedWithIndices_ReturnsFalse
 TEST_F(FilteredLogMessageViewTest, Get_WithoutSource_ThrowsException)
 {
     FilteredLogMessageView view;
-    ASSERT_THROW((void) view.get(0), std::runtime_error);
+    ASSERT_THROW((void)view.get(0), std::runtime_error);
 }
 
 TEST_F(FilteredLogMessageViewTest, Get_WithSourceWithoutIndices_ThrowsOutOfRangeException)
@@ -88,7 +87,7 @@ TEST_F(FilteredLogMessageViewTest, Get_WithSourceWithoutIndices_ThrowsOutOfRange
     FilteredLogMessageView view;
     const auto entries = generateLogEntries();
     view.setSource(&entries);
-    ASSERT_THROW((void) view.get(0), std::out_of_range);
+    ASSERT_THROW((void)view.get(0), std::out_of_range);
 }
 
 TEST_F(FilteredLogMessageViewTest, Get_WithSourceWithIndices_ReturnsCorrectLine)
@@ -109,13 +108,13 @@ TEST_F(FilteredLogMessageViewTest, Get_WithSourceWithIndices_ReturnsOutOfRange)
     view.setSource(&entries);
     view.addIndex(1);
 
-    ASSERT_THROW((void) view.get(1), std::out_of_range);
+    ASSERT_THROW((void)view.get(1), std::out_of_range);
 }
 
 TEST_F(FilteredLogMessageViewTest, Operator_WithoutSource_ThrowsException)
 {
     FilteredLogMessageView view;
-    ASSERT_THROW((void) view[0], std::runtime_error);
+    ASSERT_THROW((void)view[0], std::runtime_error);
 }
 
 TEST_F(FilteredLogMessageViewTest, Operator_WithSourceWithoutIndices_ThrowsOutOfRangeException)
@@ -123,7 +122,7 @@ TEST_F(FilteredLogMessageViewTest, Operator_WithSourceWithoutIndices_ThrowsOutOf
     FilteredLogMessageView view;
     const auto entries = generateLogEntries();
     view.setSource(&entries);
-    ASSERT_THROW((void) view[0], std::out_of_range);
+    ASSERT_THROW((void)view[0], std::out_of_range);
 }
 
 TEST_F(FilteredLogMessageViewTest, Operator_WithSourceWithIndices_ReturnsCorrectLine)
@@ -144,7 +143,7 @@ TEST_F(FilteredLogMessageViewTest, Operator_withSourceWithIndices_ReturnsOutOfRa
     view.setSource(&entries);
     view.addIndex(1);
 
-    ASSERT_THROW((void) view[1], std::out_of_range);
+    ASSERT_THROW((void)view[1], std::out_of_range);
 }
 
-} // namespace::Tests
+} // namespace Model::Tests

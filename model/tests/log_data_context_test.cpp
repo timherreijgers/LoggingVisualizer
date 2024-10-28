@@ -37,8 +37,7 @@ protected:
     std::vector<std::string> m_lines = {"[time][debug]This is a debug message", "[time][error]This is a error message"};
     std::vector<Types::LogEntry> m_entries = {
         {"time", "debug", "This is a debug message"},
-        {"time", "error", "This is a error message"}
-    };
+        {"time", "error", "This is a error message"}};
     size_t m_index = 0;
 };
 
@@ -119,4 +118,4 @@ TEST_F(LogDataContextTest, close_WithInputMessages_clearsMessages)
     ASSERT_EQ(context.getLogMessages().size(), 0);
 }
 
-} // namespace namespace Model::Tests
+} // namespace Model::Tests
