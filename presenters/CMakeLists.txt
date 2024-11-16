@@ -24,8 +24,10 @@ add_library(presenters STATIC
 
 target_include_directories(presenters PUBLIC include PRIVATE src)
 
-target_link_libraries(presenters PRIVATE
+target_link_libraries(presenters
+    PUBLIC
+        types
         widgets
         model
-        types
+    PRIVATE
         Qt6::Widgets)

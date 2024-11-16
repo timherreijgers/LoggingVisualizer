@@ -42,7 +42,10 @@ add_library(widgets STATIC
 
 target_include_directories(widgets PUBLIC include PRIVATE src)
 
-target_link_libraries(widgets PRIVATE
+target_link_libraries(widgets
+    PUBLIC
+        Qt6::Widgets
         types
-        fmt::fmt
-        Qt6::Widgets)
+
+    PRIVATE
+        fmt::fmt)
