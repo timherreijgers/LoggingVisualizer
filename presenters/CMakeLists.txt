@@ -1,3 +1,5 @@
+add_subdirectory(tests)
+
 set(PRESENTER_HEADERS
         include/presenters/base_presenter.hpp
         include/presenters/log_presenter.hpp
