@@ -47,6 +47,10 @@ void LogWidget::setHighlightColors(std::map<std::string, Types::HighlightColorPa
         dynamic_cast<ItemModels::LogItemModel *>(m_model.get())->setHighlightColors(std::move(colorMap));
     }
 }
+void LogWidget::connectOnFileDropped(std::function<void(std::string_view)> callback)
+{
+    connect(this, &LogWidget::onFileDropped, callback);
+}
 
 void LogWidget::dragEnterEvent(QDragEnterEvent * event)
 {

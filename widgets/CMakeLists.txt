@@ -2,8 +2,8 @@ set(WIDGET_HEADERS
         include/widgets/item_models/abstract_item_model.hpp
         include/widgets/item_models/log_level_highlight_model.hpp
 
+        include/widgets/ilog_widget.hpp
         include/widgets/log_level_widget.hpp
-        include/widgets/log_widget.hpp
         include/widgets/menubar.hpp
         include/widgets/toolbar.hpp
 
@@ -11,7 +11,9 @@ set(WIDGET_HEADERS
         include/windows/settings_window.hpp
         include/windows/window_manager.hpp
 
-        src/item_models/log_item_model.hpp)
+        src/item_models/log_item_model.hpp
+
+        src/widgets/log_widget.hpp)
 
 set(WIDGET_SOURCES
         src/item_models/log_item_model.cpp

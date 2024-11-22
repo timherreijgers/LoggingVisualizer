@@ -5,9 +5,7 @@
 
 #pragma once
 
-#include "item_models/abstract_item_model.hpp"
-#include "types/highlight_color_pair.hpp"
-#include "types/log_entry.hpp"
+#include "widgets/ilog_widget.hpp"
 
 #include <QAbstractTableModel>
 #include <QWidget>
@@ -22,7 +20,7 @@ class LogWidget;
 } // namespace Ui
 QT_END_NAMESPACE
 
-class LogWidget : public QWidget
+class LogWidget : public QWidget, public ILogWidget
 {
     Q_OBJECT
 
@@ -30,13 +28,12 @@ public:
     explicit LogWidget(QWidget * parent = nullptr);
     ~LogWidget() override;
 
-    void setLogMessages(const ItemModels::AbstractItemModel<Types::LogEntry>& messages) noexcept;
-    void clearLogMessages() noexcept;
+    void setLogMessages(const ItemModels::AbstractItemModel<Types::LogEntry>& messages) noexcept override;
+    void clearLogMessages() noexcept override;
 
-    void setHighlightColors(std::map<std::string, Types::HighlightColorPair> colorMap) noexcept;
+    void setHighlightColors(std::map<std::string, Types::HighlightColorPair> colorMap) noexcept override;
 
-signals:
-    void onFileDropped(std::string_view url);
+    void connectOnFileDropped(std::function<void(std::string_view)>) override;
 
 protected:
     void dragEnterEvent(QDragEnterEvent * event) override;
@@ -45,6 +42,9 @@ protected:
 private:
     std::unique_ptr<Ui::LogWidget> ui;
     std::unique_ptr<QAbstractTableModel> m_model{nullptr};
+
+signals:
+    void onFileDropped(std::string_view url);
 };
 
 } // namespace Widgets

@@ -23,7 +23,7 @@ Widgets::MenuBar& MainWindow::getMenuBar() const noexcept
     return *m_ui->menubar;
 }
 
-Widgets::LogWidget& MainWindow::getLogWidget() const noexcept
+Widgets::ILogWidget& MainWindow::getLogWidget() const noexcept
 {
     return *m_ui->logWidget;
 }
