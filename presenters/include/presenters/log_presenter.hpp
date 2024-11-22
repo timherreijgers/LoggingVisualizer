@@ -7,7 +7,7 @@
 
 #include "model/ilog_data_context.hpp"
 #include "presenters/base_presenter.hpp"
-#include "widgets/log_widget.hpp"
+#include "widgets/ilog_widget.hpp"
 
 namespace Presenters
 {
@@ -15,13 +15,13 @@ namespace Presenters
 class LogPresenter : public BasePresenter
 {
 public:
-    explicit LogPresenter(Windows::WindowManager& manager, Widgets::LogWidget& view, Model::ILogDataContext& model);
+    explicit LogPresenter(Windows::WindowManager& manager, Widgets::ILogWidget& view, Model::ILogDataContext& model);
 
 private:
     void logMessagesUpdated(const Model::IFilteredLogMessageView& logEntries) noexcept;
     void onFileDroppedInView(std::string_view url);
 
-    Widgets::LogWidget& m_view;
+    Widgets::ILogWidget& m_view;
     Model::ILogDataContext& m_model;
     std::unique_ptr<Widgets::ItemModels::AbstractItemModel<Types::LogEntry>> m_logModel;
 };
