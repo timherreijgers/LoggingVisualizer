@@ -20,7 +20,7 @@ class LogLevelWidget : public QTableView, public ILogLevelWidget
 public:
     explicit LogLevelWidget(QWidget * parent = nullptr);
     void setModel(QAbstractItemModel * model) override;
-    void connectColorSelectionChanged(std::function<void(int, ColorType, Types::Color)> callback) override;
+    void connectColorSelectionChanged(std::function<void(int, ColorType, Types::Color)> slot) override;
 
 private slots:
     void onCellClicked(const QModelIndex& index);

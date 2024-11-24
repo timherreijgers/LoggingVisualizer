@@ -25,7 +25,7 @@ public:
 
     virtual void setHighlightColors(std::map<std::string, Types::HighlightColorPair> colorMap) noexcept = 0;
 
-    virtual void connectOnFileDropped(std::function<void(std::string_view)>) = 0;
+    virtual void connectOnFileDropped(std::function<void(std::string_view)> slot) = 0;
 };
 
 } // namespace Widgets
