@@ -24,6 +24,26 @@ MenuBar::MenuBar(QWidget * parent) :
 
 MenuBar::~MenuBar() = default;
 
+void MenuBar::connectOpenFileClicked(std::function<void()> slot)
+{
+    connect(this, &MenuBar::openFileClicked, slot);
+}
+
+void MenuBar::connectCloseFileClicked(std::function<void()> slot)
+{
+    connect(this, &MenuBar::closeFileClicked, slot);
+}
+
+void MenuBar::connectPreferencesClicked(std::function<void()> slot)
+{
+    connect(this, &MenuBar::preferencesClicked, slot);
+}
+
+void MenuBar::connectExitClicked(std::function<void()> slot)
+{
+    connect(this, &MenuBar::exitClicked, slot);
+}
+
 void MenuBar::actionOpenTriggered(bool)
 {
     openFileClicked();

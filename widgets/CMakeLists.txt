@@ -4,7 +4,7 @@ set(WIDGET_HEADERS
 
         include/widgets/ilog_level_widget.hpp
         include/widgets/ilog_widget.hpp
-        include/widgets/menubar.hpp
+        include/widgets/imenubar.hpp
         include/widgets/toolbar.hpp
 
         include/windows/main_window.hpp
@@ -14,7 +14,8 @@ set(WIDGET_HEADERS
         src/item_models/log_item_model.hpp
 
         src/widgets/log_level_widget.hpp
-        src/widgets/log_widget.hpp)
+        src/widgets/log_widget.hpp
+        src/widgets/menubar.hpp)
 
 set(WIDGET_SOURCES
         src/item_models/log_item_model.cpp
