@@ -7,7 +7,7 @@
 
 #include "widgets/ilog_widget.hpp"
 #include "widgets/imenubar.hpp"
-#include "widgets/toolbar.hpp"
+#include "widgets/itoolbar.hpp"
 
 #include <QMainWindow>
 
@@ -35,7 +35,7 @@ public:
 
     [[nodiscard]] auto getMenuBar() const noexcept -> Widgets::IMenuBar&;
     [[nodiscard]] auto getLogWidget() const noexcept -> Widgets::ILogWidget&;
-    [[nodiscard]] auto getToolbar() const noexcept -> Widgets::Toolbar&;
+    [[nodiscard]] auto getToolbar() const noexcept -> Widgets::IToolbar&;
 
 private:
     std::unique_ptr<Ui::MainWindow> m_ui;

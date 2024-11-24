@@ -8,11 +8,11 @@
 namespace Presenters
 {
 
-ToolbarPresenter::ToolbarPresenter(Windows::WindowManager& manager, Widgets::Toolbar& view, Model::ILogDataContext& model) :
+ToolbarPresenter::ToolbarPresenter(Windows::WindowManager& manager, Widgets::IToolbar& view, Model::ILogDataContext& model) :
     BasePresenter(manager), m_view(view), m_model(model)
 {
-    QObject::connect(&m_view, &Widgets::Toolbar::filterChanged, [this](const QString& filter) { filterTextChanged(filter.toStdString()); });
-    QObject::connect(&m_view, &Widgets::Toolbar::filterEnabledClicked, [this]() { filterEnableClicked(); });
+    m_view.connectFilterChanged([this](const QString& filter) { filterTextChanged(filter.toStdString()); });
+    m_view.connectFilterEnabledClicked([this]() { filterEnableClicked(); });
 
     m_view.setFilterEnabled(m_model.getLogMessageFilter().filterEnabled());
 }

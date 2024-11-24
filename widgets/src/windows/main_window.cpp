@@ -28,7 +28,7 @@ Widgets::ILogWidget& MainWindow::getLogWidget() const noexcept
     return *m_ui->logWidget;
 }
 
-auto MainWindow::getToolbar() const noexcept -> Widgets::Toolbar&
+auto MainWindow::getToolbar() const noexcept -> Widgets::IToolbar&
 {
     return *m_ui->toolbar;
 }
