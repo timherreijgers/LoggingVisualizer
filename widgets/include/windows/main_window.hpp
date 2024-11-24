@@ -6,7 +6,7 @@
 #pragma once
 
 #include "widgets/ilog_widget.hpp"
-#include "widgets/menubar.hpp"
+#include "widgets/imenubar.hpp"
 #include "widgets/toolbar.hpp"
 
 #include <QMainWindow>
@@ -33,7 +33,7 @@ public:
     MainWindow& operator=(MainWindow&) = delete;
     MainWindow& operator=(MainWindow&&) = delete;
 
-    [[nodiscard]] auto getMenuBar() const noexcept -> Widgets::MenuBar&;
+    [[nodiscard]] auto getMenuBar() const noexcept -> Widgets::IMenuBar&;
     [[nodiscard]] auto getLogWidget() const noexcept -> Widgets::ILogWidget&;
     [[nodiscard]] auto getToolbar() const noexcept -> Widgets::Toolbar&;
 
