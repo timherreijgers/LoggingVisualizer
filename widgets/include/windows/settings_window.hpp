@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "widgets/log_level_widget.hpp"
+#include "widgets/ilog_level_widget.hpp"
 
 
 #include <QMainWindow>
@@ -28,7 +28,7 @@ public:
     explicit SettingsWindow(QWidget * parent = nullptr);
     ~SettingsWindow() override;
 
-    [[nodiscard]] Widgets::LogLevelWidget& getLogWidget() const noexcept;
+    [[nodiscard]] Widgets::ILogLevelWidget& getLogWidget() const noexcept;
 
 
 private:

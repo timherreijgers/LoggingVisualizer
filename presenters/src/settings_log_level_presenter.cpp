@@ -8,10 +8,10 @@
 namespace Presenters
 {
 
-SettingsLogLevelPresenter::SettingsLogLevelPresenter(Windows::WindowManager& manager, Widgets::LogLevelWidget& view, Model::SettingsManager& model) :
+SettingsLogLevelPresenter::SettingsLogLevelPresenter(Windows::WindowManager& manager, Widgets::ILogLevelWidget& view, Model::SettingsManager& model) :
     BasePresenter(manager), m_view(view), m_model(model)
 {
-    QObject::connect(&m_view, &Widgets::LogLevelWidget::colorSelectionChanged, [this](const int row, const Widgets::ColorType type, const Types::Color color) {
+    m_view.connectColorSelectionChanged([this](const int row, const Widgets::ColorType type, const Types::Color color) {
         colorSelectionChanged(row, type, color);
     });
 
