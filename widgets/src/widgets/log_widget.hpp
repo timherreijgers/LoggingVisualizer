@@ -33,7 +33,7 @@ public:
 
     void setHighlightColors(std::map<std::string, Types::HighlightColorPair> colorMap) noexcept override;
 
-    void connectOnFileDropped(std::function<void(std::string_view)>) override;
+    void connectOnFileDropped(std::function<void(std::string_view)> slot) override;
 
 protected:
     void dragEnterEvent(QDragEnterEvent * event) override;
