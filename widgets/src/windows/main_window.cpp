@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget * parent) :
 
 MainWindow::~MainWindow() = default;
 
-Widgets::MenuBar& MainWindow::getMenuBar() const noexcept
+Widgets::IMenuBar& MainWindow::getMenuBar() const noexcept
 {
     return *m_ui->menubar;
 }

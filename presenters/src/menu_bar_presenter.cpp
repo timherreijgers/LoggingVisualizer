@@ -15,13 +15,13 @@
 namespace Presenters
 {
 
-MenuBarPresenter::MenuBarPresenter(Windows::WindowManager& manager, Widgets::MenuBar& view, Model::ILogDataContext& model) :
+MenuBarPresenter::MenuBarPresenter(Windows::WindowManager& manager, Widgets::IMenuBar& view, Model::ILogDataContext& model) :
     BasePresenter(manager), m_view(view), m_model(model)
 {
-    QObject::connect(&m_view, &Widgets::MenuBar::openFileClicked, [this]() { openFileClicked(); });
-    QObject::connect(&m_view, &Widgets::MenuBar::closeFileClicked, [this]() { closeFileClicked(); });
-    QObject::connect(&m_view, &Widgets::MenuBar::preferencesClicked, [this]() { preferencesClicked(); });
-    QObject::connect(&m_view, &Widgets::MenuBar::exitClicked, []() { QApplication::exit(0); });
+    m_view.connectOpenFileClicked([this]() { openFileClicked(); });
+    m_view.connectCloseFileClicked([this]() { closeFileClicked(); });
+    m_view.connectPreferencesClicked([this]() { preferencesClicked(); });
+    m_view.connectExitClicked([]() { QApplication::exit(0); });
 }
 
 void MenuBarPresenter::openFileClicked()
