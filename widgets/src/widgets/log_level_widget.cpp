@@ -28,6 +28,11 @@ void LogLevelWidget::setModel(QAbstractItemModel * model)
     setColumnWidth(2, rowHeight(0) * 3);
 }
 
+void LogLevelWidget::connectColorSelectionChanged(std::function<void(int, ColorType, Types::Color)> callback)
+{
+    connect(this, &LogLevelWidget::colorSelectionChanged, callback);
+}
+
 void LogLevelWidget::onCellClicked(const QModelIndex& index)
 {
     if (index.column() != 1 && index.column() != 2)
