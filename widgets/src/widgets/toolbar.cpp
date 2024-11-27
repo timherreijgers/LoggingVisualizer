@@ -13,9 +13,6 @@ Toolbar::Toolbar(QWidget * parent) :
     QWidget(parent), m_ui(std::make_unique<Ui::Toolbar>())
 {
     m_ui->setupUi(this);
-
-    connect(m_ui->messageFilter, &QLineEdit::textChanged, this, &Toolbar::filterChanged);
-    connect(m_ui->filterEnable, &QPushButton::clicked, this, &Toolbar::filterEnabledClicked);
 }
 
 Toolbar::~Toolbar() = default;
@@ -32,6 +29,16 @@ void Toolbar::setFilterEnabled(bool enabled)
         m_ui->filterEnable->setIcon(QIcon(":/images/cross_reject.png"));
         m_ui->filterEnable->setToolTip("Enable the message filter");
     }
+}
+
+void Toolbar::connectFilterChanged(std::function<void(const QString&)> slot)
+{
+    connect(m_ui->messageFilter, &QLineEdit::textChanged, slot);
+}
+
+void Toolbar::connectFilterEnabledClicked(std::function<void()> slot)
+{
+    connect(m_ui->filterEnable, &QPushButton::clicked, slot);
 }
 
 } // namespace Widgets

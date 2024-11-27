@@ -18,7 +18,7 @@ SettingsWindow::SettingsWindow(QWidget * parent) :
 
 SettingsWindow::~SettingsWindow() = default;
 
-Widgets::LogLevelWidget& SettingsWindow::getLogWidget() const noexcept
+Widgets::ILogLevelWidget& SettingsWindow::getLogWidget() const noexcept
 {
     return *m_ui->debug_levels_table;
 }

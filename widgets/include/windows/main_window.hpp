@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "widgets/log_widget.hpp"
-#include "widgets/menubar.hpp"
-#include "widgets/toolbar.hpp"
+#include "widgets/ilog_widget.hpp"
+#include "widgets/imenubar.hpp"
+#include "widgets/itoolbar.hpp"
 
 #include <QMainWindow>
 
@@ -33,9 +33,9 @@ public:
     MainWindow& operator=(MainWindow&) = delete;
     MainWindow& operator=(MainWindow&&) = delete;
 
-    [[nodiscard]] auto getMenuBar() const noexcept -> Widgets::MenuBar&;
-    [[nodiscard]] auto getLogWidget() const noexcept -> Widgets::LogWidget&;
-    [[nodiscard]] auto getToolbar() const noexcept -> Widgets::Toolbar&;
+    [[nodiscard]] auto getMenuBar() const noexcept -> Widgets::IMenuBar&;
+    [[nodiscard]] auto getLogWidget() const noexcept -> Widgets::ILogWidget&;
+    [[nodiscard]] auto getToolbar() const noexcept -> Widgets::IToolbar&;
 
 private:
     std::unique_ptr<Ui::MainWindow> m_ui;
