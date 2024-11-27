@@ -1,0 +1,17 @@
+version: "1.0"
+linter: jetbrains/qodana-clang:2024.2-eap
+bootstrap:  sh ./prepare_cordana.sh
+include:
+  - name: Source folders
+    paths:
+      - application
+      - benchmarks
+      - mocks
+      - model
+      - presenters
+      - types
+      - widgets
+exclude:
+  - name: Exclude paths
+    paths:
+      - third_party
