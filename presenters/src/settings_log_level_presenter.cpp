@@ -8,7 +8,7 @@
 namespace Presenters
 {
 
-SettingsLogLevelPresenter::SettingsLogLevelPresenter(Windows::WindowManager& manager, Widgets::ILogLevelWidget& view, Model::SettingsManager& model) :
+SettingsLogLevelPresenter::SettingsLogLevelPresenter(Windows::IWindowManager& manager, Widgets::ILogLevelWidget& view, Model::SettingsManager& model) :
     BasePresenter(manager), m_view(view), m_model(model)
 {
     m_view.connectColorSelectionChanged([this](const int row, const Widgets::ColorType type, const Types::Color color) {

@@ -7,6 +7,7 @@ set(WIDGET_HEADERS
         include/widgets/imenubar.hpp
         include/widgets/itoolbar.hpp
 
+        include/windows/iwindow_manager.hpp
         include/windows/main_window.hpp
         include/windows/settings_window.hpp
         include/windows/window_manager.hpp

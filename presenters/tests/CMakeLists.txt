@@ -1,8 +1,9 @@
 add_executable(PresenterTests
-        empty_test.cpp)
+        log_presenter_test.cpp)
 
 target_link_libraries(PresenterTests PRIVATE
         presenters
+        mocks
         gtest
         gtest_main)
 

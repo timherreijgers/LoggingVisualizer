@@ -7,8 +7,8 @@
 
 #include "model/settings_manager.hpp"
 #include "presenters/base_presenter.hpp"
-#include "widgets/item_models/log_level_highlight_model.hpp"
 #include "widgets/ilog_level_widget.hpp"
+#include "widgets/item_models/log_level_highlight_model.hpp"
 
 namespace Presenters
 {
@@ -16,7 +16,7 @@ namespace Presenters
 class SettingsLogLevelPresenter : public BasePresenter
 {
 public:
-    SettingsLogLevelPresenter(Windows::WindowManager& manager, Widgets::ILogLevelWidget& view, Model::SettingsManager& model);
+    SettingsLogLevelPresenter(Windows::IWindowManager& manager, Widgets::ILogLevelWidget& view, Model::SettingsManager& model);
 
 private:
     void colorSelectionChanged(const int row, const Widgets::ColorType type, const Types::Color color);
