@@ -15,7 +15,7 @@
 namespace Presenters
 {
 
-MenuBarPresenter::MenuBarPresenter(Windows::WindowManager& manager, Widgets::IMenuBar& view, Model::ILogDataContext& model) :
+MenuBarPresenter::MenuBarPresenter(Windows::IWindowManager& manager, Widgets::IMenuBar& view, Model::ILogDataContext& model) :
     BasePresenter(manager), m_view(view), m_model(model)
 {
     m_view.connectOpenFileClicked([this]() { openFileClicked(); });

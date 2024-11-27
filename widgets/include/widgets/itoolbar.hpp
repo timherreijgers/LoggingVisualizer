@@ -15,7 +15,7 @@ namespace Widgets
 class IToolbar
 {
 public:
-    virtual ~IToolbar() = default;;
+    virtual ~IToolbar() = default;
 
     virtual void setFilterEnabled(bool enabled) = 0;
     virtual void connectFilterChanged(std::function<void(const QString&)> slot) = 0;

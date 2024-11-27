@@ -38,7 +38,7 @@ private slots:
     void actionPreferencesTriggered(bool);
     void actionExitTriggered(bool);
 
-    signals:
+signals:
     void openFileClicked();
     void closeFileClicked();
     void preferencesClicked();

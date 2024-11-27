@@ -15,7 +15,7 @@ namespace Presenters
 class LogPresenter : public BasePresenter
 {
 public:
-    explicit LogPresenter(Windows::WindowManager& manager, Widgets::ILogWidget& view, Model::ILogDataContext& model);
+    explicit LogPresenter(Windows::IWindowManager& manager, Widgets::ILogWidget& view, Model::ILogDataContext& model);
 
 private:
     void logMessagesUpdated(const Model::IFilteredLogMessageView& logEntries) noexcept;

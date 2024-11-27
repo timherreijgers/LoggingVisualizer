@@ -8,7 +8,7 @@
 namespace Presenters
 {
 
-ToolbarPresenter::ToolbarPresenter(Windows::WindowManager& manager, Widgets::IToolbar& view, Model::ILogDataContext& model) :
+ToolbarPresenter::ToolbarPresenter(Windows::IWindowManager& manager, Widgets::IToolbar& view, Model::ILogDataContext& model) :
     BasePresenter(manager), m_view(view), m_model(model)
 {
     m_view.connectFilterChanged([this](const QString& filter) { filterTextChanged(filter.toStdString()); });

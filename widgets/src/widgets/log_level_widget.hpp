@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "widgets/ilog_level_widget.hpp"
 #include "types/color.hpp"
+#include "widgets/ilog_level_widget.hpp"
 
 #include <QTableView>
 
@@ -25,7 +25,7 @@ public:
 private slots:
     void onCellClicked(const QModelIndex& index);
 
-    signals:
+signals:
     void colorSelectionChanged(int row, Widgets::ColorType type, Types::Color color);
 };
 

@@ -8,12 +8,12 @@
 namespace Presenters
 {
 
-BasePresenter::BasePresenter(Windows::WindowManager& windowManager) :
+BasePresenter::BasePresenter(Windows::IWindowManager& windowManager) :
     m_windowManager(windowManager)
 {
 }
 
-auto BasePresenter::getWindowManager() const noexcept -> Windows::WindowManager&
+auto BasePresenter::getWindowManager() const noexcept -> Windows::IWindowManager&
 {
     return m_windowManager;
 }
