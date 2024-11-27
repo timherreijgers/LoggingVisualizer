@@ -1,0 +1,34 @@
+version: "1.0"
+linter: qodana-clang
+bootstrap:  sh ./scripts/prepare_qodana.sh
+profile:
+  name: qodana.recommended
+failureConditions:
+  severityThresholds:
+    any: 50
+    critical: 1
+    high: 2
+    moderate: 3
+    low: 4
+    info: 5
+include:
+  - name: cppcoreguidelines-*
+  - name: performance-*
+  - name: modernize-*
+  - name: readability-*
+exclude:
+  - name: readability-braces-around-statements
+  - name: readability-magic-numbers
+  - name: readability-identifier-length
+  - name: readability-qualified-auto
+  - name: modernize-use-trailing-return-type
+  - name: cppcoreguidelines-avoid-magic-numbers
+    paths:
+      - model/tests
+      - presenters/tests
+      - widgets/tests
+  - name: cppcoreguidelines-non-private-member-variables-in-classes
+    paths:
+      - model/tests
+      - presenters/tests
+      - widgets/tests

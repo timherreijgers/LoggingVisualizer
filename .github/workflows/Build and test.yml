@@ -36,12 +36,13 @@ jobs:
           sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev libc++-dev
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: 6.6.*
           host: 'linux'
           target: 'desktop'
           arch: 'gcc_64'
+          cache: true
 
       - name: Configure CMake
         env:
@@ -91,6 +92,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Get number of CPU cores
+        uses: SimenB/github-actions-cpu-cores@v2
+        id: cpu-cores
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
@@ -106,7 +111,7 @@ jobs:
         run: cmake -DCMAKE_PREFIX_PATH=$QT_ROOT_DIR -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: Build
-        run: cmake --build ${{github.workspace}}/build  -j 4 --config ${{env.BUILD_TYPE}}
+        run: cmake --build ${{github.workspace}}/build  -j ${{ steps.cpu-cores.outputs.count }} --config ${{env.BUILD_TYPE}}
 
       - name: Test
         working-directory: ${{github.workspace}}/build

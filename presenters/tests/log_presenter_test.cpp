@@ -82,7 +82,7 @@ TEST_F(LogPresenterTests, LogMessagesChanged_WithMessages_CallsSetLogMessages)
 
 TEST_F(LogPresenterTests, LogMessagesChanged_WithMessages_CallsSetLogMessagesWithCorrectMessages)
 {
-    const Widgets::ItemModels::AbstractItemModel<Types::LogEntry> * itemModel;
+    const Widgets::ItemModels::AbstractItemModel<Types::LogEntry> * itemModel = nullptr;
 
     ON_CALL(m_mockFilteredLogMessageView, empty()).WillByDefault(testing::Return(false));
     ON_CALL(m_mockFilteredLogMessageView, size()).WillByDefault(testing::Return(5));
