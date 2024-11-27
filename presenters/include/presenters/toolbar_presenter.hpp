@@ -15,7 +15,7 @@ namespace Presenters
 class ToolbarPresenter : public BasePresenter
 {
 public:
-    explicit ToolbarPresenter(Windows::WindowManager& manager, Widgets::IToolbar& view, Model::ILogDataContext& model);
+    explicit ToolbarPresenter(Windows::IWindowManager& manager, Widgets::IToolbar& view, Model::ILogDataContext& model);
 
 private:
     Widgets::IToolbar& m_view;

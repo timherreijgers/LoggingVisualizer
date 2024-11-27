@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "windows/window_manager.hpp"
+#include "windows/iwindow_manager.hpp"
 
 namespace Presenters
 {
@@ -13,13 +13,13 @@ namespace Presenters
 class BasePresenter
 {
 public:
-    explicit BasePresenter(Windows::WindowManager& windowManager);
+    explicit BasePresenter(Windows::IWindowManager& windowManager);
 
 protected:
-    [[nodiscard]] auto getWindowManager() const noexcept -> Windows::WindowManager&;
+    [[nodiscard]] auto getWindowManager() const noexcept -> Windows::IWindowManager&;
 
 private:
-    Windows::WindowManager& m_windowManager;
+    Windows::IWindowManager& m_windowManager;
 };
 
 } // namespace Presenters

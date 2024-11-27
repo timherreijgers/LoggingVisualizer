@@ -5,17 +5,20 @@
 
 #pragma once
 
+#include "iwindow_manager.hpp"
 #include "main_window.hpp"
 #include "settings_window.hpp"
 
 namespace Windows
 {
 
-class WindowManager
+class WindowManager : public IWindowManager
 {
 public:
-    [[nodiscard]] auto getMainWindow() noexcept -> MainWindow&;
-    [[nodiscard]] auto getSettingsWindow() noexcept -> SettingsWindow&;
+    ~WindowManager() override = default;
+
+    [[nodiscard]] auto getMainWindow() noexcept -> MainWindow& override;
+    [[nodiscard]] auto getSettingsWindow() noexcept -> SettingsWindow& override;
 
 private:
     MainWindow m_mainWindow;

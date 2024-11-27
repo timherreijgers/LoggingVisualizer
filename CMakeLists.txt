@@ -32,6 +32,7 @@ set(CMAKE_AUTORCC ON)
 
 add_subdirectory(application)
 add_subdirectory(benchmarks)
+add_subdirectory(mocks)
 add_subdirectory(model)
 add_subdirectory(presenters)
 add_subdirectory(types)

@@ -19,7 +19,7 @@ namespace Presenters
 class MenuBarPresenter : public BasePresenter
 {
 public:
-    explicit MenuBarPresenter(Windows::WindowManager& manager, Widgets::IMenuBar& view, Model::ILogDataContext& model);
+    explicit MenuBarPresenter(Windows::IWindowManager& manager, Widgets::IMenuBar& view, Model::ILogDataContext& model);
 
 private:
     void openFileClicked();

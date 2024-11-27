@@ -10,7 +10,7 @@
 namespace Presenters
 {
 
-LogPresenter::LogPresenter(Windows::WindowManager& manager, Widgets::ILogWidget& view, Model::ILogDataContext& model) :
+LogPresenter::LogPresenter(Windows::IWindowManager& manager, Widgets::ILogWidget& view, Model::ILogDataContext& model) :
     BasePresenter(manager), m_view(view), m_model(model)
 {
     m_model.connectLogMessagesChanged([this]() { logMessagesUpdated(m_model.getLogMessages()); });
