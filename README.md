@@ -1,5 +1,6 @@
 # LoggingVisualizer
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=timherreijgers_LoggingVisualizer&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=timherreijgers_LoggingVisualizer)
+[![Qodana](https://github.com/timherreijgers/LoggingVisualizer/actions/workflows/qodana_scan.yml/badge.svg)](https://github.com/timherreijgers/LoggingVisualizer/actions/workflows/qodana_scan.yml)
 
 LoggingVisualizer is a simple application to view log files. It aims to be 
 efficient in loading and visualizing big files. Currently, it is pretty bare-bones since

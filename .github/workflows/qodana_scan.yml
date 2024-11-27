@@ -1,0 +1,28 @@
+name: Qodana
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  qodana:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Install Qodana CLI
+        run: curl -fsSL https://jb.gg/qodana-cli/install | bash
+
+      - name: Run Qodana Scan
+        run: qodana scan
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+          QODANA_ENDPOINT: 'https://qodana.cloud'

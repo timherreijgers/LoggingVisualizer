@@ -79,7 +79,7 @@ static void BM_FileReadingSmallFile(benchmark::State& state)
 {
     Model::LogDataContext context(std::make_unique<MockFile>(100));
 
-    for (auto _ : state)
+    for ([[maybe_unused]] auto _ : state)
     {
         context.openFile("");
         context.closeFile();
@@ -90,7 +90,7 @@ static void BM_FileReadingBigFile(benchmark::State& state)
 {
     Model::LogDataContext context(std::make_unique<MockFile>(1'000'000));
 
-    for (auto _ : state)
+    for ([[maybe_unused]] auto _ : state)
     {
         context.openFile("");
         context.closeFile();
@@ -102,7 +102,7 @@ static void BM_FullyReadingActualFile(benchmark::State& state)
     writeDummyLogFile();
     auto context = Model::LogDataContextFactory::createContext();
 
-    for (auto _ : state)
+    for ([[maybe_unused]] auto _ : state)
     {
         context->openFile(fileName);
         context->closeFile();

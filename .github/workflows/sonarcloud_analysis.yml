@@ -20,26 +20,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Get number of CPU cores
+        uses: SimenB/github-actions-cpu-cores@v2
+        id: cpu-cores
+
       - name: Install dependencies
         run:
-          sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev libc++-dev gcovr
+          sudo apt install gcovr
 
-      - name: Install sonar-scanner and build-wrapper
-        uses: sonarsource/sonarcloud-github-c-cpp@v3
+      - name: Install Build Wrapper
+        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v4
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: 6.6.*
           host: 'linux'
           target: 'desktop'
           arch: 'gcc_64'
+          cache: true
 
       - name: Run build-wrapper
         run: |
           mkdir build
           cmake -DCMAKE_PREFIX_PATH=$QT_ROOT_DIR -B ${{github.workspace}}/build -DCMAKE_C_FLAGS=--coverage -DCMAKE_CXX_FLAGS=--coverage
-          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build build/ --config Debug
+          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build build/ --config Debug -j ${{ steps.cpu-cores.outputs.count }}
 
       - name: Test
         working-directory: ${{github.workspace}}/build
@@ -49,10 +54,12 @@ jobs:
         run: |
           gcovr --sonarqube > coverage.xml
 
+
       - name: Run sonar-scanner
+        uses: sonarsource/sonarqube-scan-action@v6
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Put the name of your token here
-        run: |
-          sonar-scanner \
-            --define sonar.cfamily.compile-commands="${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json" \
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            --define sonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json
             --define sonar.coverageReportPaths=coverage.xml

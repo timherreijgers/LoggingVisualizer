@@ -26,7 +26,7 @@ public:
 TEST_F(MenuBarPresenterTests, openFileClicked_callsOpenFileOnModel_withCorrectPath)
 {
     std::function<void()> callback;
-    ON_CALL(m_menubar, connectOpenFileClicked).WillByDefault([&callback](auto c) { callback = c; });
+    ON_CALL(m_menubar, connectOpenFileClicked).WillByDefault([&callback](const auto& c) { callback = c; });
     ON_CALL(m_menubar, getFileToOpen).WillByDefault(::testing::Return(std::string{"path/to/file.txt"}));
 
     EXPECT_CALL(m_logDataContext, openFile(std::filesystem::path{"path/to/file.txt"}));
