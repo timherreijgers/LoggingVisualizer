@@ -1,0 +1,52 @@
+name: Build and test
+
+on: [ push ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  sonar-analysis:
+    runs-on: ubuntu-latest
+    env:
+      BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run:
+          sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev libc++-dev gcovr
+
+      - name: Install sonar-scanner and build-wrapper
+        uses: sonarsource/sonarcloud-github-c-cpp@v3
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: 6.6.*
+          host: 'linux'
+          target: 'desktop'
+          arch: 'gcc_64'
+
+      - name: Run build-wrapper
+        run: |
+          mkdir build
+          cmake -DCMAKE_PREFIX_PATH=$QT_ROOT_DIR -B ${{github.workspace}}/build -DCMAKE_C_FLAGS=--coverage -DCMAKE_CXX_FLAGS=--coverage
+          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build build/ --config Debug
+
+      - name: Test
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C ${{env.BUILD_TYPE}}
+
+      - name: Collect coverage in xml
+        run: |
+          gcovr --sonarqube > coverage.xml
+
+      - name: Run sonar-scanner
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Put the name of your token here
+        run: |
+          sonar-scanner \
+            --define sonar.cfamily.compile-commands="${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json" \
+            --define sonar.coverageReportPaths=coverage.xml
