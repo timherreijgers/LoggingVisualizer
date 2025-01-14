@@ -19,7 +19,7 @@ LogPresenter::LogPresenter(Windows::IWindowManager& manager, Widgets::ILogWidget
 
     auto& settingsManager = Model::SettingsManager::instance();
 
-    settingsManager.connectSettingsChangedSignal([this, &settingsManager]() {
+    m_settingsChangedConnection = settingsManager.connectSettingsChangedSignal([this, &settingsManager]() {
         std::map<std::string, Types::HighlightColorPair> colorDataMap;
         for (const auto& entry : settingsManager.getLogLevelColorSettings())
         {
@@ -29,6 +29,11 @@ LogPresenter::LogPresenter(Windows::IWindowManager& manager, Widgets::ILogWidget
         m_view.setHighlightColors(std::move(colorDataMap));
         settingsManager.saveSettings();
     });
+}
+
+LogPresenter::~LogPresenter()
+{
+    m_settingsChangedConnection.disconnect();
 }
 
 void LogPresenter::logMessagesUpdated(const Model::IFilteredLogMessageView& logEntries) noexcept

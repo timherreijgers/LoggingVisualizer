@@ -7,6 +7,7 @@
 #include "mocks/model/mock_log_data_context.hpp"
 #include "mocks/widgets/mock_log_widget.hpp"
 #include "mocks/windows/mock_window_manager.hpp"
+#include "model/settings_manager.hpp"
 #include "presenters/log_presenter.hpp"
 
 #include "gtest/gtest.h"
@@ -89,6 +90,44 @@ TEST_F(LogPresenterTests, LogMessagesChanged_WithMessages_CallsSetLogMessagesWit
     callback();
     ASSERT_EQ(itemModel->columnCount(), 1);
     ASSERT_EQ(itemModel->rowCount(), 5);
+}
+
+TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOnView)
+{
+    auto& settingsManager = Model::SettingsManager::instance();
+    LogPresenter presenter(m_windowManager, m_mockLogWidget, m_mockLogDataContext);
+
+    EXPECT_CALL(m_mockLogWidget, setHighlightColors(testing::_)).Times(1);
+
+    settingsManager.setLogLevelColorSettings("INFO", Types::Color{255, 255, 255, 255}, Types::Color{255, 255, 255, 255});
+}
+
+TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOnViewOnEachSettingsChange)
+{
+    auto& settingsManager = Model::SettingsManager::instance();
+    LogPresenter presenter(m_windowManager, m_mockLogWidget, m_mockLogDataContext);
+
+    EXPECT_CALL(m_mockLogWidget, setHighlightColors(testing::_)).Times(2);
+
+    settingsManager.setLogLevelColorSettings("INFO", Types::Color{255, 255, 255, 255}, Types::Color{255, 255, 255, 255});
+    settingsManager.setLogLevelColorSettings("DEBUG", Types::Color{255, 255, 255, 255}, Types::Color{255, 255, 255, 255});
+}
+
+TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOnViewWithCorrectColor)
+{
+    auto& settingsManager = Model::SettingsManager::instance();
+    LogPresenter presenter(m_windowManager, m_mockLogWidget, m_mockLogDataContext);
+    std::map<std::string, Types::HighlightColorPair> colorMap;
+    ON_CALL(m_mockLogWidget, setHighlightColors).WillByDefault([&colorMap](const std::map<std::string, Types::HighlightColorPair>& map) {
+        colorMap = map;
+    });
+
+    constexpr Types::Color textColor{255, 200, 100, 50};
+    constexpr Types::Color backgroundColor{255, 50, 200, 100};
+    settingsManager.setLogLevelColorSettings("ERROR", textColor, backgroundColor);
+
+    ASSERT_EQ(textColor, colorMap["ERROR"].text);
+    ASSERT_EQ(backgroundColor, colorMap["ERROR"].background);
 }
 
 } // namespace Presenters::Tests

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -14,6 +14,7 @@ class BasePresenter
 {
 public:
     explicit BasePresenter(Windows::IWindowManager& windowManager);
+    virtual ~BasePresenter() = default;
 
 protected:
     [[nodiscard]] auto getWindowManager() const noexcept -> Windows::IWindowManager&;
