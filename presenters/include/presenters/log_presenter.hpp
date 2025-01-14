@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -16,6 +16,7 @@ class LogPresenter : public BasePresenter
 {
 public:
     explicit LogPresenter(Windows::IWindowManager& manager, Widgets::ILogWidget& view, Model::ILogDataContext& model);
+    ~LogPresenter() override;
 
 private:
     void logMessagesUpdated(const Model::IFilteredLogMessageView& logEntries) noexcept;
@@ -24,6 +25,8 @@ private:
     Widgets::ILogWidget& m_view;
     Model::ILogDataContext& m_model;
     std::unique_ptr<Widgets::ItemModels::AbstractItemModel<Types::LogEntry>> m_logModel;
+    // TODO: There should be an RAII wrapper for this, so we can get rid of the destructor to adhere to the rule of 0
+    Signals::connection m_settingsChangedConnection;
 };
 
 } // namespace Presenters

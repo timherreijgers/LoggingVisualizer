@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -34,7 +34,8 @@ public:
     [[nodiscard]] auto getLogLevelColorSettings() noexcept -> const std::vector<LogLevelColorSettingsEntry>&;
     void saveSettings();
 
-    void connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot);
+    // TODO: Add nodiscard
+    auto connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot) -> Signals::connection;
 
 private:
     SettingsManager();

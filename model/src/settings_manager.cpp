@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -126,9 +126,9 @@ void SettingsManager::saveSettings()
     filestream << out.c_str();
 }
 
-void SettingsManager::connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot)
+auto SettingsManager::connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot) -> Signals::connection
 {
-    m_settingsChangedSignal.connect(std::move(slot));
+    return m_settingsChangedSignal.connect(std::move(slot));
 }
 
 } // namespace Model
