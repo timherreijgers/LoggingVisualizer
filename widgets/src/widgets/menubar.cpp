@@ -1,12 +1,11 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
 #include "widgets/menubar.hpp"
-#include "ui_menubar.h"
 
-#include <iostream>
+#include "ui_menubar.h"
 
 namespace Widgets
 {
@@ -24,22 +23,22 @@ MenuBar::MenuBar(QWidget * parent) :
 
 MenuBar::~MenuBar() = default;
 
-void MenuBar::connectOpenFileClicked(std::function<void()> slot)
+void MenuBar::connectOpenFileClicked(const std::function<void()>& slot)
 {
     connect(this, &MenuBar::openFileClicked, slot);
 }
 
-void MenuBar::connectCloseFileClicked(std::function<void()> slot)
+void MenuBar::connectCloseFileClicked(const std::function<void()>& slot)
 {
     connect(this, &MenuBar::closeFileClicked, slot);
 }
 
-void MenuBar::connectPreferencesClicked(std::function<void()> slot)
+void MenuBar::connectPreferencesClicked(const std::function<void()>& slot)
 {
     connect(this, &MenuBar::preferencesClicked, slot);
 }
 
-void MenuBar::connectExitClicked(std::function<void()> slot)
+void MenuBar::connectExitClicked(const std::function<void()>& slot)
 {
     connect(this, &MenuBar::exitClicked, slot);
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -16,7 +16,7 @@ namespace Presenters::Tests
 
 class LogPresenterTests : public ::testing::Test
 {
-protected:
+public:
     Widgets::Mocks::MockLogWidget m_mockLogWidget;
     Model::Mocks::MockLogDataContext m_mockLogDataContext;
     Model::Mocks::MockFilteredLogMessageView m_mockFilteredLogMessageView;
@@ -74,14 +74,14 @@ TEST_F(LogPresenterTests, LogMessagesChanged_WithMessages_CallsSetLogMessages)
 TEST_F(LogPresenterTests, LogMessagesChanged_WithMessages_CallsSetLogMessagesWithCorrectMessages)
 {
     Model::logMessageChangedSignal callback;
-    const Widgets::ItemModels::AbstractItemModel<Types::LogEntry>* itemModel;
+    const Widgets::ItemModels::AbstractItemModel<Types::LogEntry> * itemModel;
 
     ON_CALL(m_mockLogDataContext, connectLogMessagesChanged).WillByDefault([&callback](auto c) { return callback.connect(c); });
     ON_CALL(m_mockLogDataContext, getLogMessages).WillByDefault(testing::ReturnRef(m_mockFilteredLogMessageView));
     ON_CALL(m_mockFilteredLogMessageView, empty()).WillByDefault(testing::Return(false));
     ON_CALL(m_mockFilteredLogMessageView, size()).WillByDefault(testing::Return(5));
 
-    ON_CALL(m_mockLogWidget, setLogMessages).WillByDefault([&itemModel](const Widgets::ItemModels::AbstractItemModel<Types::LogEntry>& model){itemModel = &model;});
+    ON_CALL(m_mockLogWidget, setLogMessages).WillByDefault([&itemModel](const Widgets::ItemModels::AbstractItemModel<Types::LogEntry>& model) { itemModel = &model; });
     EXPECT_CALL(m_mockLogWidget, setLogMessages(testing::_)).Times(1);
 
     LogPresenter presenter(m_windowManager, m_mockLogWidget, m_mockLogDataContext);

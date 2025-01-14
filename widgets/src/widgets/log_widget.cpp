@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -47,7 +47,7 @@ void LogWidget::setHighlightColors(std::map<std::string, Types::HighlightColorPa
         dynamic_cast<ItemModels::LogItemModel *>(m_model.get())->setHighlightColors(std::move(colorMap));
     }
 }
-void LogWidget::connectOnFileDropped(std::function<void(std::string_view)> slot)
+void LogWidget::connectOnFileDropped(const std::function<void(std::string_view)>& slot)
 {
     connect(this, &LogWidget::onFileDropped, slot);
 }

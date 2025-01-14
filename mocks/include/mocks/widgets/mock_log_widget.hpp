@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -19,7 +19,7 @@ public:
     MOCK_METHOD(void, setLogMessages, (const Widgets::ItemModels::AbstractItemModel<Types::LogEntry>&), (override, noexcept));
     MOCK_METHOD(void, clearLogMessages, (), (override, noexcept));
     MOCK_METHOD(void, setHighlightColors, ((std::map<std::string, Types::HighlightColorPair>)), (override, noexcept));
-    MOCK_METHOD(void, connectOnFileDropped, (std::function<void(std::string_view)>), (override));
+    MOCK_METHOD(void, connectOnFileDropped, (const std::function<void(std::string_view)>&), (override));
 };
 
 } // namespace Widgets::Mocks

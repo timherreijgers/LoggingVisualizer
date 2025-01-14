@@ -26,7 +26,7 @@ public:
     virtual ~ILogLevelWidget() = default;
 
     virtual void setModel(QAbstractItemModel * model) = 0;
-    virtual void connectColorSelectionChanged(std::function<void(int, ColorType, Types::Color)> slot) = 0;
+    virtual void connectColorSelectionChanged(const std::function<void(int, ColorType, Types::Color)>& slot) = 0;
 };
 
 } // namespace Widgets
