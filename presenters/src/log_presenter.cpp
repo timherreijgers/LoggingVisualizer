@@ -1,7 +1,8 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
+
 #include "presenters/log_presenter.hpp"
 
 #include "item_models/log_item_model.hpp"

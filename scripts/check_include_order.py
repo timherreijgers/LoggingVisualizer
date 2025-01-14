@@ -1,3 +1,6 @@
+#  Copyright © 2025 Tim Herreijgers
+#  Licensed using the MIT license
+
 import utils
 import re
 from pathlib import Path
@@ -12,8 +15,9 @@ def cpp_has_header(cpp_file_name: str, header_files: [str]):
 def corresponding_header_is_first(cpp_file: str):
     file_contents = open(cpp_file, "r", encoding="utf-8").read()
     file_name = Path(cpp_file).stem
-    header_regex = re.compile(f"\/\*\n\s\*\sCopyright\s.\s(\d{4}-*\d{4}|\d*)\sTim\sHerreijgers\n\s\*\sLicensed\susing\sthe\sMIT\slicense\n\s\*\/\n*#include.*{file_name}.(h|hpp)")
-    return header_regex.match(file_contents)
+#    header_regex = re.compile(f"\/\*\n\s\*\sCopyright\s.\s(\d{4}-*\d{4}|\d*)\sTim\sHerreijgers\n\s\*\sLicensed\susing\sthe\sMIT\slicense\n\s\*\/\n*#include.*{file_name}.(hpp|h)")
+    header_regex = re.compile(f"\*\/\s\s#include.*{file_name}.(hpp|h)")
+    return header_regex.search(file_contents)
 
 def main():
     all_header_files = utils.find_all_files_with_extension([".hpp", ".h"])

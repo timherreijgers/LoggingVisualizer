@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -27,10 +27,10 @@ public:
     explicit MenuBar(QWidget * parent = nullptr);
     ~MenuBar() override;
 
-    void connectOpenFileClicked(std::function<void()> slot) override;
-    void connectCloseFileClicked(std::function<void()> slot) override;
-    void connectPreferencesClicked(std::function<void()> slot) override;
-    void connectExitClicked(std::function<void()> slot) override;
+    void connectOpenFileClicked(const std::function<void()>& slot) override;
+    void connectCloseFileClicked(const std::function<void()>& slot) override;
+    void connectPreferencesClicked(const std::function<void()>& slot) override;
+    void connectExitClicked(const std::function<void()>& slot) override;
 
 private slots:
     void actionOpenTriggered(bool);

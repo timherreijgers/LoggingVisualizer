@@ -1,9 +1,9 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
-#include "widgets/log_level_widget.hpp"
+#include "log_level_widget.hpp"
 
 #include <QApplication>
 #include <QColorDialog>
@@ -28,7 +28,7 @@ void LogLevelWidget::setModel(QAbstractItemModel * model)
     setColumnWidth(2, rowHeight(0) * 3);
 }
 
-void LogLevelWidget::connectColorSelectionChanged(std::function<void(int, ColorType, Types::Color)> slot)
+void LogLevelWidget::connectColorSelectionChanged(const std::function<void(int, ColorType, Types::Color)>& slot)
 {
     connect(this, &LogLevelWidget::colorSelectionChanged, slot);
 }

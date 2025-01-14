@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -25,7 +25,7 @@ public:
 
     virtual void setHighlightColors(std::map<std::string, Types::HighlightColorPair> colorMap) noexcept = 0;
 
-    virtual void connectOnFileDropped(std::function<void(std::string_view)> slot) = 0;
+    virtual void connectOnFileDropped(const std::function<void(std::string_view)>& slot) = 0;
 };
 
 } // namespace Widgets

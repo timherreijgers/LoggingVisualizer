@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -20,7 +20,7 @@ class LogLevelWidget : public QTableView, public ILogLevelWidget
 public:
     explicit LogLevelWidget(QWidget * parent = nullptr);
     void setModel(QAbstractItemModel * model) override;
-    void connectColorSelectionChanged(std::function<void(int, ColorType, Types::Color)> slot) override;
+    void connectColorSelectionChanged(const std::function<void(int, ColorType, Types::Color)>& slot) override;
 
 private slots:
     void onCellClicked(const QModelIndex& index);
