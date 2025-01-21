@@ -7,6 +7,8 @@
 
 #include "ui_menubar.h"
 
+#include <QFileDialog>
+
 namespace Widgets
 {
 
@@ -41,6 +43,12 @@ void MenuBar::connectPreferencesClicked(const std::function<void()>& slot)
 void MenuBar::connectExitClicked(const std::function<void()>& slot)
 {
     connect(this, &MenuBar::exitClicked, slot);
+}
+
+auto MenuBar::getFileToOpen() noexcept -> std::string
+{
+    const auto path = QFileDialog::getOpenFileName();
+    return path.toStdString();
 }
 
 void MenuBar::actionOpenTriggered(bool)

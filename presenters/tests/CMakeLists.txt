@@ -1,5 +1,6 @@
 add_executable(PresenterTests
-        log_presenter_test.cpp)
+        log_presenter_test.cpp
+        menu_bar_presenter_test.cpp)
 
 target_link_libraries(PresenterTests PRIVATE
         presenters
