@@ -32,6 +32,8 @@ public:
     void connectPreferencesClicked(const std::function<void()>& slot) override;
     void connectExitClicked(const std::function<void()>& slot) override;
 
+    [[nodiscard]] auto getFileToOpen() noexcept -> std::string override;
+
 private slots:
     void actionOpenTriggered(bool);
     void actionCloseTriggered(bool);

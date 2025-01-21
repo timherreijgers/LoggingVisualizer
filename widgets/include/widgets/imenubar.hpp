@@ -6,6 +6,7 @@
 #pragma once
 
 #include <functional>
+#include <string>
 
 namespace Widgets
 {
@@ -19,6 +20,8 @@ public:
     virtual void connectCloseFileClicked(const std::function<void()>& slot) = 0;
     virtual void connectPreferencesClicked(const std::function<void()>& slot) = 0;
     virtual void connectExitClicked(const std::function<void()>& slot) = 0;
+
+    [[nodiscard]] virtual auto getFileToOpen() noexcept -> std::string = 0;
 };
 
 } // namespace Widgets

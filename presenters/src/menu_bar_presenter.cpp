@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -26,8 +26,7 @@ MenuBarPresenter::MenuBarPresenter(Windows::IWindowManager& manager, Widgets::IM
 
 void MenuBarPresenter::openFileClicked()
 {
-    const auto filename = QFileDialog::getOpenFileName().toStdString();
-    m_model.openFile(filename);
+    m_model.openFile(m_view.getFileToOpen());
 }
 
 void MenuBarPresenter::closeFileClicked() noexcept
