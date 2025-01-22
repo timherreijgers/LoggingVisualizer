@@ -5,29 +5,27 @@
 
 #include "presenters/log_presenter.hpp"
 
+#include "../../model/src/settings_manager.hpp"
 #include "item_models/log_item_model.hpp"
-#include "model/settings_manager.hpp"
 
 namespace Presenters
 {
 
-LogPresenter::LogPresenter(Windows::IWindowManager& manager, Widgets::ILogWidget& view, Model::ILogDataContext& model) :
-    BasePresenter(manager), m_view(view), m_model(model)
+LogPresenter::LogPresenter(Windows::IWindowManager& manager, Widgets::ILogWidget& view, Model::ILogDataContext& model, Model::ISettingsManager& settingsManager) :
+    BasePresenter(manager), m_view(view), m_model(model), m_settingsManager(settingsManager)
 {
     m_model.connectLogMessagesChanged([this]() { logMessagesUpdated(m_model.getLogMessages()); });
     m_view.connectOnFileDropped([this](const std::string_view url) { onFileDroppedInView(url); });
 
-    auto& settingsManager = Model::SettingsManager::instance();
-
-    m_settingsChangedConnection = settingsManager.connectSettingsChangedSignal([this, &settingsManager]() {
+    m_settingsChangedConnection = m_settingsManager.connectSettingsChangedSignal([this]() {
         std::map<std::string, Types::HighlightColorPair> colorDataMap;
-        for (const auto& entry : settingsManager.getLogLevelColorSettings())
+        for (const auto& entry : m_settingsManager.getLogLevelColorSettings())
         {
             colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};
         }
 
         m_view.setHighlightColors(std::move(colorDataMap));
-        settingsManager.saveSettings();
+        m_settingsManager.saveSettings();
     });
 }
 
@@ -47,7 +45,7 @@ void LogPresenter::logMessagesUpdated(const Model::IFilteredLogMessageView& logE
     m_logModel = std::make_unique<LogItemModel>(logEntries);
     m_view.setLogMessages(*m_logModel);
 
-    const auto& colorSettings = Model::SettingsManager::instance().getLogLevelColorSettings();
+    const auto& colorSettings = m_settingsManager.getLogLevelColorSettings();
 
     std::map<std::string, Types::HighlightColorPair> colorDataMap;
     for (const auto& entry : colorSettings)

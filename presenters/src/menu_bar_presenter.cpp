@@ -5,7 +5,8 @@
 
 #include "presenters/menu_bar_presenter.hpp"
 
-#include "model/settings_manager.hpp"
+#include "../../model/src/settings_manager.hpp"
+#include "model/settings_manager_factory.hpp"
 #include "windows/window_manager.hpp"
 
 #include <QApplication>
@@ -38,7 +39,8 @@ void MenuBarPresenter::preferencesClicked() noexcept
 {
     auto& settingsWindow = getWindowManager().getSettingsWindow();
     if (!m_settingsLogLevelPresenter)
-        m_settingsLogLevelPresenter = std::make_unique<SettingsLogLevelPresenter>(getWindowManager(), settingsWindow.getLogWidget(), Model::SettingsManager::instance());
+        m_settingsLogLevelPresenter = std::make_unique<SettingsLogLevelPresenter>(getWindowManager(), settingsWindow.getLogWidget(),
+                                                                                  Model::SettingsManagerFactory::createSettingsManager());
 
     settingsWindow.show();
 }

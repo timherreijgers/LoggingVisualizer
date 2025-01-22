@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "model/settings_manager.hpp"
+#include "settings_manager.hpp"
 
 #include "model/log_level_color_settings_entry.hpp"
 
