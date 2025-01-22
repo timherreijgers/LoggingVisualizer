@@ -8,7 +8,6 @@
 #include "mocks/windows/mock_window_manager.hpp"
 #include "presenters/menu_bar_presenter.hpp"
 
-
 #include "gtest/gtest.h"
 
 namespace Presenters::Tests
@@ -17,9 +16,9 @@ namespace Presenters::Tests
 class MenuBarPresenterTests : public ::testing::Test
 {
 public:
-    Windows::Mocks::MockWindowManager m_windowManager;
-    Widgets::Mocks::MockMenuBar m_menubar;
-    Model::Mocks::MockLogDataContext m_logDataContext;
+    testing::NiceMock<Windows::Mocks::MockWindowManager> m_windowManager;
+    testing::NiceMock<Widgets::Mocks::MockMenuBar> m_menubar;
+    testing::NiceMock<Model::Mocks::MockLogDataContext> m_logDataContext;
 };
 
 TEST_F(MenuBarPresenterTests, openFileClicked_callsOpenFileOnModel_withCorrectPath)

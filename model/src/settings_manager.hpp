@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "log_level_color_settings_entry.hpp"
-
+#include "model/isettings_manager.hpp"
+#include "model/log_level_color_settings_entry.hpp"
 #include "model/signal.hpp"
 
 #include <vector>
@@ -14,32 +14,24 @@
 namespace Model
 {
 
-using SettingsChangedSignal = Signals::signal<void()>;
-
-class SettingsManager
+class SettingsManager : public ISettingsManager
 {
 public:
+    SettingsManager();
+
     SettingsManager(SettingsManager&) = delete;
     SettingsManager(SettingsManager&&) = delete;
     SettingsManager operator=(SettingsManager&) = delete;
     SettingsManager& operator=(SettingsManager&&) = delete;
 
-    [[nodiscard]] auto static instance() noexcept -> SettingsManager&
-    {
-        static SettingsManager instance;
-        return instance;
-    }
-
-    void setLogLevelColorSettings(std::string level, Types::Color textColor, Types::Color backgroundColor);
-    [[nodiscard]] auto getLogLevelColorSettings() noexcept -> const std::vector<LogLevelColorSettingsEntry>&;
-    void saveSettings();
+    void setLogLevelColorSettings(std::string level, Types::Color textColor, Types::Color backgroundColor) override;
+    [[nodiscard]] auto getLogLevelColorSettings() noexcept -> const std::vector<LogLevelColorSettingsEntry>& override;
+    void saveSettings() override;
 
     // TODO: Add nodiscard
-    auto connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot) -> Signals::connection;
+    auto connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot) -> Signals::connection override;
 
 private:
-    SettingsManager();
-
     static void createYamlFile();
     void loadSettingsFromYamlFile();
 

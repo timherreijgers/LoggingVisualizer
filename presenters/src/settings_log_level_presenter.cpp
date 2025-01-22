@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -8,7 +8,7 @@
 namespace Presenters
 {
 
-SettingsLogLevelPresenter::SettingsLogLevelPresenter(Windows::IWindowManager& manager, Widgets::ILogLevelWidget& view, Model::SettingsManager& model) :
+SettingsLogLevelPresenter::SettingsLogLevelPresenter(Windows::IWindowManager& manager, Widgets::ILogLevelWidget& view, Model::ISettingsManager& model) :
     BasePresenter(manager), m_view(view), m_model(model)
 {
     m_view.connectColorSelectionChanged([this](const int row, const Widgets::ColorType type, const Types::Color color) {
