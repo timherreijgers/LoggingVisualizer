@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -31,7 +31,6 @@ public:
     virtual void openFile(const std::filesystem::path& filePath) = 0;
     virtual void closeFile() noexcept = 0;
 
-    [[nodiscard]] virtual auto getLogMessageFilter() const noexcept -> const ILogMessageFilter& = 0;
     [[nodiscard]] virtual auto getLogMessageFilter() noexcept -> ILogMessageFilter& = 0;
 
     [[nodiscard]] virtual auto getLogMessages() const noexcept -> const IFilteredLogMessageView& = 0;

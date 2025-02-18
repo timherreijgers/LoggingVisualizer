@@ -31,9 +31,9 @@ void Toolbar::setFilterEnabled(bool enabled)
     }
 }
 
-void Toolbar::connectFilterChanged(std::function<void(const QString&)> slot)
+void Toolbar::connectFilterChanged(std::function<void(const std::string&)> slot)
 {
-    connect(m_ui->messageFilter, &QLineEdit::textChanged, slot);
+    connect(m_ui->messageFilter, &QLineEdit::textChanged, [&slot](const QString& text) { slot(text.toStdString()); });
 }
 
 void Toolbar::connectFilterEnabledClicked(std::function<void()> slot)

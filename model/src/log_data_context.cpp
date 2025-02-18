@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -50,11 +50,6 @@ void LogDataContext::closeFile() noexcept
 {
     m_logMessageFilter.setInputMessages({});
     m_fileReader->closeFile();
-}
-
-auto LogDataContext::getLogMessageFilter() const noexcept -> const ILogMessageFilter&
-{
-    return m_logMessageFilter;
 }
 
 auto LogDataContext::getLogMessageFilter() noexcept -> ILogMessageFilter&
