@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -24,7 +24,6 @@ public:
     void openFile(const std::filesystem::path& filePath) final;
     void closeFile() noexcept final;
 
-    [[nodiscard]] auto getLogMessageFilter() const noexcept -> const ILogMessageFilter& final;
     [[nodiscard]] auto getLogMessageFilter() noexcept -> ILogMessageFilter& final;
 
     [[nodiscard]] auto getLogMessages() const noexcept -> const IFilteredLogMessageView& final;

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -18,7 +18,6 @@ class MockLogDataContext : public ILogDataContext
 public:
     MOCK_METHOD(void, openFile, (const std::filesystem::path&), (override));
     MOCK_METHOD(void, closeFile, (), (override, noexcept));
-    MOCK_METHOD(const ILogMessageFilter&, getLogMessageFilter, (), (const, override, noexcept));
     MOCK_METHOD(ILogMessageFilter&, getLogMessageFilter, (), (override, noexcept));
     MOCK_METHOD(const IFilteredLogMessageView&, getLogMessages, (), (const, override, noexcept));
     MOCK_METHOD(is::signals::connection, connectLogMessagesChanged, (logMessageChangedSignal::slot_type), (override, noexcept));

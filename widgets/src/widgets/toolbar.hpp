@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -30,7 +30,7 @@ public:
     ~Toolbar() override;
 
     void setFilterEnabled(bool enabled) override;
-    void connectFilterChanged(std::function<void(const QString&)> slot) override;
+    void connectFilterChanged(std::function<void(const std::string&)> slot) override;
     void connectFilterEnabledClicked(std::function<void()> slot) override;
 
 private:
