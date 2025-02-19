@@ -28,8 +28,7 @@ public:
     [[nodiscard]] virtual auto getLogLevelColorSettings() noexcept -> const std::vector<LogLevelColorSettingsEntry>& = 0;
     virtual void saveSettings() = 0;
 
-    // TODO: Add nodiscard
-    virtual auto connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot) -> Signals::connection = 0;
+    [[nodiscard]] virtual auto connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot) -> Signals::connection = 0;
 };
 
 } // namespace Model

@@ -28,8 +28,7 @@ public:
     [[nodiscard]] auto getLogLevelColorSettings() noexcept -> const std::vector<LogLevelColorSettingsEntry>& override;
     void saveSettings() override;
 
-    // TODO: Add nodiscard
-    auto connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot) -> Signals::connection override;
+    [[nodiscard]] auto connectSettingsChangedSignal(SettingsChangedSignal::slot_type slot) -> Signals::connection override;
 
 private:
     static void createYamlFile();

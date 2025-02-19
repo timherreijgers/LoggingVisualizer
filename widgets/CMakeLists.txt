@@ -10,7 +10,7 @@ set(WIDGET_HEADERS
         include/windows/iwindow_manager.hpp
         include/windows/main_window.hpp
         include/windows/isettings_window.hpp
-        include/windows/window_manager.hpp
+        include/windows/window_manager_factory.hpp
 
         src/item_models/log_item_model.hpp
 
@@ -19,7 +19,8 @@ set(WIDGET_HEADERS
         src/widgets/menubar.hpp
         src/widgets/toolbar.hpp
 
-        src/windows/settings_window.hpp)
+        src/windows/settings_window.hpp
+        src/windows/window_manager.hpp)
 
 set(WIDGET_SOURCES
         src/item_models/log_item_model.cpp
@@ -28,6 +29,7 @@ set(WIDGET_SOURCES
         src/windows/main_window.cpp
         src/windows/settings_window.cpp
         src/windows/window_manager.cpp
+        src/windows/window_manager_factory.cpp
 
         src/widgets/log_level_widget.cpp
         src/widgets/log_widget.cpp
