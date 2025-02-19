@@ -1,12 +1,12 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
 #pragma once
 
+#include "isettings_window.hpp"
 #include "main_window.hpp"
-#include "settings_window.hpp"
 
 namespace Windows
 {
@@ -17,7 +17,7 @@ public:
     virtual ~IWindowManager() = default;
 
     [[nodiscard]] virtual auto getMainWindow() noexcept -> MainWindow& = 0;
-    [[nodiscard]] virtual auto getSettingsWindow() noexcept -> SettingsWindow& = 0;
+    [[nodiscard]] virtual auto getSettingsWindow() noexcept -> ISettingsWindow& = 0;
 };
 
 } // namespace Windows

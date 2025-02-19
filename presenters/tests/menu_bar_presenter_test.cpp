@@ -4,7 +4,9 @@
  */
 
 #include "mocks/model/mock_log_data_context.hpp"
+#include "mocks/widgets/mock_log_level_widget.hpp"
 #include "mocks/widgets/mock_menu_bar.hpp"
+#include "mocks/windows/mock_settings_window.h"
 #include "mocks/windows/mock_window_manager.hpp"
 #include "presenters/menu_bar_presenter.hpp"
 
@@ -44,18 +46,36 @@ TEST_F(MenuBarPresenterTests, closeFileClicked_callsCloseFileOnModel)
     callback();
 }
 
-// TODO: We need to have interfaces for the windows to support this test
-// TEST_F(MenuBarPresenterTests, preferencesClicked_createsSettingsWindow)
-// {
-//     Windows::SettingsWindow settingsWindow;
-//     std::function<void()> callback;
-//     ON_CALL(m_menubar, connectPreferencesClicked).WillByDefault([&callback](auto c) { callback = c; });
-//     ON_CALL(m_windowManager, getSettingsWindow).WillByDefault(::testing::ReturnRef(settingsWindow));
-//
-//     EXPECT_CALL(m_windowManager, getSettingsWindow()).Times(1);
-//
-//     MenuBarPresenter presenter(m_windowManager, m_menubar, m_logDataContext);
-//     callback();
-// }
+TEST_F(MenuBarPresenterTests, preferencesClicked_createsSettingsWindow)
+{
+    Windows::Mocks::MockSettingsWindow settingsWindow;
+    Widgets::Mocks::MockLogLevelWidget logLevelWidget;
+
+    std::function<void()> callback;
+    ON_CALL(m_menubar, connectPreferencesClicked).WillByDefault([&callback](const auto& c) { callback = c; });
+    ON_CALL(m_windowManager, getSettingsWindow).WillByDefault(::testing::ReturnRef(settingsWindow));
+    ON_CALL(settingsWindow, getLogLevelWidget).WillByDefault(::testing::ReturnRef(logLevelWidget));
+
+    EXPECT_CALL(m_windowManager, getSettingsWindow()).Times(1);
+
+    MenuBarPresenter presenter(m_windowManager, m_menubar, m_logDataContext);
+    callback();
+}
+
+TEST_F(MenuBarPresenterTests, preferencesClicked_showsSettingsWindow)
+{
+    Windows::Mocks::MockSettingsWindow settingsWindow;
+    Widgets::Mocks::MockLogLevelWidget logLevelWidget;
+
+    std::function<void()> callback;
+    ON_CALL(m_menubar, connectPreferencesClicked).WillByDefault([&callback](const auto& c) { callback = c; });
+    ON_CALL(m_windowManager, getSettingsWindow).WillByDefault(::testing::ReturnRef(settingsWindow));
+    ON_CALL(settingsWindow, getLogLevelWidget).WillByDefault(::testing::ReturnRef(logLevelWidget));
+
+    EXPECT_CALL(settingsWindow, showWindow()).Times(1);
+
+    MenuBarPresenter presenter(m_windowManager, m_menubar, m_logDataContext);
+    callback();
+}
 
 } // namespace Presenters::Tests

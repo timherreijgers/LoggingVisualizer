@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -16,7 +16,7 @@ class MockWindowManager : public IWindowManager
 {
 public:
     MOCK_METHOD(MainWindow&, getMainWindow, (), (override, noexcept));
-    MOCK_METHOD(SettingsWindow&, getSettingsWindow, (), (override, noexcept));
+    MOCK_METHOD(ISettingsWindow&, getSettingsWindow, (), (override, noexcept));
 };
 
 } // namespace Windows::Mocks

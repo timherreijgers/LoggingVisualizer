@@ -39,10 +39,10 @@ void MenuBarPresenter::preferencesClicked() noexcept
 {
     auto& settingsWindow = getWindowManager().getSettingsWindow();
     if (!m_settingsLogLevelPresenter)
-        m_settingsLogLevelPresenter = std::make_unique<SettingsLogLevelPresenter>(getWindowManager(), settingsWindow.getLogWidget(),
+        m_settingsLogLevelPresenter = std::make_unique<SettingsLogLevelPresenter>(getWindowManager(), settingsWindow.getLogLevelWidget(),
                                                                                   Model::SettingsManagerFactory::createSettingsManager());
 
-    settingsWindow.show();
+    settingsWindow.showWindow();
 }
 
 } // namespace Presenters

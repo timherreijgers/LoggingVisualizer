@@ -8,6 +8,7 @@ set(MOCKS_HEADERS
         include/mocks/widgets/mock_log_widget.hpp
         include/mocks/widgets/mock_menu_bar.hpp
 
+        include/mocks/windows/mock_settings_window.h
         include/mocks/windows/mock_window_manager.hpp
 )
 
