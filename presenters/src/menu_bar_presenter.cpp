@@ -6,7 +6,7 @@
 #include "presenters/menu_bar_presenter.hpp"
 
 #include "model/settings_manager_factory.hpp"
-#include "windows/window_manager.hpp"
+#include "windows/iwindow_manager.hpp"
 
 #include <QApplication>
 #include <QFileDialog>

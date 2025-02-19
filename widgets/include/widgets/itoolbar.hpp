@@ -18,7 +18,7 @@ public:
     virtual ~IToolbar() = default;
 
     virtual void setFilterEnabled(bool enabled) = 0;
-    virtual void connectFilterChanged(std::function<void(const std::string&)> slot) = 0;
+    virtual void connectFilterChanged(const std::function<void(const std::string&)>& slot) = 0;
     virtual void connectFilterEnabledClicked(std::function<void()> slot) = 0;
 };
 

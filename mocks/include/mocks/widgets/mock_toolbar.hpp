@@ -17,7 +17,7 @@ class MockToolbar : public IToolbar
 {
 public:
     MOCK_METHOD(void, setFilterEnabled, (bool), (override));
-    MOCK_METHOD(void, connectFilterChanged, (std::function<void(const std::string&)>), (override));
+    MOCK_METHOD(void, connectFilterChanged, (const std::function<void(const std::string&)>&), (override));
     MOCK_METHOD(void, connectFilterEnabledClicked, (std::function<void()>), (override));
 };
 

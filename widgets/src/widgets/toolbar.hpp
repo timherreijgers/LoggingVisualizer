@@ -30,7 +30,7 @@ public:
     ~Toolbar() override;
 
     void setFilterEnabled(bool enabled) override;
-    void connectFilterChanged(std::function<void(const std::string&)> slot) override;
+    void connectFilterChanged(const std::function<void(const std::string&)>& slot) override;
     void connectFilterEnabledClicked(std::function<void()> slot) override;
 
 private:

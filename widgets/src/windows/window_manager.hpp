@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "isettings_window.hpp"
-#include "iwindow_manager.hpp"
-#include "main_window.hpp"
+#include "windows/iwindow_manager.hpp"
+#include "windows/main_window.hpp"
+#include "windows/settings_window.hpp"
 
 namespace Windows
 {
@@ -15,7 +15,7 @@ namespace Windows
 class WindowManager : public IWindowManager
 {
 public:
-    WindowManager();
+    WindowManager() = default;
     ~WindowManager() override = default;
 
     [[nodiscard]] auto getMainWindow() noexcept -> MainWindow& override;
@@ -23,7 +23,7 @@ public:
 
 private:
     MainWindow m_mainWindow;
-    std::unique_ptr<ISettingsWindow> m_settingsWindow;
+    SettingsWindow m_settingsWindow;
 };
 
 } // namespace Windows

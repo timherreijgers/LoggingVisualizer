@@ -7,12 +7,6 @@
 
 #include "settings_window.hpp"
 
-Windows::WindowManager::WindowManager() :
-    m_settingsWindow(std::make_unique<SettingsWindow>())
-{
-}
-
-
 auto Windows::WindowManager::getMainWindow() noexcept -> MainWindow&
 {
     return m_mainWindow;
@@ -20,5 +14,5 @@ auto Windows::WindowManager::getMainWindow() noexcept -> MainWindow&
 
 auto Windows::WindowManager::getSettingsWindow() noexcept -> ISettingsWindow&
 {
-    return *m_settingsWindow;
+    return m_settingsWindow;
 }
