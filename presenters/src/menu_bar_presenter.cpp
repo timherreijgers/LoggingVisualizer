@@ -5,13 +5,11 @@
 
 #include "presenters/menu_bar_presenter.hpp"
 
-#include "../../model/src/settings_manager.hpp"
 #include "model/settings_manager_factory.hpp"
 #include "windows/window_manager.hpp"
 
 #include <QApplication>
 #include <QFileDialog>
-#include <QObject>
 
 namespace Presenters
 {
