@@ -1,11 +1,11 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
 #pragma once
 
-#include "widgets/ilog_level_widget.hpp"
+#include "windows/isettings_window.hpp"
 
 
 #include <QMainWindow>
@@ -20,7 +20,7 @@ class SettingsWindow;
 }
 QT_END_NAMESPACE
 
-class SettingsWindow : public QMainWindow
+class SettingsWindow : public QMainWindow, public ISettingsWindow
 {
     Q_OBJECT
 
@@ -28,7 +28,8 @@ public:
     explicit SettingsWindow(QWidget * parent = nullptr);
     ~SettingsWindow() override;
 
-    [[nodiscard]] Widgets::ILogLevelWidget& getLogWidget() const noexcept;
+    [[nodiscard]] Widgets::ILogLevelWidget& getLogLevelWidget() const noexcept override;
+    void showWindow() override;
 
 
 private:

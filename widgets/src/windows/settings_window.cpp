@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Tim Herreijgers
+ * Copyright © 2024-2025 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -18,9 +18,14 @@ SettingsWindow::SettingsWindow(QWidget * parent) :
 
 SettingsWindow::~SettingsWindow() = default;
 
-Widgets::ILogLevelWidget& SettingsWindow::getLogWidget() const noexcept
+Widgets::ILogLevelWidget& SettingsWindow::getLogLevelWidget() const noexcept
 {
     return *m_ui->debug_levels_table;
+}
+
+void SettingsWindow::showWindow()
+{
+    QMainWindow::show();
 }
 
 } // namespace Windows
