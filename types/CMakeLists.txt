@@ -8,5 +8,3 @@ set(TYPES_HEADERS
 add_library(types STATIC ${TYPES_HEADERS})
 
 target_include_directories(types PUBLIC include)
-
-target_link_libraries(types PUBLIC fmt::fmt)

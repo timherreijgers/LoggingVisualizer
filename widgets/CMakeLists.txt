@@ -55,7 +55,4 @@ target_include_directories(widgets PUBLIC include PRIVATE src)
 target_link_libraries(widgets
     PUBLIC
         Qt6::Widgets
-        types
-
-    PRIVATE
-        fmt::fmt)
+        types)
