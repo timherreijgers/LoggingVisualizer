@@ -21,8 +21,8 @@ jobs:
       - name: Verify copyright
         run: python ./scripts/check_copyright.py
 
-      - name: Verify include order
-        run: python ./scripts/check_include_order.py
+      - name: Verify includes
+        run: python ./scripts/check_includes.py
 
   build-and-test-linux:
     runs-on: ubuntu-latest
