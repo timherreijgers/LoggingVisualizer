@@ -1,6 +1,8 @@
 add_executable(ModelTest
         mocks/mock_file_reader.h
 
+        settings/settings_tree_test.cpp
+
         filtered_log_message_view_test.cpp
         log_data_context_test.cpp
         log_message_filter_test.cpp
