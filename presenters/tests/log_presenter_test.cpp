@@ -3,7 +3,6 @@
  * Licensed using the MIT license
  */
 
-#include "../../model/src/settings_manager.hpp"
 #include "mocks/model/mock_filtered_log_message_view.hpp"
 #include "mocks/model/mock_log_data_context.hpp"
 #include "mocks/widgets/mock_log_widget.hpp"

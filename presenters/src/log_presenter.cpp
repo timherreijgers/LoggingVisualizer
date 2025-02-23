@@ -5,8 +5,8 @@
 
 #include "presenters/log_presenter.hpp"
 
-#include "../../model/src/settings_manager.hpp"
 #include "item_models/log_item_model.hpp"
+#include "model/isettings_manager.hpp"
 
 namespace Presenters
 {
