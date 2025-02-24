@@ -32,6 +32,10 @@ set(MODEL_HEADERS
 
         src/platform/memory_mapped_file.hpp
 
+        src/settings/settings_node.hpp
+        src/settings/settings_object.hpp
+        src/settings/settings_tree.hpp
+
         src/generic_file_reader.hpp
         src/filtered_log_message_view.hpp
         src/ifile_reader.hpp
@@ -42,6 +46,9 @@ set(MODEL_HEADERS
 )
 
 set(MODEL_SRCS
+        src/settings/settings_node.cpp
+        src/settings/settings_tree.cpp
+
         src/generic_file_reader.cpp
         src/filtered_log_message_view.cpp
         src/log_data_context.cpp
