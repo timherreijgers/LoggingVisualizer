@@ -8,8 +8,8 @@
 namespace Model
 {
 
-SettingsTree::SettingsTree()
-    : SettingsNode(nullptr)
+SettingsTree::SettingsTree() :
+    SettingsNode(nullptr)
 {
 }
 } // namespace Model
