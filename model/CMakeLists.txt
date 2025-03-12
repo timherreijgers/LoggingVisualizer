@@ -30,8 +30,12 @@ set(MODEL_HEADERS
         include/model/settings_manager_factory.hpp
         include/model/signal.hpp
 
+        include/model/settings/log_color_setting.hpp
+        include/model/settings/settings_group.hpp
+
         src/platform/memory_mapped_file.hpp
 
+        src/settings/settings_manager.hpp
         src/settings/settings_node.hpp
         src/settings/settings_object.hpp
         src/settings/settings_tree.hpp
@@ -46,6 +50,9 @@ set(MODEL_HEADERS
 )
 
 set(MODEL_SRCS
+        src/settings/log_color_setting.cpp
+        src/settings/settings_group.cpp
+        src/settings/settings_manager.cpp
         src/settings/settings_node.cpp
         src/settings/settings_tree.cpp
 
