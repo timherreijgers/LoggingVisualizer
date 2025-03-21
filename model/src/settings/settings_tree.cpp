@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "settings_tree.hpp"
+#include "model/settings/settings_tree.hpp"
 
 namespace Model
 {

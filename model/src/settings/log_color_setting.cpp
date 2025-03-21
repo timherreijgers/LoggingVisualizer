@@ -5,7 +5,9 @@
 
 #include "model/settings/log_color_setting.hpp"
 
-#include <functional>
+#include "exceptions/log_level_not_found_exception.hpp"
+
+#include <ranges>
 
 namespace Model
 {
@@ -40,34 +42,72 @@ auto LogColorSettingEntry::getBackgroundColor() const noexcept -> std::string_vi
     return m_backgroundColor;
 }
 
-void LogColorSettingEntry::setDebugLevelIndex(int logLevelIndex)
+void LogColorSettingEntry::setLogLevelIndex(int logLevelIndex)
 {
     m_logLevelIndex = logLevelIndex;
     m_EntryChangedSignal(*this);
 }
 
-void LogColorSettingEntry::setLogLevel(const std::string& logLevel)
+void LogColorSettingEntry::setLogLevel(std::string_view logLevel)
 {
     m_logLevel = logLevel;
     m_EntryChangedSignal(*this);
 }
 
-void LogColorSettingEntry::setForegroundColor(const std::string& foregroundColor)
+void LogColorSettingEntry::setForegroundColor(std::string_view foregroundColor)
 {
     m_foregroundColor = foregroundColor;
     m_EntryChangedSignal(*this);
 }
 
-void LogColorSettingEntry::setBackgroundColor(const std::string& backgroundColor)
+void LogColorSettingEntry::setBackgroundColor(std::string_view backgroundColor)
 {
     m_backgroundColor = backgroundColor;
     m_EntryChangedSignal(*this);
 }
 
+auto LogColorSettingEntry::operator==(const LogColorSettingEntry& other) const -> bool
+{
+    return other.m_logLevelIndex == m_logLevelIndex &&
+           other.m_foregroundColor == m_foregroundColor &&
+           other.m_backgroundColor == m_backgroundColor &&
+           other.m_logLevel == m_logLevel;
+}
+
 void LogColorSetting::addLogColorSettings(std::string_view logLevel, std::string_view foregroundColor, std::string_view backgroundColor) noexcept
 {
     auto& entry = m_entries.emplace_back(static_cast<int>(m_entries.size()), logLevel, foregroundColor, backgroundColor);
-    m_connections.emplace_back(entry.connectEntryChanged([this](const LogColorSettingEntry& entry) { entryUpdated(entry); }));
+    m_connections.emplace_back(entry.connectEntryChanged([this](const LogColorSettingEntry& e) { entryUpdated(e); }));
+}
+
+auto LogColorSetting::getLogColorSettingsEntries() const noexcept -> const std::vector<LogColorSettingEntry>&
+{
+    return m_entries;
+}
+
+auto LogColorSetting::getLogColorSettingsEntries() noexcept -> std::vector<LogColorSettingEntry>&
+{
+    return m_entries;
+}
+
+auto LogColorSetting::getLogColorSetting(std::string_view debugLevel) const -> const LogColorSettingEntry&
+{
+    const auto& result = std::ranges::find_if(m_entries, [&debugLevel](const LogColorSettingEntry& entry) { return entry.getLogLevel() == debugLevel; });
+
+    if (result == m_entries.end())
+        throw Exceptions::LogLevelNotFoundException(debugLevel);
+
+    return *result;
+}
+
+auto LogColorSetting::getLogColorSetting(std::string_view debugLevel) -> LogColorSettingEntry&
+{
+    const auto& result = std::ranges::find_if(m_entries, [&debugLevel](const LogColorSettingEntry& entry) { return entry.getLogLevel() == debugLevel; });
+
+    if (result == m_entries.end())
+        throw Exceptions::LogLevelNotFoundException(debugLevel);
+
+    return *result;
 }
 
 void LogColorSetting::entryUpdated(const LogColorSettingEntry& /*entry*/)

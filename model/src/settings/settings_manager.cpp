@@ -11,7 +11,14 @@ namespace Model::NewSettings
 SettingsManager::SettingsManager()
 {
     auto& logLevelsGroup = m_groups.emplace_back("Log Levels");
-    logLevelsGroup.addSetting(LogColorSetting{});
+    LogColorSetting logColorSetting{};
+    logColorSetting.addLogColorSettings("TRACE", "#000000", "#FFFFFF");
+    logColorSetting.addLogColorSettings("DEBUG", "#000000", "#FFFFFF");
+    logColorSetting.addLogColorSettings("INFO", "#000000", "#FFFFFF");
+    logColorSetting.addLogColorSettings("WARNING", "#000000", "#FFFFFF");
+    logColorSetting.addLogColorSettings("ERROR", "#000000", "#FFFFFF");
+    logColorSetting.addLogColorSettings("CRITICAL", "#000000", "#FFFFFF");
+    logLevelsGroup.addSetting(std::move(logColorSetting));
 }
 
 
@@ -22,12 +29,12 @@ auto SettingsManager::getSettingGroups() const noexcept -> const std::vector<Set
 
 auto SettingsManager::getSettingGroup(SettingsGroupId id) const noexcept -> const SettingsGroup&
 {
-    return m_groups[static_cast<int>(id)];
+    return m_groups[std::to_underlying(id)];
 }
 
 auto SettingsManager::getSettingGroup(SettingsGroupId id) noexcept -> SettingsGroup&
 {
-    return m_groups[static_cast<int>(id)];
+    return m_groups[std::to_underlying(id)];
 }
 
 

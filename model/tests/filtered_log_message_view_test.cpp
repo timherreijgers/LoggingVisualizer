@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "exceptions/FileNotFoundException.hpp"
+#include "exceptions/file_not_found_exception.hpp"
 #include "filtered_log_message_view.hpp"
 
 #include <gtest/gtest.h>

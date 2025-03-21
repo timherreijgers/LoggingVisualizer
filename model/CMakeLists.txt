@@ -32,13 +32,13 @@ set(MODEL_HEADERS
 
         include/model/settings/log_color_setting.hpp
         include/model/settings/settings_group.hpp
+        include/model/settings/settings_node.hpp
+        include/model/settings/settings_object.hpp
+        include/model/settings/settings_tree.hpp
 
         src/platform/memory_mapped_file.hpp
 
         src/settings/settings_manager.hpp
-        src/settings/settings_node.hpp
-        src/settings/settings_object.hpp
-        src/settings/settings_tree.hpp
 
         src/generic_file_reader.hpp
         src/filtered_log_message_view.hpp

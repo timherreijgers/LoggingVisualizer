@@ -27,10 +27,12 @@ public:
     [[nodiscard]] auto getForegroundColor() const noexcept -> std::string_view;
     [[nodiscard]] auto getBackgroundColor() const noexcept -> std::string_view;
 
-    void setDebugLevelIndex(int logLevelIndex);
-    void setLogLevel(const std::string& logLevel);
-    void setForegroundColor(const std::string& foregroundColor);
-    void setBackgroundColor(const std::string& backgroundColor);
+    void setLogLevelIndex(int logLevelIndex);
+    void setLogLevel(std::string_view logLevel);
+    void setForegroundColor(std::string_view foregroundColor);
+    void setBackgroundColor(std::string_view backgroundColor);
+
+    auto operator==(const LogColorSettingEntry&) const -> bool;
 
 private:
     int m_logLevelIndex;
@@ -47,8 +49,10 @@ public:
     LogColorSetting() = default;
 
     void addLogColorSettings(std::string_view logLevel, std::string_view foregroundColor, std::string_view backgroundColor) noexcept;
-    // [[nodiscard]] auto getLogColorSettingsEntries() const noexcept -> const std::vector<LogColorSettingEntry>&;
-    // [[nodiscard]] auto getLogColorSetting(std::string_view debugLevel) const noexcept -> const LogColorSettingEntry&;
+    [[nodiscard]] auto getLogColorSettingsEntries() const noexcept -> const std::vector<LogColorSettingEntry>&;
+    [[nodiscard]] auto getLogColorSettingsEntries() noexcept -> std::vector<LogColorSettingEntry>&;
+    [[nodiscard]] auto getLogColorSetting(std::string_view debugLevel) const -> const LogColorSettingEntry&;
+    [[nodiscard]] auto getLogColorSetting(std::string_view debugLevel) -> LogColorSettingEntry&;
 
 private:
     std::vector<LogColorSettingEntry> m_entries;

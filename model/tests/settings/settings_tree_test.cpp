@@ -3,8 +3,8 @@
  * Licensed using the MIT license
  */
 
-#include "settings/settings_object.hpp"
-#include "settings/settings_tree.hpp"
+#include "model/settings/settings_object.hpp"
+#include "model/settings/settings_tree.hpp"
 
 
 #include <gtest/gtest.h>

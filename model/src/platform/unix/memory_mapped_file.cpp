@@ -5,7 +5,7 @@
 
 #include "memory_mapped_file.hpp"
 
-#include "exceptions/FileNotFoundException.hpp"
+#include "exceptions/file_not_found_exception.hpp"
 
 #include <cstdio>
 #include <fcntl.h>
@@ -30,7 +30,7 @@ void MemoryMappedFile::openFile(const std::filesystem::path& path)
     const auto fileHandle = fopen(path.string().c_str(), "r");
     if (!fileHandle)
     {
-        throw Exceptions::FileNotFoundException(path);
+        throw Exceptions::file_not_found_exception(path);
     }
 
     fseek(fileHandle, 0L, SEEK_END);

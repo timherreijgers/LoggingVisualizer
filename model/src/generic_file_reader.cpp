@@ -5,7 +5,7 @@
 
 #include "generic_file_reader.hpp"
 
-#include "exceptions/FileNotFoundException.hpp"
+#include "exceptions/file_not_found_exception.hpp"
 
 #include <array>
 #include <cstdio>
@@ -19,7 +19,7 @@ void GenericFileReader::openFile(const std::filesystem::path& path)
     m_file = fopen(path.string().c_str(), "r");
     if (m_file == nullptr)
     {
-        throw Exceptions::FileNotFoundException(path);
+        throw Exceptions::file_not_found_exception(path);
     }
 
     const auto hasNextLineInternal = [&]() {
