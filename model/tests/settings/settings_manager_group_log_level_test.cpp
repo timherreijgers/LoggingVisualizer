@@ -4,7 +4,6 @@
  */
 
 #include "exceptions/log_level_not_found_exception.hpp"
-#include "model_gtest_printers.hpp"
 #include "settings/settings_manager.hpp"
 
 #include <gtest/gtest.h>
@@ -23,6 +22,7 @@ protected:
 
     SettingsGroup * m_logLevelsGroup = nullptr;
     std::unique_ptr<NewSettings::SettingsManager> m_settingsManager;
+    SettingsObject<LogColorSettingEntryData> node{nullptr, {}};
 };
 
 TEST_F(SettingsManagerGroupLogLevelTest, LogLevelGroup_GetName_ReturnsCorrectName)
@@ -52,8 +52,11 @@ TEST_F(SettingsManagerGroupLogLevelTest, LogColorSetting_AddLogColorSettings_Add
     logColorSetting.addLogColorSettings("EXTRA_LEVEL", "#FF00FF", "#00FF00");
 
     ASSERT_EQ(logColorSetting.getLogColorSettingsEntries().back(),
-              LogColorSettingEntry(6, "EXTRA_LEVEL", "#FF00FF", "#00FF00"));
+              LogColorSettingEntry(node, LogColorSettingEntryData{6, "EXTRA_LEVEL", "#FF00FF", "#00FF00"}));
 }
+
+
+// TODO: Move the LogColorSettingEntry to a different test suite
 
 TEST_F(SettingsManagerGroupLogLevelTest, LogColorSetting_GetLogColorSettingEntry_ThrowsExceptionIfNotValidLogLevel)
 {
@@ -67,7 +70,7 @@ TEST_F(SettingsManagerGroupLogLevelTest, LogColorSetting_GetLogColorSettingEntry
     logColorSetting.addLogColorSettings("EXTRA_LEVEL", "#FF00FF", "#00FF00");
 
     ASSERT_EQ(logColorSetting.getLogColorSetting("EXTRA_LEVEL"),
-              LogColorSettingEntry(6, "EXTRA_LEVEL", "#FF00FF", "#00FF00"));
+              LogColorSettingEntry(node, LogColorSettingEntryData{6, "EXTRA_LEVEL", "#FF00FF", "#00FF00"}));
 }
 
 TEST_F(SettingsManagerGroupLogLevelTest, LogColorSettingEntry_SetLogLevelIndex_SetsCorrectLogLevelIndex)
@@ -102,7 +105,80 @@ TEST_F(SettingsManagerGroupLogLevelTest, LogColorSettingEntry_SetBackgroundColor
     ASSERT_EQ(traceEntry.getBackgroundColor(), "#AA00EE");
 }
 
-// TODO: Move the LogColorSettingEntry to a different test suite
-// TODO: Add tests for modified
+TEST_F(SettingsManagerGroupLogLevelTest, LogColorSettingEntry_SetForegroundColor_SetsModifiedOnManager)
+{
+    auto& logColorSetting = std::get<LogColorSetting>(m_logLevelsGroup->getSettings().front());
+    auto& traceEntry = logColorSetting.getLogColorSetting("TRACE");
+    traceEntry.setForegroundColor("#EE00AA");
+
+    ASSERT_TRUE(m_settingsManager->isModified());
+}
+
+TEST_F(SettingsManagerGroupLogLevelTest, LogColorSettingEntry_SetForegroundColorToOldValue_ResetsModifiedOnManager)
+{
+    auto& logColorSetting = std::get<LogColorSetting>(m_logLevelsGroup->getSettings().front());
+    auto& traceEntry = logColorSetting.getLogColorSetting("TRACE");
+    traceEntry.setForegroundColor("#EE00AA");
+    traceEntry.setForegroundColor("#000000");
+
+    ASSERT_FALSE(m_settingsManager->isModified());
+}
+
+TEST_F(SettingsManagerGroupLogLevelTest, LogColorSettingEntry_SetBackgroundColor_SetsModifiedOnManager)
+{
+    auto& logColorSetting = std::get<LogColorSetting>(m_logLevelsGroup->getSettings().front());
+    auto& traceEntry = logColorSetting.getLogColorSetting("TRACE");
+    traceEntry.setBackgroundColor("#EE00AA");
+
+    ASSERT_TRUE(m_settingsManager->isModified());
+}
+
+TEST_F(SettingsManagerGroupLogLevelTest, LogColorSettingEntry_SetBackgroundColorToOldValue_ResetsModifiedOnManager)
+{
+    auto& logColorSetting = std::get<LogColorSetting>(m_logLevelsGroup->getSettings().front());
+    auto& traceEntry = logColorSetting.getLogColorSetting("TRACE");
+    traceEntry.setBackgroundColor("#EE00AA");
+    traceEntry.setBackgroundColor("#FFFFFF");
+
+    ASSERT_FALSE(m_settingsManager->isModified());
+}
+
+TEST_F(SettingsManagerGroupLogLevelTest, LogColorSettingEntry_SetLogLevel_SetsModifiedOnManager)
+{
+    auto& logColorSetting = std::get<LogColorSetting>(m_logLevelsGroup->getSettings().front());
+    auto& traceEntry = logColorSetting.getLogColorSetting("TRACE");
+    traceEntry.setLogLevel("OTHER_LOG_LEVEL");
+
+    ASSERT_TRUE(m_settingsManager->isModified());
+}
+
+TEST_F(SettingsManagerGroupLogLevelTest, LogColorSettingEntry_SetLogLevelToOldValue_ResetsModifiedOnManager)
+{
+    auto& logColorSetting = std::get<LogColorSetting>(m_logLevelsGroup->getSettings().front());
+    auto& traceEntry = logColorSetting.getLogColorSetting("TRACE");
+    traceEntry.setLogLevel("OTHER_LOG_LEVEL");
+    traceEntry.setLogLevel("TRACE");
+
+    ASSERT_FALSE(m_settingsManager->isModified());
+}
+
+TEST_F(SettingsManagerGroupLogLevelTest, LogColorSettingEntry_SetLogLevelIndex_SetsModifiedOnManager)
+{
+    auto& logColorSetting = std::get<LogColorSetting>(m_logLevelsGroup->getSettings().front());
+    auto& traceEntry = logColorSetting.getLogColorSetting("TRACE");
+    traceEntry.setLogLevelIndex(100);
+
+    ASSERT_TRUE(m_settingsManager->isModified());
+}
+
+TEST_F(SettingsManagerGroupLogLevelTest, LogColorSettingEntry_SetLogLevelIndexToOldValue_ResetsModifiedOnManager)
+{
+    auto& logColorSetting = std::get<LogColorSetting>(m_logLevelsGroup->getSettings().front());
+    auto& traceEntry = logColorSetting.getLogColorSetting("TRACE");
+    traceEntry.setLogLevelIndex(100);
+    traceEntry.setLogLevelIndex(0);
+
+    ASSERT_FALSE(m_settingsManager->isModified());
+}
 
 } // namespace Model::Tests

@@ -5,10 +5,16 @@
 
 #include "settings/settings_manager.hpp"
 
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 namespace Model::Tests
 {
+
+struct CallbackMock
+{
+    MOCK_METHOD(void, callback, (bool));
+};
 
 class SettingsManagerTest : public ::testing::Test
 {
@@ -31,5 +37,23 @@ TEST_F(SettingsManagerTest, SettingsManager_GetFirstSettingGroups_HasNameLogLeve
 
     ASSERT_EQ(settingsGroups[0].getName(), std::string("Log Levels"));
 }
+
+TEST_F(SettingsManagerTest, SettingsManager_NoChanges_SettingsManagerIsNotModified)
+{
+    NewSettings::SettingsManager settingsManager;
+
+    ASSERT_FALSE(settingsManager.isModified());
+}
+
+TEST_F(SettingsManagerTest, SettingsManager_NoChanges_ModifiedSlotNotCalled)
+{
+    CallbackMock callbackMock;
+    EXPECT_CALL(callbackMock, callback(::testing::_)).Times(0);
+
+    NewSettings::SettingsManager settingsManager;
+    const auto connection = settingsManager.connectSettingsModified([&callbackMock](bool val) { callbackMock.callback(val); });
+}
+
+// TODO: Add tests for loading previous saved settings from a file
 
 } // namespace Model::Tests

@@ -12,72 +12,73 @@
 namespace Model
 {
 
-LogColorSettingEntry::LogColorSettingEntry(int logLevelIndex, std::string_view logLevel, std::string_view foregroundColor, std::string_view backgroundColor) :
-    m_logLevelIndex(logLevelIndex), m_logLevel(logLevel), m_foregroundColor(foregroundColor), m_backgroundColor(backgroundColor)
+LogColorSettingEntry::LogColorSettingEntry(SettingsObject<LogColorSettingEntryData>& node, LogColorSettingEntryData data) :
+    m_settingsNode(node), m_data(std::move(data))
 {
-}
-
-auto LogColorSettingEntry::connectEntryChanged(const LogColorSettingEntryChanged::slot_type& slot) noexcept -> Signals::scoped_connection
-{
-    return Signals::scoped_connection{m_EntryChangedSignal.connect(slot)};
 }
 
 auto LogColorSettingEntry::getLogLevelIndex() const noexcept -> int
 {
-    return m_logLevelIndex;
+    return m_data.logLevelIndex;
 }
 
 auto LogColorSettingEntry::getLogLevel() const noexcept -> std::string_view
 {
-    return m_logLevel;
+    return m_data.logLevel;
 }
 
 auto LogColorSettingEntry::getForegroundColor() const noexcept -> std::string_view
 {
-    return m_foregroundColor;
+    return m_data.foregroundColor;
 }
 
 auto LogColorSettingEntry::getBackgroundColor() const noexcept -> std::string_view
 {
-    return m_backgroundColor;
+    return m_data.backgroundColor;
 }
 
 void LogColorSettingEntry::setLogLevelIndex(int logLevelIndex)
 {
-    m_logLevelIndex = logLevelIndex;
-    m_EntryChangedSignal(*this);
+    m_data.logLevelIndex = logLevelIndex;
+    m_settingsNode.setNewValue(m_data);
 }
 
 void LogColorSettingEntry::setLogLevel(std::string_view logLevel)
 {
-    m_logLevel = logLevel;
-    m_EntryChangedSignal(*this);
+    m_data.logLevel = logLevel;
+    m_settingsNode.setNewValue(m_data);
 }
 
 void LogColorSettingEntry::setForegroundColor(std::string_view foregroundColor)
 {
-    m_foregroundColor = foregroundColor;
-    m_EntryChangedSignal(*this);
+    m_data.foregroundColor = foregroundColor;
+    m_settingsNode.setNewValue(m_data);
 }
 
 void LogColorSettingEntry::setBackgroundColor(std::string_view backgroundColor)
 {
-    m_backgroundColor = backgroundColor;
-    m_EntryChangedSignal(*this);
+    m_data.backgroundColor = backgroundColor;
+    m_settingsNode.setNewValue(m_data);
 }
 
 auto LogColorSettingEntry::operator==(const LogColorSettingEntry& other) const -> bool
 {
-    return other.m_logLevelIndex == m_logLevelIndex &&
-           other.m_foregroundColor == m_foregroundColor &&
-           other.m_backgroundColor == m_backgroundColor &&
-           other.m_logLevel == m_logLevel;
+    return other.m_data == m_data;
+}
+
+LogColorSetting::LogColorSetting(SettingsNode& node) :
+    m_settingsNode(node)
+{
 }
 
 void LogColorSetting::addLogColorSettings(std::string_view logLevel, std::string_view foregroundColor, std::string_view backgroundColor) noexcept
 {
-    auto& entry = m_entries.emplace_back(static_cast<int>(m_entries.size()), logLevel, foregroundColor, backgroundColor);
-    m_connections.emplace_back(entry.connectEntryChanged([this](const LogColorSettingEntry& e) { entryUpdated(e); }));
+    LogColorSettingEntryData data{static_cast<int>(m_entries.size()),
+                                  std::string{logLevel}, std::string{foregroundColor}, std::string{backgroundColor}};
+
+    std::unique_ptr<SettingsObject<LogColorSettingEntryData>> node = std::make_unique<SettingsObject<LogColorSettingEntryData>>(&m_settingsNode, data);
+    m_entries.emplace_back(*node, data);
+    m_settingsNode.addChild(std::move(node));
 }
 
 auto LogColorSetting::getLogColorSettingsEntries() const noexcept -> const std::vector<LogColorSettingEntry>&

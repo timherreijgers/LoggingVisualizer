@@ -21,7 +21,7 @@ public:
     {
     }
 
-    void setValue(const T& t)
+    void setNewValue(const T& t)
     {
         m_newValue = t;
 

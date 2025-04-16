@@ -5,7 +5,8 @@
 
 #pragma once
 
-#include "model/signal.hpp"
+#include "settings_node.hpp"
+#include "settings_object.hpp"
 
 #include <string>
 #include <vector>
@@ -13,14 +14,20 @@
 namespace Model
 {
 
+struct LogColorSettingEntryData
+{
+    int logLevelIndex;
+    std::string logLevel;
+    std::string foregroundColor;
+    std::string backgroundColor;
+
+    constexpr auto operator==(const LogColorSettingEntryData& rhs) const -> bool = default;
+};
+
 class LogColorSettingEntry
 {
 public:
-    using LogColorSettingEntryChanged = Signals::signal<void(const LogColorSettingEntry&)>;
-
-    LogColorSettingEntry(int logLevelIndex, std::string_view logLevel, std::string_view foregroundColor, std::string_view backgroundColor);
-
-    [[nodiscard]] auto connectEntryChanged(const LogColorSettingEntryChanged::slot_type& slot) noexcept -> Signals::scoped_connection;
+    LogColorSettingEntry(SettingsObject<LogColorSettingEntryData>& node, LogColorSettingEntryData data);
 
     [[nodiscard]] auto getLogLevelIndex() const noexcept -> int;
     [[nodiscard]] auto getLogLevel() const noexcept -> std::string_view;
@@ -35,18 +42,14 @@ public:
     auto operator==(const LogColorSettingEntry&) const -> bool;
 
 private:
-    int m_logLevelIndex;
-    std::string m_logLevel;
-    std::string m_foregroundColor;
-    std::string m_backgroundColor;
-
-    LogColorSettingEntryChanged m_EntryChangedSignal;
+    SettingsObject<LogColorSettingEntryData>& m_settingsNode;
+    LogColorSettingEntryData m_data;
 };
 
 class LogColorSetting
 {
 public:
-    LogColorSetting() = default;
+    explicit LogColorSetting(SettingsNode& node);
 
     void addLogColorSettings(std::string_view logLevel, std::string_view foregroundColor, std::string_view backgroundColor) noexcept;
     [[nodiscard]] auto getLogColorSettingsEntries() const noexcept -> const std::vector<LogColorSettingEntry>&;
@@ -55,8 +58,8 @@ public:
     [[nodiscard]] auto getLogColorSetting(std::string_view debugLevel) -> LogColorSettingEntry&;
 
 private:
+    SettingsNode& m_settingsNode;
     std::vector<LogColorSettingEntry> m_entries;
-    std::vector<Signals::scoped_connection> m_connections;
 
     void entryUpdated(const LogColorSettingEntry& entry);
 };

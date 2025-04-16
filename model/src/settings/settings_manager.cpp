@@ -11,7 +11,11 @@ namespace Model::NewSettings
 SettingsManager::SettingsManager()
 {
     auto& logLevelsGroup = m_groups.emplace_back("Log Levels");
-    LogColorSetting logColorSetting{};
+
+    std::unique_ptr<SettingsNode> logColorSettingNode = std::make_unique<SettingsNode>(&m_settingsTree);
+    LogColorSetting logColorSetting{*logColorSettingNode};
+    m_settingsTree.addChild(std::move(logColorSettingNode));
+
     logColorSetting.addLogColorSettings("TRACE", "#000000", "#FFFFFF");
     logColorSetting.addLogColorSettings("DEBUG", "#000000", "#FFFFFF");
     logColorSetting.addLogColorSettings("INFO", "#000000", "#FFFFFF");
@@ -35,6 +39,16 @@ auto SettingsManager::getSettingGroup(SettingsGroupId id) const noexcept -> cons
 auto SettingsManager::getSettingGroup(SettingsGroupId id) noexcept -> SettingsGroup&
 {
     return m_groups[std::to_underlying(id)];
+}
+
+auto SettingsManager::connectSettingsModified(SettingsModifiedSignal::slot_type slot) -> Signals::scoped_connection
+{
+    return m_settingsModified.connect(std::move(slot));
+}
+
+auto SettingsManager::isModified() const noexcept -> bool
+{
+    return m_settingsTree.isModified();
 }
 
 

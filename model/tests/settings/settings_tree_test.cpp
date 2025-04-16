@@ -30,7 +30,7 @@ TEST_F(SettingsTreeTest, NodeIsModified_SetsIsModifiedOnTreeRoot)
     SettingsTree tree{};
     auto& child = addChildToTree<int>(tree, 10);
 
-    child.setValue(20);
+    child.setNewValue(20);
 
     ASSERT_TRUE(tree.isModified());
 }
@@ -40,8 +40,8 @@ TEST_F(SettingsTreeTest, NodeIsModifiedAndSetBackToPreviousValue_DoesntSetIsModi
     SettingsTree tree{};
     auto& child = addChildToTree<int>(tree, 10);
 
-    child.setValue(20);
-    child.setValue(10);
+    child.setNewValue(20);
+    child.setNewValue(10);
 
     ASSERT_FALSE(tree.isModified());
 }

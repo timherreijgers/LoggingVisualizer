@@ -6,6 +6,7 @@
 #pragma once
 
 #include "log_color_setting.hpp"
+#include "settings_object.hpp"
 
 #include <string>
 #include <variant>
