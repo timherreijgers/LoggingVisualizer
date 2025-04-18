@@ -54,6 +54,19 @@ TEST_F(SettingsManagerTest, SettingsManager_NoChanges_ModifiedSlotNotCalled)
     const auto connection = settingsManager.connectSettingsModified([&callbackMock](bool val) { callbackMock.callback(val); });
 }
 
+TEST_F(SettingsManagerTest, SettingsManager_SettingChanged_ModifiedSlotCalled)
+{
+    CallbackMock callbackMock;
+    EXPECT_CALL(callbackMock, callback(::testing::_)).Times(1);
+
+    NewSettings::SettingsManager settingsManager;
+    const auto connection = settingsManager.connectSettingsModified([&callbackMock](bool val) { callbackMock.callback(val); });
+
+    auto logColorSettingEntries = std::get<LogColorSetting>(settingsManager.getSettingGroup(NewSettings::SettingsGroupId::LOG_LEVELS).getSettings()[0]);
+    auto logColorSettingEntry = logColorSettingEntries.getLogColorSettingsEntries()[0];
+    logColorSettingEntry.setLogLevelIndex(100);
+}
+
 // TODO: Add tests for loading previous saved settings from a file
 
 } // namespace Model::Tests

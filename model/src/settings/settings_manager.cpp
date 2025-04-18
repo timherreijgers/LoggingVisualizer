@@ -43,7 +43,7 @@ auto SettingsManager::getSettingGroup(SettingsGroupId id) noexcept -> SettingsGr
 
 auto SettingsManager::connectSettingsModified(SettingsModifiedSignal::slot_type slot) -> Signals::scoped_connection
 {
-    return m_settingsModified.connect(std::move(slot));
+    return m_settingsTree.connectSettingsModified(std::move(slot));
 }
 
 auto SettingsManager::isModified() const noexcept -> bool

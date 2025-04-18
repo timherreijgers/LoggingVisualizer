@@ -20,7 +20,7 @@ public:
     void addChild(std::unique_ptr<SettingsNode> child);
     void setParent(SettingsNode * parent);
 
-    void setModified(bool modified) noexcept;
+    virtual void setModified(bool modified) noexcept;
     [[nodiscard]] virtual auto isModified() const noexcept -> bool;
 
 protected:

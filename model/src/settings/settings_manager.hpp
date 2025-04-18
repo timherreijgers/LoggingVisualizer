@@ -35,7 +35,6 @@ public:
 
 private:
     std::vector<SettingsGroup> m_groups;
-    SettingsModifiedSignal m_settingsModified;
     SettingsTree m_settingsTree;
 };
 
