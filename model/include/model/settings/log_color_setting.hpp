@@ -7,6 +7,7 @@
 
 #include "settings_node.hpp"
 #include "settings_object.hpp"
+#include "types/color.hpp"
 
 #include <string>
 #include <vector>
@@ -18,8 +19,8 @@ struct LogColorSettingEntryData
 {
     int logLevelIndex;
     std::string logLevel;
-    std::string foregroundColor;
-    std::string backgroundColor;
+    Types::Color foregroundColor;
+    Types::Color backgroundColor;
 
     constexpr auto operator==(const LogColorSettingEntryData& rhs) const -> bool = default;
 };
@@ -31,13 +32,13 @@ public:
 
     [[nodiscard]] auto getLogLevelIndex() const noexcept -> int;
     [[nodiscard]] auto getLogLevel() const noexcept -> std::string_view;
-    [[nodiscard]] auto getForegroundColor() const noexcept -> std::string_view;
-    [[nodiscard]] auto getBackgroundColor() const noexcept -> std::string_view;
+    [[nodiscard]] auto getForegroundColor() const noexcept -> Types::Color;
+    [[nodiscard]] auto getBackgroundColor() const noexcept -> Types::Color;
 
     void setLogLevelIndex(int logLevelIndex);
     void setLogLevel(std::string_view logLevel);
-    void setForegroundColor(std::string_view foregroundColor);
-    void setBackgroundColor(std::string_view backgroundColor);
+    void setForegroundColor(Types::Color foregroundColor);
+    void setBackgroundColor(Types::Color backgroundColor);
 
     auto operator==(const LogColorSettingEntry&) const -> bool;
 
@@ -51,7 +52,7 @@ class LogColorSetting
 public:
     explicit LogColorSetting(SettingsNode& node);
 
-    void addLogColorSettings(std::string_view logLevel, std::string_view foregroundColor, std::string_view backgroundColor) noexcept;
+    void addLogColorSettings(std::string_view logLevel, Types::Color foregroundColor, Types::Color backgroundColor) noexcept;
     [[nodiscard]] auto getLogColorSettingsEntries() const noexcept -> const std::vector<LogColorSettingEntry>&;
     [[nodiscard]] auto getLogColorSettingsEntries() noexcept -> std::vector<LogColorSettingEntry>&;
     [[nodiscard]] auto getLogColorSetting(std::string_view debugLevel) const -> const LogColorSettingEntry&;

@@ -20,7 +20,7 @@ namespace Model
 
 static constexpr auto SETTINGS_FILE_NAME = "settings.yaml";
 
-static Types::Color convertStringFromHtmlColor(std::string_view htmlcolor)
+static  Types::Color convertStringFromHtmlColor(std::string_view htmlcolor)
 {
     const auto colorAsInt = std::stoul(htmlcolor.substr(1).data(), nullptr, 16);
     return Types::Color{

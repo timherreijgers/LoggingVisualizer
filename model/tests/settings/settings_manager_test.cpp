@@ -67,6 +67,18 @@ TEST_F(SettingsManagerTest, SettingsManager_SettingChanged_ModifiedSlotCalled)
     logColorSettingEntry.setLogLevelIndex(100);
 }
 
+TEST_F(SettingsManagerTest, SettingsManager_ResetModified_ResetsModified)
+{
+    NewSettings::SettingsManager settingsManager;
+    auto logColorSettingEntries = std::get<LogColorSetting>(settingsManager.getSettingGroup(NewSettings::SettingsGroupId::LOG_LEVELS).getSettings()[0]);
+    auto logColorSettingEntry = logColorSettingEntries.getLogColorSettingsEntries()[0];
+    logColorSettingEntry.setLogLevelIndex(100);
+
+    settingsManager.resetModified();
+    ASSERT_FALSE(settingsManager.isModified());
+}
+
+// TODO: Make the groups and settings non-copyable
 // TODO: Add tests for loading previous saved settings from a file
 
 } // namespace Model::Tests

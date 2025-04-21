@@ -6,6 +6,7 @@
 #include "model/settings/log_color_setting.hpp"
 
 #include "exceptions/log_level_not_found_exception.hpp"
+#include "types/color.hpp"
 
 #include <ranges>
 
@@ -27,12 +28,12 @@ auto LogColorSettingEntry::getLogLevel() const noexcept -> std::string_view
     return m_data.logLevel;
 }
 
-auto LogColorSettingEntry::getForegroundColor() const noexcept -> std::string_view
+auto LogColorSettingEntry::getForegroundColor() const noexcept -> Types::Color
 {
     return m_data.foregroundColor;
 }
 
-auto LogColorSettingEntry::getBackgroundColor() const noexcept -> std::string_view
+auto LogColorSettingEntry::getBackgroundColor() const noexcept -> Types::Color
 {
     return m_data.backgroundColor;
 }
@@ -49,13 +50,13 @@ void LogColorSettingEntry::setLogLevel(std::string_view logLevel)
     m_settingsNode.setNewValue(m_data);
 }
 
-void LogColorSettingEntry::setForegroundColor(std::string_view foregroundColor)
+void LogColorSettingEntry::setForegroundColor(Types::Color foregroundColor)
 {
     m_data.foregroundColor = foregroundColor;
     m_settingsNode.setNewValue(m_data);
 }
 
-void LogColorSettingEntry::setBackgroundColor(std::string_view backgroundColor)
+void LogColorSettingEntry::setBackgroundColor(Types::Color backgroundColor)
 {
     m_data.backgroundColor = backgroundColor;
     m_settingsNode.setNewValue(m_data);
@@ -71,10 +72,10 @@ LogColorSetting::LogColorSetting(SettingsNode& node) :
 {
 }
 
-void LogColorSetting::addLogColorSettings(std::string_view logLevel, std::string_view foregroundColor, std::string_view backgroundColor) noexcept
+void LogColorSetting::addLogColorSettings(std::string_view logLevel, Types::Color foregroundColor, Types::Color backgroundColor) noexcept
 {
     LogColorSettingEntryData data{static_cast<int>(m_entries.size()),
-                                  std::string{logLevel}, std::string{foregroundColor}, std::string{backgroundColor}};
+                                  std::string{logLevel}, foregroundColor, backgroundColor};
 
     std::unique_ptr<SettingsObject<LogColorSettingEntryData>> node = std::make_unique<SettingsObject<LogColorSettingEntryData>>(&m_settingsNode, data);
     m_entries.emplace_back(*node, data);

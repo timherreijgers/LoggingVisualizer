@@ -21,4 +21,5 @@ auto SettingsManagerFactory::createSettingsManager() noexcept -> ISettingsManage
 
     return *m_settingsManager;
 }
+
 } // namespace Model

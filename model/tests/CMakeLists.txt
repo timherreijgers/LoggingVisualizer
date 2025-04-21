@@ -14,6 +14,7 @@ add_executable(ModelTest
 
 target_link_libraries(ModelTest PRIVATE
         model
+        yaml-cpp
         gtest
         gtest_main
         gmock)
