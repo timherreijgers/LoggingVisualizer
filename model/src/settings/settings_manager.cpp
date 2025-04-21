@@ -33,8 +33,8 @@ static std::string convertColorToString(const Types::Color& color)
     return std::format("#{:02X}{:02X}{:02X}{:02X}", color.red, color.green, color.blue, color.alpha);
 }
 
-SettingsManager::SettingsManager()
-    : m_yamlLoadingGroupFunctions(createYamlLoadingGroupFunctions())
+SettingsManager::SettingsManager() :
+    m_yamlLoadingGroupFunctions(createYamlLoadingGroupFunctions())
 
 {
     m_groups.emplace_back("Log Levels");
@@ -45,23 +45,23 @@ SettingsManager::SettingsManager()
     }
     else
     {
-        auto& logLevelsGroup = *std::ranges::find_if(m_groups, [](const auto& group){return group.getName() == "Log Levels";});
+        auto& logLevelsGroup = *std::ranges::find_if(m_groups, [](const auto& group) { return group.getName() == "Log Levels"; });
 
         std::unique_ptr<SettingsNode> logColorSettingNode = std::make_unique<SettingsNode>(&m_settingsTree);
         LogColorSetting logColorSetting{*logColorSettingNode};
         m_settingsTree.addChild(std::move(logColorSettingNode));
         logColorSetting.addLogColorSettings("TRACE", Types::Color{0x00, 0x00, 0x00, 0xFF},
-            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
+                                            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
         logColorSetting.addLogColorSettings("DEBUG", Types::Color{0x00, 0x00, 0x00, 0xFF},
-            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
+                                            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
         logColorSetting.addLogColorSettings("INFO", Types::Color{0x00, 0x00, 0x00, 0xFF},
-            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
+                                            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
         logColorSetting.addLogColorSettings("WARNING", Types::Color{0x00, 0x00, 0x00, 0xFF},
-            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
+                                            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
         logColorSetting.addLogColorSettings("ERROR", Types::Color{0x00, 0x00, 0x00, 0xFF},
-            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
+                                            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
         logColorSetting.addLogColorSettings("CRITICAL", Types::Color{0x00, 0x00, 0x00, 0xFF},
-            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
+                                            Types::Color{0xFF, 0xFF, 0xFF, 0xFF});
         logLevelsGroup.addSetting(std::move(logColorSetting));
     }
 }
@@ -129,7 +129,9 @@ auto SettingsManager::createYamlLoadingGroupFunctions() -> std::map<std::string_
 {
     std::map<std::string_view, std::function<void(const YAML::Node&)>> result;
 
-    result["Log Levels"] = [this](const auto& node){loadLogLevelSettingsFromYamlFile(node);};
+    result["Log Levels"] = [this](const auto& node) {
+        loadLogLevelSettingsFromYamlFile(node);
+    };
 
     return result;
 }
@@ -153,12 +155,12 @@ void SettingsManager::loadSettingsFromYamlFile()
 void SettingsManager::loadLogLevelSettingsFromYamlFile(const YAML::Node& node)
 {
     const auto found = std::ranges::find_if(m_groups,
-        [](const auto& group) {return group.getName() == "Log Levels";});
+                                            [](const auto& group) { return group.getName() == "Log Levels"; });
 
     if (found == m_groups.end())
         return;
 
-    auto& logLevelsGroup = *std::ranges::find_if(m_groups, [](const auto& group){return group.getName() == "Log Levels";});
+    auto& logLevelsGroup = *std::ranges::find_if(m_groups, [](const auto& group) { return group.getName() == "Log Levels"; });
 
     std::unique_ptr<SettingsNode> logColorSettingNode = std::make_unique<SettingsNode>(&m_settingsTree);
     LogColorSetting logColorSetting{*logColorSettingNode};

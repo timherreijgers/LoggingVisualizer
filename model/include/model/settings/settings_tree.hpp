@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "settings_node.hpp"
 #include "model/signal.hpp"
+#include "settings_node.hpp"
 
 namespace Model
 {

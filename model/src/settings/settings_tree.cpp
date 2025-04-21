@@ -3,9 +3,9 @@
  * Licensed using the MIT license
  */
 
-#include <utility>
-
 #include "model/settings/settings_tree.hpp"
+
+#include <utility>
 
 namespace Model
 {
