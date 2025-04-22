@@ -13,13 +13,13 @@
 
 namespace Exceptions
 {
-class file_not_found_exception final : public std::runtime_error
+class FileNotfoundException final : public std::runtime_error
 {
 public:
-    explicit file_not_found_exception(const std::string_view fileName) :
+    explicit FileNotfoundException(const std::string_view fileName) :
         runtime_error(fmt::format("File {} was not found", fileName)) {}
 
-    explicit file_not_found_exception(const std::filesystem::path& path) :
-        file_not_found_exception(std::string_view{path.filename().string()}) {}
+    explicit FileNotfoundException(const std::filesystem::path& path) :
+        FileNotfoundException(std::string_view{path.filename().string()}) {}
 };
 }; // namespace Exceptions

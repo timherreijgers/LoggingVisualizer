@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "exceptions/file_not_found_exception.hpp"
+#include "exceptions/FileNotfoundException.hpp"
 #include "log_data_context.hpp"
 #include "mocks/mock_file_reader.hpp"
 
@@ -47,7 +47,7 @@ TEST_F(LogDataContextTest, OpenFile_FileReaderReturnsFalse_ThrowsFileNotFoundExc
     ON_CALL(*fileReaderMock, exists()).WillByDefault(::testing::Return(false));
     LogDataContext context{std::move(m_fileReader)};
 
-    ASSERT_THROW(context.openFile("/folder/test_file.log"), Exceptions::file_not_found_exception);
+    ASSERT_THROW(context.openFile("/folder/test_file.log"), Exceptions::FileNotfoundException);
 }
 
 TEST_F(LogDataContextTest, OpenFile_callsFileReaderOpenFile_WithCorrectPath)

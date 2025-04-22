@@ -1,5 +1,5 @@
 set(TYPES_HEADERS
-        include/exceptions/file_not_found_exception.hpp
+        include/exceptions/FileNotfoundException.hpp
         include/exceptions/log_level_not_found_exception.hpp
 
         include/types/color.hpp
