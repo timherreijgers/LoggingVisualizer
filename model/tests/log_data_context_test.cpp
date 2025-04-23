@@ -3,7 +3,7 @@
  * Licensed using the MIT license
  */
 
-#include "exceptions/FileNotfoundException.hpp"
+#include "exceptions/file_not_found_exception.hpp"
 #include "log_data_context.hpp"
 #include "mocks/mock_file_reader.hpp"
 

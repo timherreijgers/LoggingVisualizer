@@ -94,9 +94,9 @@ void SettingsManager::saveSettings() noexcept
     for (const auto& setting : logColorSettingEntries.getLogColorSettingsEntries())
     {
         settings["Log Levels"][index] = YAML::Node{};
-        settings["Log Levels"][index]["level"] = setting.getLogLevel();
-        settings["Log Levels"][index]["foregroundColor"] = convertColorToString(setting.getForegroundColor());
-        settings["Log Levels"][index]["backgroundColor"] = convertColorToString(setting.getBackgroundColor());
+        settings["Log Levels"][index]["level"] = std::string{setting.getLogLevel()};
+        settings["Log Levels"][index]["foregroundColor"] = std::string{convertColorToString(setting.getForegroundColor())};
+        settings["Log Levels"][index]["backgroundColor"] = std::string{convertColorToString(setting.getBackgroundColor())};
 
         index++;
     }
@@ -142,10 +142,10 @@ void SettingsManager::loadSettingsFromYamlFile()
 
     for (const auto& group : m_groups)
     {
-        if (!root[group.getName()])
+        if (!root[std::string{group.getName()}])
             continue;
 
-        const auto node = root[group.getName()];
+        const auto node = root[std::string{group.getName()}];
         m_yamlLoadingGroupFunctions.at(group.getName())(node);
     }
 

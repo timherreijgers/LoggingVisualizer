@@ -5,7 +5,7 @@
 
 #include "log_data_context.hpp"
 
-#include "exceptions/FileNotfoundException.hpp"
+#include "exceptions/file_not_found_exception.hpp"
 #include "types/log_entry.hpp"
 
 #include "log_message_filter.hpp"

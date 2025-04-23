@@ -5,7 +5,7 @@
 
 #include "generic_file_reader.hpp"
 
-#include "exceptions/FileNotfoundException.hpp"
+#include "exceptions/file_not_found_exception.hpp"
 
 #include <array>
 #include <cstdio>

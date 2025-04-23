@@ -5,7 +5,7 @@
 
 #include "memory_mapped_file.hpp"
 
-#include "exceptions/FileNotfoundException.hpp"
+#include "exceptions/file_not_found_exception.hpp"
 
 #include <cstdio>
 #include <fcntl.h>
