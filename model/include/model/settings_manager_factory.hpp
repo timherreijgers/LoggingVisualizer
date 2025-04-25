@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "isettings_manager.hpp"
+#include "settings/isettings_manager.hpp"
 
 #include <memory>
 

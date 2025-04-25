@@ -14,7 +14,7 @@
 #include <functional>
 #include <map>
 
-namespace Model::NewSettings
+namespace Model
 {
 
 class SettingsManager : public ISettingsManager
@@ -44,4 +44,4 @@ private:
     void loadLogLevelSettingsFromYamlFile(const YAML::Node& node);
 };
 
-} // namespace Model::NewSettings
+} // namespace Model

@@ -4,15 +4,14 @@
  */
 
 #include "model/settings_manager_factory.hpp"
-
-#include "settings_manager.hpp"
+#include "settings/settings_manager.hpp"
 
 namespace Model
 {
 
 std::unique_ptr<ISettingsManager> SettingsManagerFactory::m_settingsManager;
 
-auto SettingsManagerFactory::createSettingsManager() noexcept -> ISettingsManager&
+auto SettingsManagerFactory::createSettingsManager() noexcept ->  ISettingsManager&
 {
     if (!m_settingsManager)
     {

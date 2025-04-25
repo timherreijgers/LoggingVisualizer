@@ -6,7 +6,7 @@
 #include "presenters/log_presenter.hpp"
 
 #include "item_models/log_item_model.hpp"
-#include "model/isettings_manager.hpp"
+#include "model/settings/isettings_manager.hpp"
 
 namespace Presenters
 {
@@ -17,11 +17,19 @@ LogPresenter::LogPresenter(Windows::IWindowManager& manager, Widgets::ILogWidget
     m_model.connectLogMessagesChanged([this]() { logMessagesUpdated(m_model.getLogMessages()); });
     m_view.connectOnFileDropped([this](const std::string_view url) { onFileDroppedInView(url); });
 
-    m_settingsChangedConnection = m_settingsManager.connectSettingsChangedSignal([this]() {
+    m_settingsChangedConnection = m_settingsManager.connectSettingsModified([this](bool modified) {
+        if (!modified)
+            return;
+
         std::map<std::string, Types::HighlightColorPair> colorDataMap;
-        for (const auto& entry : m_settingsManager.getLogLevelColorSettings())
+
+        // TODO: Save this a member variables?
+        const auto& settingsGroup = m_settingsManager.getSettingGroup(Model::SettingsGroupId::LOG_LEVELS);
+        const auto& logLevelSetting = std::get<Model::LogColorSetting>(settingsGroup.getSettings()[0]);
+
+        for (const auto& entry : logLevelSetting.getLogColorSettingsEntries())
         {
-            colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};
+            colorDataMap[std::string{entry.getLogLevel()}] = {entry.getForegroundColor(), entry.getBackgroundColor()};
         }
 
         m_view.setHighlightColors(std::move(colorDataMap));
@@ -45,12 +53,15 @@ void LogPresenter::logMessagesUpdated(const Model::IFilteredLogMessageView& logE
     m_logModel = std::make_unique<LogItemModel>(logEntries);
     m_view.setLogMessages(*m_logModel);
 
-    const auto& colorSettings = m_settingsManager.getLogLevelColorSettings();
+    // TODO: Save this a member variables?
+    // TODO: Duplicate code with lambda in constructor?
+    const auto& settingsGroup = m_settingsManager.getSettingGroup(Model::SettingsGroupId::LOG_LEVELS);
+    const auto& logLevelSetting = std::get<Model::LogColorSetting>(settingsGroup.getSettings()[0]);
 
     std::map<std::string, Types::HighlightColorPair> colorDataMap;
-    for (const auto& entry : colorSettings)
+    for (const auto& entry : logLevelSetting.getLogColorSettingsEntries())
     {
-        colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};
+        colorDataMap[std::string{entry.getLogLevel()}] = {entry.getForegroundColor(), entry.getBackgroundColor()};
     }
 
     m_view.setHighlightColors(std::move(colorDataMap));

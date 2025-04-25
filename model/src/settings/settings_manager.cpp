@@ -14,8 +14,10 @@
 #include <format>
 #include <fstream>
 
-namespace Model::NewSettings
+namespace Model
 {
+
+static constexpr std::string SETTINGS_FILE_NAME = "settings.yaml";
 
 static Types::Color convertStringFromHtmlColor(std::string_view htmlcolor)
 {
@@ -39,7 +41,7 @@ SettingsManager::SettingsManager() :
 {
     m_groups.emplace_back("Log Levels");
 
-    if (std::filesystem::exists("settings2.yaml"))
+    if (std::filesystem::exists(SETTINGS_FILE_NAME))
     {
         loadSettingsFromYamlFile();
     }
@@ -104,7 +106,7 @@ void SettingsManager::saveSettings() noexcept
     YAML::Emitter out;
     out << settings;
 
-    std::ofstream filestream("settings2.yaml");
+    std::ofstream filestream(SETTINGS_FILE_NAME);
     filestream << out.c_str();
 
     resetModified();
@@ -138,7 +140,7 @@ auto SettingsManager::createYamlLoadingGroupFunctions() -> std::map<std::string_
 
 void SettingsManager::loadSettingsFromYamlFile()
 {
-    YAML::Node root = YAML::LoadFile("settings2.yaml");
+    YAML::Node root = YAML::LoadFile(SETTINGS_FILE_NAME);
 
     for (const auto& group : m_groups)
     {
@@ -177,4 +179,4 @@ void SettingsManager::loadLogLevelSettingsFromYamlFile(const YAML::Node& node)
     logLevelsGroup.addSetting(std::move(logColorSetting));
 }
 
-} // namespace Model::NewSettings
+} // namespace Model

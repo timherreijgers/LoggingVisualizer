@@ -23,13 +23,12 @@ set(MODEL_HEADERS
         include/model/ilog_message_filter.hpp
         include/model/ilog_data_context.hpp
         include/model/ifiltered_log_message_view.hpp
-        include/model/isettings_manager.hpp
 
         include/model/log_data_context_factory.hpp
-        include/model/log_level_color_settings_entry.hpp
         include/model/settings_manager_factory.hpp
         include/model/signal.hpp
 
+        include/model/settings/isettings_manager.hpp
         include/model/settings/log_color_setting.hpp
         include/model/settings/settings_group.hpp
         include/model/settings/settings_node.hpp
@@ -46,7 +45,6 @@ set(MODEL_HEADERS
         src/log_data_context.hpp
         src/log_message_filter.hpp
         src/memory_mapped_file_parser.hpp
-        src/settings_manager.hpp
 )
 
 set(MODEL_SRCS
@@ -62,7 +60,6 @@ set(MODEL_SRCS
         src/log_data_context_factory.cpp
         src/log_message_filter.cpp
         src/memory_mapped_file_parser.cpp
-        src/settings_manager.cpp
         src/settings_manager_factory.cpp
 )
 

@@ -15,34 +15,39 @@ SettingsLogLevelPresenter::SettingsLogLevelPresenter(Windows::IWindowManager& ma
         colorSelectionChanged(row, type, color);
     });
 
-    for (const auto& entry : m_model.getLogLevelColorSettings())
+    const auto& settingsGroup = m_model.getSettingGroup(Model::SettingsGroupId::LOG_LEVELS);
+    const auto& logLevelSetting = std::get<Model::LogColorSetting>(settingsGroup.getSettings()[0]);
+    for (const auto& entry : logLevelSetting.getLogColorSettingsEntries())
     {
-        const auto& level = entry.level;
-        const auto textColor = entry.textColor;
-        const auto backgroundColor = entry.backgroundColor;
+        const auto& level = entry.getLogLevel();
+        const auto textColor = entry.getForegroundColor();
+        const auto backgroundColor = entry.getBackgroundColor();
 
-        m_logLevelHighlightModel.addHighlightLevel(level, textColor, backgroundColor);
+        m_logLevelHighlightItemModel.addHighlightLevel(level, textColor, backgroundColor);
     }
 
-    m_view.setModel(&m_logLevelHighlightModel);
+    m_view.setModel(&m_logLevelHighlightItemModel);
 }
 
 void SettingsLogLevelPresenter::colorSelectionChanged(const int row, const Widgets::ColorType type, const Types::Color color)
 {
-    const Model::LogLevelColorSettingsEntry& cachedValue = m_model.getLogLevelColorSettings()[row];
+    auto& settingsGroup = m_model.getSettingGroup(Model::SettingsGroupId::LOG_LEVELS);
+    auto& logLevelSetting = std::get<Model::LogColorSetting>(settingsGroup.getSettings()[0]);
+
+    const auto& entry = logLevelSetting.getLogColorSettingsEntries()[row];
+    const auto logLevel = logLevelSetting.getLogColorSettingsEntries()[row].getLogLevel();
 
     switch (type)
     {
     case Widgets::ColorType::TEXT:
-        m_model.setLogLevelColorSettings(cachedValue.level, color, cachedValue.backgroundColor);
+        logLevelSetting.getLogColorSetting(logLevel).setForegroundColor(color);
         break;
     case Widgets::ColorType::BACKGROUND:
-        m_model.setLogLevelColorSettings(cachedValue.level, cachedValue.textColor, color);
+        logLevelSetting.getLogColorSetting(logLevel).setBackgroundColor(color);
         break;
     }
 
-    const Model::LogLevelColorSettingsEntry& value = m_model.getLogLevelColorSettings()[row];
-    m_logLevelHighlightModel.changeHighlightLevel(value.level, value.textColor, value.backgroundColor);
+    m_logLevelHighlightItemModel.changeHighlightLevel(entry.getLogLevel(), entry.getForegroundColor(), entry.getBackgroundColor());
 }
 
 } // namespace Presenters

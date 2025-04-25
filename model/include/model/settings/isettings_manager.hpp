@@ -10,7 +10,7 @@
 
 #include <vector>
 
-namespace Model::NewSettings
+namespace Model
 {
 
 enum class SettingsGroupId

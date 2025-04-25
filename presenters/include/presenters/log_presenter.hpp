@@ -6,7 +6,7 @@
 #pragma once
 
 #include "model/ilog_data_context.hpp"
-#include "model/isettings_manager.hpp"
+#include "model/settings/isettings_manager.hpp"
 #include "presenters/base_presenter.hpp"
 #include "widgets/ilog_widget.hpp"
 

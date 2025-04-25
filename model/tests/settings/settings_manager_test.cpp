@@ -22,7 +22,7 @@ class SettingsManagerTest : public ::testing::Test
 
 TEST_F(SettingsManagerTest, SettingsManager_GetSettingGroups_ReturnsVectorWithSizeOne)
 {
-    NewSettings::SettingsManager settingsManager;
+    SettingsManager settingsManager;
 
     const auto& settingsGroups = settingsManager.getSettingGroups();
 
@@ -31,7 +31,7 @@ TEST_F(SettingsManagerTest, SettingsManager_GetSettingGroups_ReturnsVectorWithSi
 
 TEST_F(SettingsManagerTest, SettingsManager_GetFirstSettingGroups_HasNameLogLevels)
 {
-    NewSettings::SettingsManager settingsManager;
+    SettingsManager settingsManager;
 
     const auto& settingsGroups = settingsManager.getSettingGroups();
 
@@ -40,7 +40,7 @@ TEST_F(SettingsManagerTest, SettingsManager_GetFirstSettingGroups_HasNameLogLeve
 
 TEST_F(SettingsManagerTest, SettingsManager_NoChanges_SettingsManagerIsNotModified)
 {
-    NewSettings::SettingsManager settingsManager;
+    SettingsManager settingsManager;
 
     ASSERT_FALSE(settingsManager.isModified());
 }
@@ -50,7 +50,7 @@ TEST_F(SettingsManagerTest, SettingsManager_NoChanges_ModifiedSlotNotCalled)
     CallbackMock callbackMock;
     EXPECT_CALL(callbackMock, callback(::testing::_)).Times(0);
 
-    NewSettings::SettingsManager settingsManager;
+    SettingsManager settingsManager;
     const auto connection = settingsManager.connectSettingsModified([&callbackMock](bool val) { callbackMock.callback(val); });
 }
 
@@ -59,18 +59,18 @@ TEST_F(SettingsManagerTest, SettingsManager_SettingChanged_ModifiedSlotCalled)
     CallbackMock callbackMock;
     EXPECT_CALL(callbackMock, callback(::testing::_)).Times(1);
 
-    NewSettings::SettingsManager settingsManager;
+    SettingsManager settingsManager;
     const auto connection = settingsManager.connectSettingsModified([&callbackMock](bool val) { callbackMock.callback(val); });
 
-    auto logColorSettingEntries = std::get<LogColorSetting>(settingsManager.getSettingGroup(NewSettings::SettingsGroupId::LOG_LEVELS).getSettings()[0]);
+    auto logColorSettingEntries = std::get<LogColorSetting>(settingsManager.getSettingGroup(SettingsGroupId::LOG_LEVELS).getSettings()[0]);
     auto logColorSettingEntry = logColorSettingEntries.getLogColorSettingsEntries()[0];
     logColorSettingEntry.setLogLevelIndex(100);
 }
 
 TEST_F(SettingsManagerTest, SettingsManager_ResetModified_ResetsModified)
 {
-    NewSettings::SettingsManager settingsManager;
-    auto logColorSettingEntries = std::get<LogColorSetting>(settingsManager.getSettingGroup(NewSettings::SettingsGroupId::LOG_LEVELS).getSettings()[0]);
+    SettingsManager settingsManager;
+    auto logColorSettingEntries = std::get<LogColorSetting>(settingsManager.getSettingGroup(SettingsGroupId::LOG_LEVELS).getSettings()[0]);
     auto logColorSettingEntry = logColorSettingEntries.getLogColorSettingsEntries()[0];
     logColorSettingEntry.setLogLevelIndex(100);
 

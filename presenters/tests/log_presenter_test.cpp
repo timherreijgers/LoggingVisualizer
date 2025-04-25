@@ -29,6 +29,9 @@ public:
 protected:
     void SetUp() override
     {
+        // TODO: We need to remove the settings file to make sure that we start each test with default settings.
+        std::filesystem::remove("settings.yaml");
+
         ON_CALL(m_mockLogWidget, connectOnFileDropped).WillByDefault([this](const auto& c) { m_fileDroppedCallback = c; });
         ON_CALL(m_mockLogDataContext, connectLogMessagesChanged).WillByDefault([this](const auto& c) { return m_logMessageChangedSignal.connect(c); });
 
@@ -104,7 +107,8 @@ TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOn
 
     EXPECT_CALL(m_mockLogWidget, setHighlightColors(testing::_)).Times(1);
 
-    settingsManager.setLogLevelColorSettings("INFO", Types::Color{255, 255, 255, 255}, Types::Color{255, 255, 255, 255});
+    auto& logColorSettings = std::get<Model::LogColorSetting>(settingsManager.getSettingGroup(Model::SettingsGroupId::LOG_LEVELS).getSettings()[0]);
+    logColorSettings.getLogColorSetting("INFO").setForegroundColor(Types::Color{255, 0, 255, 255});
 }
 
 TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOnViewOnEachSettingsChange)
@@ -114,8 +118,9 @@ TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOn
 
     EXPECT_CALL(m_mockLogWidget, setHighlightColors(testing::_)).Times(2);
 
-    settingsManager.setLogLevelColorSettings("INFO", Types::Color{255, 255, 255, 255}, Types::Color{255, 255, 255, 255});
-    settingsManager.setLogLevelColorSettings("DEBUG", Types::Color{255, 255, 255, 255}, Types::Color{255, 255, 255, 255});
+    auto& logColorSettings = std::get<Model::LogColorSetting>(settingsManager.getSettingGroup(Model::SettingsGroupId::LOG_LEVELS).getSettings()[0]);
+    logColorSettings.getLogColorSetting("INFO").setForegroundColor(Types::Color{255, 0, 0, 255});
+    logColorSettings.getLogColorSetting("DEBUG").setForegroundColor(Types::Color{255, 0, 0, 255});
 }
 
 TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOnViewWithCorrectColor)
@@ -129,7 +134,9 @@ TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOn
 
     constexpr Types::Color textColor{255, 200, 100, 50};
     constexpr Types::Color backgroundColor{255, 50, 200, 100};
-    settingsManager.setLogLevelColorSettings("ERROR", textColor, backgroundColor);
+    auto& logColorSettings = std::get<Model::LogColorSetting>(settingsManager.getSettingGroup(Model::SettingsGroupId::LOG_LEVELS).getSettings()[0]);
+    logColorSettings.getLogColorSetting("ERROR").setForegroundColor(textColor);
+    logColorSettings.getLogColorSetting("ERROR").setBackgroundColor(backgroundColor);
 
     ASSERT_EQ(textColor, colorMap["ERROR"].text);
     ASSERT_EQ(backgroundColor, colorMap["ERROR"].background);

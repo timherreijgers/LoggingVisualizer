@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "model/isettings_manager.hpp"
+#include "model/settings/isettings_manager.hpp"
 #include "presenters/base_presenter.hpp"
 #include "widgets/ilog_level_widget.hpp"
 #include "widgets/item_models/log_level_highlight_model.hpp"
@@ -24,7 +24,7 @@ private:
     Widgets::ILogLevelWidget& m_view;
     Model::ISettingsManager& m_model;
 
-    Widgets::ItemModels::LogLevelHighlightModel m_logLevelHighlightModel;
+    Widgets::ItemModels::LogLevelHighlightModel m_logLevelHighlightItemModel;
 };
 
 } // namespace Presenters

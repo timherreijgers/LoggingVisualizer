@@ -17,12 +17,12 @@ class SettingsManagerGroupLogLevelTest : public ::testing::Test
 protected:
     void SetUp() override
     {
-        m_settingsManager = std::make_unique<NewSettings::SettingsManager>();
-        m_logLevelsGroup = &(m_settingsManager->getSettingGroup(NewSettings::SettingsGroupId::LOG_LEVELS));
+        m_settingsManager = std::make_unique<SettingsManager>();
+        m_logLevelsGroup = &(m_settingsManager->getSettingGroup(SettingsGroupId::LOG_LEVELS));
     }
 
     SettingsGroup * m_logLevelsGroup = nullptr;
-    std::unique_ptr<NewSettings::SettingsManager> m_settingsManager;
+    std::unique_ptr<SettingsManager> m_settingsManager;
     SettingsObject<LogColorSettingEntryData> node{nullptr, {}};
 };
 

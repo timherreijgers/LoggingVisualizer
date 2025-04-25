@@ -62,14 +62,14 @@ auto LogLevelHighlightModel::headerData(int section, Qt::Orientation orientation
     }
 }
 
-void LogLevelHighlightModel::addHighlightLevel(const std::string& level, const Types::Color& textColor, const Types::Color& backgroundColor)
+void LogLevelHighlightModel::addHighlightLevel(std::string_view level, const Types::Color& textColor, const Types::Color& backgroundColor)
 {
     m_colorData.emplace_back(level, textColor, backgroundColor);
     // This should force a complete update for the whole view
     dataChanged(index(0, 0), index(2, static_cast<int>(m_colorData.size())));
 }
 
-void LogLevelHighlightModel::changeHighlightLevel(const std::string& level, const Types::Color& textColor, const Types::Color& backgroundColor)
+void LogLevelHighlightModel::changeHighlightLevel(std::string_view level, const Types::Color& textColor, const Types::Color& backgroundColor)
 {
     auto result = std::ranges::find_if(m_colorData, [&level](const auto& entry) { return entry.level == level; });
     if (result == m_colorData.end())
