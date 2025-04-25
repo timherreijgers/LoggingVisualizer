@@ -41,4 +41,4 @@ public:
     virtual void resetModified() noexcept = 0;
 };
 
-} // namespace Model::NewSettings
+} // namespace Model

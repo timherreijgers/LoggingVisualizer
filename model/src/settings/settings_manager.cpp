@@ -17,7 +17,7 @@
 namespace Model
 {
 
-static constexpr std::string SETTINGS_FILE_NAME = "settings.yaml";
+static constexpr auto SETTINGS_FILE_NAME = "settings.yaml";
 
 static Types::Color convertStringFromHtmlColor(std::string_view htmlcolor)
 {

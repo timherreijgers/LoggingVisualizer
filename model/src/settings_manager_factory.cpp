@@ -11,7 +11,7 @@ namespace Model
 
 std::unique_ptr<ISettingsManager> SettingsManagerFactory::m_settingsManager;
 
-auto SettingsManagerFactory::createSettingsManager() noexcept ->  ISettingsManager&
+auto SettingsManagerFactory::createSettingsManager() noexcept -> ISettingsManager&
 {
     if (!m_settingsManager)
     {
