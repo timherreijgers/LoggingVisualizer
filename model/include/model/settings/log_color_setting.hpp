@@ -61,8 +61,6 @@ public:
 private:
     SettingsNode& m_settingsNode;
     std::vector<LogColorSettingEntry> m_entries;
-
-    void entryUpdated(const LogColorSettingEntry& entry);
 };
 
 } // namespace Model

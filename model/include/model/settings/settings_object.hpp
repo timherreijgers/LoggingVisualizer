@@ -27,17 +27,24 @@ public:
 
         if (m_originalValue != m_newValue)
         {
-            m_parent->setModified(true);
+            setModified(true);
         }
         else
         {
-            m_parent->setModified(false);
+            setModified(false);
         }
     }
 
 private:
     T m_originalValue;
     T m_newValue;
+
+    void resetModified() noexcept override
+    {
+        SettingsNode::resetModified();
+
+        m_originalValue = m_newValue;
+    }
 };
 
 } // namespace Model

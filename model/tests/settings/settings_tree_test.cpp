@@ -46,4 +46,29 @@ TEST_F(SettingsTreeTest, NodeIsModifiedAndSetBackToPreviousValue_DoesntSetIsModi
     ASSERT_FALSE(tree.isModified());
 }
 
+TEST_F(SettingsTreeTest, NodeIsModified_ResetModifiedCalledOnTreeRoot_ResetsModifiedInNode)
+{
+    SettingsTree tree{};
+    auto& child = addChildToTree<int>(tree, 10);
+
+    child.setNewValue(20);
+    tree.resetModified();
+
+    ASSERT_FALSE(child.isModified());
+}
+
+TEST_F(SettingsTreeTest, NodeIsModified_ResetModifiedCalledOnTreeRoot_ResetsOriginalValueOnObject)
+{
+    SettingsTree tree{};
+    auto& child = addChildToTree<int>(tree, 10);
+
+    child.setNewValue(20);
+    tree.resetModified();
+
+    child.setNewValue(10);
+    child.setNewValue(20);
+
+    ASSERT_FALSE(child.isModified());
+}
+
 } // namespace Model::Tests

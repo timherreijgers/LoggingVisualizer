@@ -24,10 +24,6 @@ public:
     std::function<void(int, Widgets::ColorType, Types::Color)> m_colorSelectionChangedCallback;
     Model::SettingsNode m_node{nullptr};
     std::vector<Model::SettingsGroup> m_settingsGroups;
-    // std::vector<Model::LogLevelColorSettingsEntry> m_logLevelColorEntries = {
-    //     {"INFO", {255, 255, 255, 255}, {255, 255, 255, 255}},
-    //     {"ERROR", {255, 255, 255, 255}, {255, 255, 255, 255}}};
-
 
 protected:
     void SetUp() override

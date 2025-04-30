@@ -77,7 +77,7 @@ void LogColorSetting::addLogColorSettings(std::string_view logLevel, Types::Colo
     LogColorSettingEntryData data{static_cast<int>(m_entries.size()),
                                   std::string{logLevel}, foregroundColor, backgroundColor};
 
-    std::unique_ptr<SettingsObject<LogColorSettingEntryData>> node = std::make_unique<SettingsObject<LogColorSettingEntryData>>(&m_settingsNode, data);
+    auto node = std::make_unique<SettingsObject<LogColorSettingEntryData>>(&m_settingsNode, data);
     m_entries.emplace_back(*node, data);
     m_settingsNode.addChild(std::move(node));
 }
@@ -110,10 +110,6 @@ auto LogColorSetting::getLogColorSetting(std::string_view debugLevel) -> LogColo
         throw Exceptions::LogLevelNotFoundException(debugLevel);
 
     return *result;
-}
-
-void LogColorSetting::entryUpdated(const LogColorSettingEntry& /*entry*/)
-{
 }
 
 } // namespace Model

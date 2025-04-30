@@ -20,6 +20,8 @@ public:
     [[nodiscard]] auto connectSettingsModified(SettingsModifiedSignal::slot_type slot) -> Signals::scoped_connection;
     void setModified(bool modified) noexcept override;
 
+    void resetModified() noexcept override;
+
 private:
     SettingsModifiedSignal m_settingsModified;
 };

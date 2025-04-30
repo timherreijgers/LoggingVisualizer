@@ -26,4 +26,9 @@ void SettingsTree::setModified(bool modified) noexcept
     m_settingsModified(modified);
 }
 
+void SettingsTree::resetModified() noexcept
+{
+    SettingsNode::resetModified();
+}
+
 } // namespace Model

@@ -21,7 +21,7 @@ static constexpr auto SETTINGS_FILE_NAME = "settings.yaml";
 
 static Types::Color convertStringFromHtmlColor(std::string_view htmlcolor)
 {
-    const auto colorAsInt = std::stoul(htmlcolor.substr(1).data(), nullptr, 16);
+    const auto colorAsInt = std::stoul(std::string{htmlcolor.substr(1)}, nullptr, 16);
     return Types::Color{
         static_cast<uint8_t>(colorAsInt >> 24 & 0xFF),
         static_cast<uint8_t>(colorAsInt >> 16 & 0xFF),
@@ -37,7 +37,6 @@ static std::string convertColorToString(const Types::Color& color)
 
 SettingsManager::SettingsManager() :
     m_yamlLoadingGroupFunctions(createYamlLoadingGroupFunctions())
-
 {
     m_groups.emplace_back("Log Levels");
 
@@ -49,7 +48,7 @@ SettingsManager::SettingsManager() :
     {
         auto& logLevelsGroup = *std::ranges::find_if(m_groups, [](const auto& group) { return group.getName() == "Log Levels"; });
 
-        std::unique_ptr<SettingsNode> logColorSettingNode = std::make_unique<SettingsNode>(&m_settingsTree);
+        auto logColorSettingNode = std::make_unique<SettingsNode>(&m_settingsTree);
         LogColorSetting logColorSetting{*logColorSettingNode};
         m_settingsTree.addChild(std::move(logColorSettingNode));
         logColorSetting.addLogColorSettings("TRACE", Types::Color{0x00, 0x00, 0x00, 0xFF},

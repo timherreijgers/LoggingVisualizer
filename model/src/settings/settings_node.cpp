@@ -5,6 +5,8 @@
 
 #include "model/settings/settings_node.hpp"
 
+#include <cassert>
+
 namespace Model
 {
 
@@ -37,6 +39,14 @@ void SettingsNode::setModified(bool modified) noexcept
 auto SettingsNode::isModified() const noexcept -> bool
 {
     return m_modified;
+}
+
+void SettingsNode::resetModified() noexcept
+{
+    m_modified = false;
+
+    for (auto& child : m_children)
+        child->resetModified();
 }
 
 } // namespace Model

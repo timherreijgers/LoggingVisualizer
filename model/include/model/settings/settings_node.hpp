@@ -24,9 +24,10 @@ public:
     [[nodiscard]] virtual auto isModified() const noexcept -> bool;
 
 protected:
-    SettingsNode * m_parent;
+    virtual void resetModified() noexcept;
 
 private:
+    SettingsNode * m_parent;
     std::vector<std::unique_ptr<SettingsNode>> m_children;
     bool m_modified = false;
 };
