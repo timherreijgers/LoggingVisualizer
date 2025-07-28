@@ -5,7 +5,6 @@ function(download_dependencies)
     set(BENCHMARK_ENABLE_TESTING OFF)
 
     CPMAddPackage("gh:timherreijgers/FastSignals#ea71756889c576dcae5e08b34850e0a000ebf663")
-    CPMAddPackage("gh:fmtlib/fmt#11.0.2")
     CPMAddPackage("gh:google/googletest#v1.16.0")
     CPMAddPackage("gh:jbeder/yaml-cpp#0.8.0")
     CPMAddPackage("gh:google/benchmark#v1.9.2")

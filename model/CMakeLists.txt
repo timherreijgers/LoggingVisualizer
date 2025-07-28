@@ -77,7 +77,6 @@ target_link_libraries(model
         types
     PRIVATE
         yaml-cpp::yaml-cpp
-        fmt::fmt
 )
 
 if (WIN32 OR APPLE OR UNIX)
