@@ -25,6 +25,9 @@ if (${BUILD_CODE_COVERAGE})
 endif()
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(GTest REQUIRED COMPONENTS gtest gtest_main)
+find_package(Benchmark REQUIRED)
+find_package(Yaml-cpp REQUIRED)
 
 qt_standard_project_setup()
 set(CMAKE_AUTOUIC ON)

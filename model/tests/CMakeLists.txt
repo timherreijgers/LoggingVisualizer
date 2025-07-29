@@ -8,7 +8,12 @@ add_executable(ModelTest
 
 target_link_libraries(ModelTest PRIVATE
         model
+<<<<<<< Updated upstream
         gtest
+=======
+        yaml-cpp
+        GTest::gtest
+>>>>>>> Stashed changes
         gtest_main
         gmock)
 
