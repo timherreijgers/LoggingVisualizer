@@ -10,9 +10,10 @@ class MyProjectConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     requires = [
         "benchmark/1.9.4",
+        "fmt/11.2.0",
         "gtest/1.16.0",
         "yaml-cpp/0.8.0",
-        "qt/6.5.3"
+#        "qt/6.5.3",
     ]
     generators = "CMakeDeps"
 
