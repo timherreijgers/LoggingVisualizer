@@ -46,12 +46,10 @@ jobs:
       - name: Setup conan
         run: >
           pipx install conan
-          pipx run conan profile detect
-          pipx run conan remote add tim-artifactory http://62.250.15.156:8081/artifactory/api/conan/conan-local
-          
+          pipx run conan profile detect          
 
-      - name: Install conan
-        run: pipx run conan install .
+      # - name: Install conan
+      #   run: pipx run conan install .
 
       - name: Configure CMake
         env:
