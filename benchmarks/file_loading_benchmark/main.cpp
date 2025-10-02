@@ -57,7 +57,7 @@ private:
         m_lines.reserve(m_maxIndex);
         for (size_t i = 0; i < m_maxIndex; i++)
         {
-            m_lines.emplace_back(m_defaultLines[i % m_defaultLines.size()]);
+            m_lines.emplace_back(m_defaultLines.at(i % m_defaultLines.size()));
         }
     }
 };
