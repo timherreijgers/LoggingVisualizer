@@ -22,6 +22,7 @@ exclude:
   - name: readability-identifier-length
   - name: readability-qualified-auto
   - name: modernize-use-trailing-return-type
+  - name: modernize-use-designated-initializers
   - name: cppcoreguidelines-avoid-magic-numbers
     paths:
       - model/tests

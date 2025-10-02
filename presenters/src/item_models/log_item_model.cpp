@@ -21,7 +21,7 @@ auto LogItemModel::columnCount() const noexcept -> int
     return 1;
 }
 
-auto LogItemModel::data(size_t row, size_t) const -> Types::LogEntry
+auto LogItemModel::data(size_t row, size_t /*col*/) const -> Types::LogEntry
 {
     return m_entries[row];
 }

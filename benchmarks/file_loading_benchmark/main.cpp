@@ -32,7 +32,7 @@ public:
         populateVectorOfStrings();
     }
 
-    void openFile(const std::filesystem::path&) noexcept override
+    void openFile(const std::filesystem::path& /*path*/) noexcept override
     {
         // No need to implement this function in this benchmark
     }

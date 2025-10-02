@@ -14,7 +14,7 @@ namespace Model::Tests
 class FilteredLogMessageViewTest : public ::testing::Test
 {
 protected:
-    [[nodiscard]] auto generateLogEntries() const noexcept -> std::vector<Types::LogEntry>
+    [[nodiscard]] static auto generateLogEntries() noexcept -> std::vector<Types::LogEntry>
     {
         return {
             {"time", "debug", "message1"},

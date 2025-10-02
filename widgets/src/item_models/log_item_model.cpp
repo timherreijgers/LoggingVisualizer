@@ -21,12 +21,12 @@ void LogItemModel::setHighlightColors(std::map<std::string, Types::HighlightColo
     layoutChanged();
 }
 
-auto LogItemModel::rowCount(const QModelIndex&) const noexcept -> int
+auto LogItemModel::rowCount(const QModelIndex& /*index*/) const noexcept -> int
 {
     return m_messages.rowCount();
 }
 
-auto LogItemModel::columnCount(const QModelIndex&) const noexcept -> int
+auto LogItemModel::columnCount(const QModelIndex& /*index*/) const noexcept -> int
 {
     return 3;
 }

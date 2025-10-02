@@ -38,7 +38,7 @@ TEST_F(MenuBarPresenterTests, openFileClicked_callsOpenFileOnModel_withCorrectPa
 TEST_F(MenuBarPresenterTests, closeFileClicked_callsCloseFileOnModel)
 {
     std::function<void()> callback;
-    ON_CALL(m_menubar, connectCloseFileClicked).WillByDefault([&callback](auto c) { callback = c; });
+    ON_CALL(m_menubar, connectCloseFileClicked).WillByDefault([&callback](const auto& c) { callback = c; });
 
     EXPECT_CALL(m_logDataContext, closeFile()).Times(1);
 
