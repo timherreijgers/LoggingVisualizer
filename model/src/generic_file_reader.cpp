@@ -9,44 +9,44 @@
 
 #include <array>
 #include <cstdio>
-#include <fcntl.h>
 
 namespace Model
 {
 
+GenericFileReader::GenericFileReader() :
+    m_file(std::fopen("", "r"), &fileDeleter)
+{
+}
+
 void GenericFileReader::openFile(const std::filesystem::path& path)
 {
-    m_file = fopen(path.string().c_str(), "r");
+    m_file = std::unique_ptr<std::FILE, decltype(&fileDeleter)>(std::fopen(path.string().c_str(), "r"), &fileDeleter);
     if (m_file == nullptr)
     {
         throw Exceptions::FileNotFoundException(path);
     }
 
-    const auto hasNextLineInternal = [&]() {
-        if (getc(m_file) == EOF)
+    const auto hasNextLineInternal = [&]() -> bool {
+        if (std::getc(m_file.get()) == EOF)
         {
             return false;
         }
 
-        fseek(m_file, -1, SEEK_CUR);
+        std::fseek(m_file.get(), -1, SEEK_CUR);
         return true;
     };
 
     std::array<char, 512> line{};
     while (hasNextLineInternal())
     {
-        m_couldReadFile = fgets(line.data(), 512, m_file) != nullptr;
+        m_couldReadFile = std::fgets(line.data(), 512, m_file.get()) != nullptr;
         m_lines.emplace_back(line.data());
     }
 }
 
 void GenericFileReader::closeFile()
 {
-    if (m_file != nullptr)
-    {
-        fclose(m_file);
-    }
-
+    m_file.reset();
     m_lines.clear();
 }
 
