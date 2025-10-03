@@ -104,7 +104,7 @@ TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOn
 
     EXPECT_CALL(m_mockLogWidget, setHighlightColors(testing::_)).Times(1);
 
-    settingsManager.setLogLevelColorSettings("INFO", Types::Color{.red =  255, .green =  255, .blue = 255, .alpha = 255}, Types::Color{ .red = 255, .green = 255, .blue = 255, .alpha = 255});
+    settingsManager.setLogLevelColorSettings("INFO", Types::Color{.red = 255, .green = 255, .blue = 255, .alpha = 255}, Types::Color{.red = 255, .green = 255, .blue = 255, .alpha = 255});
 }
 
 TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOnViewOnEachSettingsChange)
@@ -114,8 +114,8 @@ TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOn
 
     EXPECT_CALL(m_mockLogWidget, setHighlightColors(testing::_)).Times(2);
 
-    settingsManager.setLogLevelColorSettings("INFO", Types::Color{ .red = 255, .green = 255, .blue = 255, .alpha = 255}, Types::Color{ .red = 255, .green = 255, .blue = 255, .alpha = 255});
-    settingsManager.setLogLevelColorSettings("DEBUG", Types::Color{ .red = 255, .green = 255, .blue = 255, .alpha = 255}, Types::Color{ .red = 255, .green = 255, .blue = 255, .alpha = 255});
+    settingsManager.setLogLevelColorSettings("INFO", Types::Color{.red = 255, .green = 255, .blue = 255, .alpha = 255}, Types::Color{.red = 255, .green = 255, .blue = 255, .alpha = 255});
+    settingsManager.setLogLevelColorSettings("DEBUG", Types::Color{.red = 255, .green = 255, .blue = 255, .alpha = 255}, Types::Color{.red = 255, .green = 255, .blue = 255, .alpha = 255});
 }
 
 TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOnViewWithCorrectColor)

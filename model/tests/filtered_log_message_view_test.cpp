@@ -14,7 +14,7 @@ namespace Model::Tests
 class FilteredLogMessageViewTest : public ::testing::Test
 {
 protected:
-    [[nodiscard]] auto generateLogEntries() const noexcept -> std::vector<Types::LogEntry>
+    [[nodiscard]] static auto generateLogEntries() noexcept -> std::vector<Types::LogEntry>
     {
         return {
             {"time", "debug", "message1"},
@@ -97,7 +97,7 @@ TEST_F(FilteredLogMessageViewTest, Get_WithSourceWithIndices_ReturnsCorrectLine)
     view.setSource(&entries);
     view.addIndex(1);
 
-    constexpr auto expected = Types::LogEntry{.time = "time", .level = "error", .message= "message2"};
+    constexpr auto expected = Types::LogEntry{.time = "time", .level = "error", .message = "message2"};
     ASSERT_EQ(view.get(0), expected);
 }
 
@@ -132,7 +132,7 @@ TEST_F(FilteredLogMessageViewTest, Operator_WithSourceWithIndices_ReturnsCorrect
     view.setSource(&entries);
     view.addIndex(1);
 
-    constexpr auto expected = Types::LogEntry{.time = "time", .level = "error", .message= "message2"};
+    constexpr auto expected = Types::LogEntry{.time = "time", .level = "error", .message = "message2"};
     ASSERT_EQ(view[0], expected);
 }
 

@@ -14,7 +14,7 @@ namespace Model::Tests
 class LogMessageFilterTest : public ::testing::Test
 {
 protected:
-    [[nodiscard]] auto getLogMessages() const noexcept -> std::vector<Types::LogEntry>
+    [[nodiscard]] static auto getLogMessages() noexcept -> std::vector<Types::LogEntry>
     {
         return {
             {"time", "debug", "This is a debug message"},
