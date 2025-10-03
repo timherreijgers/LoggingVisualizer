@@ -104,7 +104,7 @@ TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOn
 
     EXPECT_CALL(m_mockLogWidget, setHighlightColors(testing::_)).Times(1);
 
-    settingsManager.setLogLevelColorSettings("INFO", Types::Color{255, 255, 255, 255}, Types::Color{255, 255, 255, 255});
+    settingsManager.setLogLevelColorSettings("INFO", Types::Color{.red =  255, .green =  255, .blue = 255, .alpha = 255}, Types::Color{ .red = 255, .green = 255, .blue = 255, .alpha = 255});
 }
 
 TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOnViewOnEachSettingsChange)
@@ -114,8 +114,8 @@ TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOn
 
     EXPECT_CALL(m_mockLogWidget, setHighlightColors(testing::_)).Times(2);
 
-    settingsManager.setLogLevelColorSettings("INFO", Types::Color{255, 255, 255, 255}, Types::Color{255, 255, 255, 255});
-    settingsManager.setLogLevelColorSettings("DEBUG", Types::Color{255, 255, 255, 255}, Types::Color{255, 255, 255, 255});
+    settingsManager.setLogLevelColorSettings("INFO", Types::Color{ .red = 255, .green = 255, .blue = 255, .alpha = 255}, Types::Color{ .red = 255, .green = 255, .blue = 255, .alpha = 255});
+    settingsManager.setLogLevelColorSettings("DEBUG", Types::Color{ .red = 255, .green = 255, .blue = 255, .alpha = 255}, Types::Color{ .red = 255, .green = 255, .blue = 255, .alpha = 255});
 }
 
 TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOnViewWithCorrectColor)
@@ -127,8 +127,8 @@ TEST_F(LogPresenterTests, LogLevelColorSettingsChanged_CallsSetHighLightColorsOn
         colorMap = map;
     });
 
-    constexpr Types::Color textColor{255, 200, 100, 50};
-    constexpr Types::Color backgroundColor{255, 50, 200, 100};
+    constexpr Types::Color textColor{.red = 255, .green = 200, .blue = 100, .alpha = 50};
+    constexpr Types::Color backgroundColor{.red = 255, .green = 50, .blue = 200, .alpha = 100};
     settingsManager.setLogLevelColorSettings("ERROR", textColor, backgroundColor);
 
     ASSERT_EQ(textColor, colorMap["ERROR"].text);

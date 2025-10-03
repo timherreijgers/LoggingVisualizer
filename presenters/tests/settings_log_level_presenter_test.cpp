@@ -23,8 +23,8 @@ public:
 
     std::function<void(int, Widgets::ColorType, Types::Color)> m_colorSelectionChangedCallback;
     std::vector<Model::LogLevelColorSettingsEntry> m_logLevelColorEntries = {
-        {"INFO", {255, 255, 255, 255}, {255, 255, 255, 255}},
-        {"ERROR", {255, 255, 255, 255}, {255, 255, 255, 255}}};
+        {"INFO", {.red = 255, .green = 255, .blue = 255, .alpha = 255}, {.red = 255, .green = 255, .blue = 255, .alpha = 255}},
+        {"ERROR", {.red = 255, .green = 255, .blue = 255, .alpha = 255}, {.red = 255, .green = 255, .blue = 255, .alpha = 255}}};
 
 
 protected:
@@ -44,34 +44,34 @@ TEST_F(SettingsLogLevelPresenterTest, TextColorChangedInView_FirstRowChanged_Pas
 {
     SettingsLogLevelPresenter presenter(m_mockWindowManager, m_mockLogLevelWidget, m_mockSettingsManager);
 
-    EXPECT_CALL(m_mockSettingsManager, setLogLevelColorSettings("INFO", Types::Color{0, 0, 0, 0},
-                                                                Types::Color{255, 255, 255, 255}));
-    m_colorSelectionChangedCallback(0, Widgets::ColorType::TEXT, Types::Color{0, 0, 0, 0});
+    EXPECT_CALL(m_mockSettingsManager, setLogLevelColorSettings("INFO", Types::Color{.red = 0, .green = 0, .blue = 0, .alpha = 0},
+                                                                Types::Color{.red = 255, .green = 255, .blue = 255, .alpha = 255}));
+    m_colorSelectionChangedCallback(0, Widgets::ColorType::TEXT, Types::Color{.red = 0, .green = 0, .blue = 0, .alpha = 0});
 }
 
 TEST_F(SettingsLogLevelPresenterTest, TextColorChangedInView_SecondRowChanged_PassesOnTextColorToModel)
 {
     SettingsLogLevelPresenter presenter(m_mockWindowManager, m_mockLogLevelWidget, m_mockSettingsManager);
 
-    EXPECT_CALL(m_mockSettingsManager, setLogLevelColorSettings("ERROR", Types::Color{0, 0, 0, 0},
-                                                                Types::Color{255, 255, 255, 255}));
-    m_colorSelectionChangedCallback(1, Widgets::ColorType::TEXT, Types::Color{0, 0, 0, 0});
+    EXPECT_CALL(m_mockSettingsManager, setLogLevelColorSettings("ERROR", Types::Color{.red = 0, .green = 0, .blue = 0, .alpha = 0},
+                                                                Types::Color{.red = 255, .green = 255, .blue = 255, .alpha = 255}));
+    m_colorSelectionChangedCallback(1, Widgets::ColorType::TEXT, Types::Color{.red = 0, .green = 0, .blue = 0, .alpha = 0});
 }
 
 TEST_F(SettingsLogLevelPresenterTest, BackgroundColorChangedInView_FirstRowChanged_PassesOnBackgroundColorToModel)
 {
     SettingsLogLevelPresenter presenter(m_mockWindowManager, m_mockLogLevelWidget, m_mockSettingsManager);
 
-    EXPECT_CALL(m_mockSettingsManager, setLogLevelColorSettings("INFO", Types::Color{255, 255, 255, 255}, Types::Color{0, 0, 0, 0}));
-    m_colorSelectionChangedCallback(0, Widgets::ColorType::BACKGROUND, Types::Color{0, 0, 0, 0});
+    EXPECT_CALL(m_mockSettingsManager, setLogLevelColorSettings("INFO", Types::Color{.red = 255, .green = 255, .blue = 255, .alpha = 255}, Types::Color{0, 0, 0, 0}));
+    m_colorSelectionChangedCallback(0, Widgets::ColorType::BACKGROUND, Types::Color{.red = 0, .green = 0, .blue = 0, .alpha = 0});
 }
 
 TEST_F(SettingsLogLevelPresenterTest, BackgroundColorChangedInView_SecondRowChanged_PassesOnBackgroundColorToModel)
 {
     SettingsLogLevelPresenter presenter(m_mockWindowManager, m_mockLogLevelWidget, m_mockSettingsManager);
 
-    EXPECT_CALL(m_mockSettingsManager, setLogLevelColorSettings("ERROR", Types::Color{255, 255, 255, 255}, Types::Color{0, 0, 0, 0}));
-    m_colorSelectionChangedCallback(1, Widgets::ColorType::BACKGROUND, Types::Color{0, 0, 0, 0});
+    EXPECT_CALL(m_mockSettingsManager, setLogLevelColorSettings("ERROR", Types::Color{.red = 255, .green = 255, .blue = 255, .alpha = 255}, Types::Color{0, 0, 0, 0}));
+    m_colorSelectionChangedCallback(1, Widgets::ColorType::BACKGROUND, Types::Color{.red = 0, .green = 0, .blue = 0, .alpha = 0});
 }
 
 TEST_F(SettingsLogLevelPresenterTest, Construction_CallsSetModelOnView)

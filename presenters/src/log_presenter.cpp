@@ -21,7 +21,10 @@ LogPresenter::LogPresenter(Windows::IWindowManager& manager, Widgets::ILogWidget
         std::map<std::string, Types::HighlightColorPair> colorDataMap;
         for (const auto& entry : m_settingsManager.getLogLevelColorSettings())
         {
-            colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};
+            colorDataMap[entry.level] = {
+                .text = entry.textColor,
+                .background = entry.backgroundColor
+            };
         }
 
         m_view.setHighlightColors(std::move(colorDataMap));
@@ -50,7 +53,10 @@ void LogPresenter::logMessagesUpdated(const Model::IFilteredLogMessageView& logE
     std::map<std::string, Types::HighlightColorPair> colorDataMap;
     for (const auto& entry : colorSettings)
     {
-        colorDataMap[entry.level] = {entry.textColor, entry.backgroundColor};
+        colorDataMap[entry.level] = {
+            .text = entry.textColor,
+            .background = entry.backgroundColor
+        };
     }
 
     m_view.setHighlightColors(std::move(colorDataMap));

@@ -37,9 +37,9 @@ void LogDataContext::openFile(const std::filesystem::path& path)
         const auto levelEnd = line.find(']', levelStart);
 
         Types::LogEntry entry = {
-            line.substr(timeStart, timeEnd - timeStart),
-            line.substr(levelStart, levelEnd - levelStart),
-            line.substr(levelEnd + 1, line.size() - levelEnd - 1)};
+            .time = line.substr(timeStart, timeEnd - timeStart),
+            .level = line.substr(levelStart, levelEnd - levelStart),
+            .message = line.substr(levelEnd + 1, line.size() - levelEnd - 1)};
         logEntries.push_back(entry);
     }
 

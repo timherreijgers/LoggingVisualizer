@@ -24,10 +24,10 @@ static Types::Color convertStringFromHtmlColor(std::string_view htmlcolor)
 {
     const auto colorAsInt = std::stoul(htmlcolor.substr(1).data(), nullptr, 16);
     return Types::Color{
-        static_cast<uint8_t>(colorAsInt >> 24 & 0xFF),
-        static_cast<uint8_t>(colorAsInt >> 16 & 0xFF),
-        static_cast<uint8_t>(colorAsInt >> 8 & 0xFF),
-        static_cast<uint8_t>(colorAsInt >> 0 & 0xFF),
+        .red = static_cast<uint8_t>(colorAsInt >> 24 & 0xFF),
+        .green = static_cast<uint8_t>(colorAsInt >> 16 & 0xFF),
+        .blue = static_cast<uint8_t>(colorAsInt >> 8 & 0xFF),
+        .alpha = static_cast<uint8_t>(colorAsInt >> 0 & 0xFF),
     };
 }
 
