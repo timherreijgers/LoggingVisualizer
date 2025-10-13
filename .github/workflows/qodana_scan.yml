@@ -21,6 +21,9 @@ jobs:
       - name: Install Qodana CLI
         run: curl -fsSL https://jb.gg/qodana-cli/install | bash
 
+      - name: Check docker container
+        run: docker image list
+
       - name: Run Qodana Scan
         run: qodana scan
         env:
