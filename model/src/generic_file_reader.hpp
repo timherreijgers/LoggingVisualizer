@@ -14,10 +14,15 @@
 namespace Model
 {
 
+void fileDeleter(std::FILE * file)
+{
+    std::fclose(file);
+}
+
 class GenericFileReader : public IFileReader
 {
 public:
-    explicit GenericFileReader() = default;
+    explicit GenericFileReader();
 
     void openFile(const std::filesystem::path& path) override;
     void closeFile() override;
@@ -26,9 +31,9 @@ public:
     [[nodiscard]] auto readNextLine() -> std::string_view final;
 
 private:
-    FILE * m_file{nullptr};
-    bool m_couldReadFile{true};
+    std::unique_ptr<std::FILE, decltype(&fileDeleter)> m_file;
     std::vector<std::string> m_lines;
+
     size_t m_index{0};
 };
 

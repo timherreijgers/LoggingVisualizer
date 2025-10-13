@@ -12,12 +12,12 @@
 namespace Widgets::ItemModels
 {
 
-auto LogLevelHighlightModel::rowCount(const QModelIndex&) const noexcept -> int
+auto LogLevelHighlightModel::rowCount(const QModelIndex& /*index*/) const noexcept -> int
 {
     return static_cast<int>(m_colorData.size());
 }
 
-auto LogLevelHighlightModel::columnCount(const QModelIndex&) const noexcept -> int
+auto LogLevelHighlightModel::columnCount(const QModelIndex& /*index*/) const noexcept -> int
 {
     return 3;
 }

@@ -51,22 +51,22 @@ auto MenuBar::getFileToOpen() noexcept -> std::string
     return path.toStdString();
 }
 
-void MenuBar::actionOpenTriggered(bool)
+void MenuBar::actionOpenTriggered(bool /*checked*/)
 {
     openFileClicked();
 }
 
-void MenuBar::actionCloseTriggered(bool)
+void MenuBar::actionCloseTriggered(bool /*checked*/)
 {
     closeFileClicked();
 }
 
-void MenuBar::actionPreferencesTriggered(bool)
+void MenuBar::actionPreferencesTriggered(bool /*checked*/)
 {
     preferencesClicked();
 }
 
-void MenuBar::actionExitTriggered(bool)
+void MenuBar::actionExitTriggered(bool /*checked*/)
 {
     exitClicked();
 }

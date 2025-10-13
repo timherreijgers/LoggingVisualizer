@@ -28,7 +28,7 @@ void MemoryMappedFile::openFile(const std::filesystem::path& path)
     }
 
     const auto fileHandle = fopen(path.string().c_str(), "r");
-    if (!fileHandle)
+    if (fileHandle == nullptr)
     {
         throw Exceptions::FileNotFoundException(path);
     }

@@ -12,7 +12,7 @@ namespace Model
 
 auto FilteredLogMessageView::get(size_t index) const -> const Types::LogEntry&
 {
-    if (!m_sourceMessages)
+    if (m_sourceMessages == nullptr || m_sourceMessages->empty())
     {
         throw std::runtime_error("FilteredLogMessageView::get: Source message is empty");
     }
