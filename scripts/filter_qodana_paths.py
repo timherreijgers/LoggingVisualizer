@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import os
+from itertools import chain
 from pathlib import Path
 
 # Read existing compile_commands.json ------------------------------------------
@@ -14,8 +15,6 @@ with open(COMPILE_COMMANDS_PATH, "r", encoding="utf-8") as fd:
     compile_commands = json.load(fd)
 
 # Filter source files ----------------------------------------------------------
-from itertools import chain
-
 EXCLUDE_GLOBS = [
     "third_party/**/*",
 ]

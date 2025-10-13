@@ -14,7 +14,7 @@ namespace Model
 {
 
 GenericFileReader::GenericFileReader() :
-    m_file(std::fopen("", "r"), &fileDeleter)
+    m_file(nullptr, &fileDeleter)
 {
 }
 
@@ -39,7 +39,11 @@ void GenericFileReader::openFile(const std::filesystem::path& path)
     std::array<char, 512> line{};
     while (hasNextLineInternal())
     {
-        m_couldReadFile = std::fgets(line.data(), 512, m_file.get()) != nullptr;
+        if (std::fgets(line.data(), 512, m_file.get()) == nullptr)
+        {
+            throw std::runtime_error("Failed to read line");
+        }
+
         m_lines.emplace_back(line.data());
     }
 }

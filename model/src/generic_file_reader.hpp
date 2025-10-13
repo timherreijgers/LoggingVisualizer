@@ -34,7 +34,6 @@ private:
     std::unique_ptr<std::FILE, decltype(&fileDeleter)> m_file;
     std::vector<std::string> m_lines;
 
-    bool m_couldReadFile{true};
     size_t m_index{0};
 };
 
