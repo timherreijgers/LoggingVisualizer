@@ -4,8 +4,7 @@
  */
 
 #include "model/settings_manager_factory.hpp"
-
-#include "settings_manager.hpp"
+#include "settings/settings_manager.hpp"
 
 namespace Model
 {
@@ -21,4 +20,5 @@ auto SettingsManagerFactory::createSettingsManager() noexcept -> ISettingsManage
 
     return *m_settingsManager;
 }
+
 } // namespace Model

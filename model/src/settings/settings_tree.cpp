@@ -1,0 +1,34 @@
+/*
+ * Copyright © 2025 Tim Herreijgers
+ * Licensed using the MIT license
+ */
+
+#include "model/settings/settings_tree.hpp"
+
+#include <utility>
+
+namespace Model
+{
+
+SettingsTree::SettingsTree() :
+    SettingsNode(nullptr)
+{
+}
+
+auto SettingsTree::connectSettingsModified(SettingsModifiedSignal::slot_type slot) -> Signals::scoped_connection
+{
+    return m_settingsModified.connect(std::move(slot));
+}
+
+void SettingsTree::setModified(bool modified) noexcept
+{
+    SettingsNode::setModified(modified);
+    m_settingsModified(modified);
+}
+
+void SettingsTree::resetModified() noexcept
+{
+    SettingsNode::resetModified();
+}
+
+} // namespace Model

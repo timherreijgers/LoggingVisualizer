@@ -1,0 +1,103 @@
+/*
+ * Copyright © 2025 Tim Herreijgers
+ * Licensed using the MIT license
+ */
+
+#include "model/settings/settings_object.hpp"
+#include "model/settings/settings_tree.hpp"
+
+
+#include <gtest/gtest.h>
+
+namespace Model::Tests
+{
+
+class SettingsTreeTest : public ::testing::Test
+{
+protected:
+    template <typename T>
+    [[nodiscard]] auto addChildToTree(SettingsTree& tree, T value) -> SettingsObject<T>&
+    {
+        auto child = std::make_unique<SettingsObject<int>>(&tree, value);
+        auto pChild = child.get();
+        tree.addChild(std::move(child));
+        return *pChild;
+    }
+};
+
+TEST_F(SettingsTreeTest, NodeIsModified_SetsIsModifiedOnTreeRoot)
+{
+    SettingsTree tree{};
+    auto& child = addChildToTree<int>(tree, 10);
+
+    child.setNewValue(20);
+
+    ASSERT_TRUE(tree.isModified());
+}
+
+TEST_F(SettingsTreeTest, NodeIsModifiedAndSetBackToPreviousValue_DoesntSetIsModifiedOnTreeRoot)
+{
+    SettingsTree tree{};
+    auto& child = addChildToTree<int>(tree, 10);
+
+    child.setNewValue(20);
+    child.setNewValue(10);
+
+    ASSERT_FALSE(tree.isModified());
+}
+
+TEST_F(SettingsTreeTest, NodeIsModified_ResetModifiedCalledOnTreeRoot_ResetsModifiedInNode)
+{
+    SettingsTree tree{};
+    auto& child = addChildToTree<int>(tree, 10);
+
+    child.setNewValue(20);
+    tree.resetModified();
+
+    ASSERT_FALSE(child.isModified());
+}
+
+TEST_F(SettingsTreeTest, NodeIsModified_ResetModifiedCalledOnTreeRoot_ResetsOriginalValueOnObject)
+{
+    SettingsTree tree{};
+    auto& child = addChildToTree<int>(tree, 10);
+
+    child.setNewValue(20);
+    tree.resetModified();
+
+    child.setNewValue(10);
+    child.setNewValue(20);
+
+    ASSERT_FALSE(child.isModified());
+}
+
+TEST_F(SettingsTreeTest, NodeIsModifiedAndSetBackToPreviousValue_WhileOtherBranchIsModified_KeepsModifiedFlagOnRoot)
+{
+    SettingsTree tree{};
+    auto& childLeft = addChildToTree<int>(tree, 10);
+    auto& childRight = addChildToTree<int>(tree, 10);
+
+    childLeft.setNewValue(20);
+    childRight.setNewValue(30);
+
+    childLeft.setNewValue(10);
+
+    ASSERT_TRUE(tree.isModified());
+}
+
+TEST_F(SettingsTreeTest, NodeIsModifiedAndSetBackToPreviousValue_WhenOtherBranchIsAlsoReset_KeepsModifiedFlagOnRoot)
+{
+    SettingsTree tree{};
+    auto& childLeft = addChildToTree<int>(tree, 10);
+    auto& childRight = addChildToTree<int>(tree, 10);
+
+    childLeft.setNewValue(20);
+    childRight.setNewValue(30);
+
+    childLeft.setNewValue(10);
+    childRight.setNewValue(10);
+
+    ASSERT_FALSE(tree.isModified());
+}
+
+} // namespace Model::Tests

@@ -24,8 +24,8 @@ public:
     [[nodiscard]] auto data(const QModelIndex& index, int role) const -> QVariant override;
     [[nodiscard]] auto headerData(int section, Qt::Orientation orientation, int role) const -> QVariant override;
 
-    void addHighlightLevel(const std::string& level, const Types::Color& textColor, const Types::Color& backgroundColor);
-    void changeHighlightLevel(const std::string& level, const Types::Color& textColor, const Types::Color& backgroundColor);
+    void addHighlightLevel(std::string_view level, const Types::Color& textColor, const Types::Color& backgroundColor);
+    void changeHighlightLevel(std::string_view level, const Types::Color& textColor, const Types::Color& backgroundColor);
 
 private:
     struct ColorData
@@ -34,8 +34,8 @@ private:
         Types::Color textColor;
         Types::Color backgroundColor;
 
-        ColorData(std::string level, Types::Color textColor, Types::Color backgroundColor) :
-            level(std::move(level)), textColor(textColor), backgroundColor(backgroundColor)
+        ColorData(std::string_view level, Types::Color textColor, Types::Color backgroundColor) :
+            level(level), textColor(textColor), backgroundColor(backgroundColor)
         {
         }
     };

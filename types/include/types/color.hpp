@@ -18,7 +18,7 @@ struct Color
     uint8_t blue;
     uint8_t alpha;
 
-    [[nodiscard]] bool operator==(const Color&) const = default;
+    [[nodiscard]] constexpr bool operator==(const Color&) const = default;
 };
 
 } // namespace Types

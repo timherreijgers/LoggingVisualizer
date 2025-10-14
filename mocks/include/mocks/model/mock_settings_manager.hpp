@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "model/isettings_manager.hpp"
+#include "model/settings/isettings_manager.hpp"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -16,10 +16,13 @@ namespace Model::Mocks
 class MockSettingsManager : public ISettingsManager
 {
 public:
-    MOCK_METHOD(void, setLogLevelColorSettings, (std::string, Types::Color, Types::Color), (override));
-    MOCK_METHOD(const std::vector<LogLevelColorSettingsEntry>&, getLogLevelColorSettings, (), (override, noexcept));
-    MOCK_METHOD(void, saveSettings, (), (override));
-    MOCK_METHOD(Signals::connection, connectSettingsChangedSignal, (SettingsChangedSignal::slot_type), (override));
+    MOCK_METHOD(const std::vector<SettingsGroup>&, getSettingGroups, (), (const, override, noexcept));
+    MOCK_METHOD(const SettingsGroup&, getSettingGroup, (SettingsGroupId), (const, override, noexcept));
+    MOCK_METHOD(SettingsGroup&, getSettingGroup, (SettingsGroupId), (override, noexcept));
+    MOCK_METHOD(void, saveSettings, (), (override, noexcept));
+    MOCK_METHOD(Signals::scoped_connection, connectSettingsModified, (SettingsModifiedSignal::slot_type), (override));
+    MOCK_METHOD(bool, isModified, (), (const, override, noexcept));
+    MOCK_METHOD(void, resetModified, (), (override, noexcept));
 };
 
 } // namespace Model::Mocks
