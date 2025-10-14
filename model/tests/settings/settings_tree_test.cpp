@@ -71,4 +71,33 @@ TEST_F(SettingsTreeTest, NodeIsModified_ResetModifiedCalledOnTreeRoot_ResetsOrig
     ASSERT_FALSE(child.isModified());
 }
 
+TEST_F(SettingsTreeTest, NodeIsModifiedAndSetBackToPreviousValue_WhileOtherBranchIsModified_KeepsModifiedFlagOnRoot)
+{
+    SettingsTree tree{};
+    auto& childLeft = addChildToTree<int>(tree, 10);
+    auto& childRight = addChildToTree<int>(tree, 10);
+
+    childLeft.setNewValue(20);
+    childRight.setNewValue(30);
+
+    childLeft.setNewValue(10);
+
+    ASSERT_TRUE(tree.isModified());
+}
+
+TEST_F(SettingsTreeTest, NodeIsModifiedAndSetBackToPreviousValue_WhenOtherBranchIsAlsoReset_KeepsModifiedFlagOnRoot)
+{
+    SettingsTree tree{};
+    auto& childLeft = addChildToTree<int>(tree, 10);
+    auto& childRight = addChildToTree<int>(tree, 10);
+
+    childLeft.setNewValue(20);
+    childRight.setNewValue(30);
+
+    childLeft.setNewValue(10);
+    childRight.setNewValue(10);
+
+    ASSERT_FALSE(tree.isModified());
+}
+
 } // namespace Model::Tests

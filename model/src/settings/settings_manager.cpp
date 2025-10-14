@@ -123,7 +123,7 @@ auto SettingsManager::isModified() const noexcept -> bool
 
 void SettingsManager::resetModified() noexcept
 {
-    m_settingsTree.setModified(false);
+    m_settingsTree.resetModified();
 }
 
 auto SettingsManager::createYamlLoadingGroupFunctions() -> std::map<std::string_view, std::function<void(const YAML::Node&)>>
