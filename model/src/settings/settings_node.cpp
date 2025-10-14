@@ -29,7 +29,7 @@ void SettingsNode::setParent(SettingsNode * parent)
 
 void SettingsNode::setModified(bool modified) noexcept
 {
-    modified =  modified || std::ranges::any_of(m_children, [](const auto& child){return child->isModified();});
+    modified = modified || std::ranges::any_of(m_children, [](const auto& child) { return child->isModified(); });
     m_modified = modified;
 
     if (m_parent != nullptr)
