@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024-2025 Tim Herreijgers
+ * Copyright © 2024-2026 Tim Herreijgers
  * Licensed using the MIT license
  */
 
@@ -7,10 +7,10 @@
 
 #include "model/log_level_color_settings_entry.hpp"
 
-#include <fmt/format.h>
 #include <yaml-cpp/yaml.h>
 
 #include <filesystem>
+#include <format>
 #include <fstream>
 #include <string>
 #include <string_view>
@@ -33,7 +33,7 @@ static Types::Color convertStringFromHtmlColor(std::string_view htmlcolor)
 
 static std::string convertColorToString(const Types::Color& color)
 {
-    return fmt::format("#{:02x}{:02x}{:02x}{:02x}", color.red, color.green, color.blue, color.alpha);
+    return std::format("#{:02x}{:02x}{:02x}{:02x}", color.red, color.green, color.blue, color.alpha);
 }
 
 SettingsManager::SettingsManager()
