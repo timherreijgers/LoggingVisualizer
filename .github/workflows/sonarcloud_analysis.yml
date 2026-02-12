@@ -24,8 +24,8 @@ jobs:
         run:
           sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev libc++-dev gcovr
 
-      - name: Install sonar-scanner and build-wrapper
-        uses: sonarsource/sonarcloud-github-c-cpp@v3
+      - name: Install Build Wrapper
+        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v4
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
@@ -50,9 +50,10 @@ jobs:
           gcovr --sonarqube > coverage.xml
 
       - name: Run sonar-scanner
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Put the name of your token here
-        run: |
-          sonar-scanner \
-            --define sonar.cfamily.compile-commands="${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json" \
+        with:
+          args: >
+            --define sonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json
             --define sonar.coverageReportPaths=coverage.xml
