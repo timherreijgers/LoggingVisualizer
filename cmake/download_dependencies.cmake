@@ -3,6 +3,7 @@ function(download_dependencies)
     set(YAML_CPP_BUILD_TOOLS OFF CACHE BOOL "" FORCE)
     set(BUILD_TESTING OFF)
     set(BENCHMARK_ENABLE_TESTING OFF)
+    set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 
     CPMAddPackage("gh:timherreijgers/FastSignals#ea71756889c576dcae5e08b34850e0a000ebf663")
     CPMAddPackage("gh:google/googletest#v1.15.2")
